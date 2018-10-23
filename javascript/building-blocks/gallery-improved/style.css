@@ -1,0 +1,50 @@
+body {
+    width: 640px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+.div-current {
+    display: block;
+    position: relative;
+}
+
+.div-slide {
+    height: 96px;
+    display: block;
+}
+
+.div-direction {
+    width: 10%;
+    height: 96px;
+    background-color: gray;
+    color: white;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    cursor: pointer;
+}
+.img-slide {
+    width: 20%;
+    float: left;
+    transition: 0.5s;
+    cursor: pointer;
+    display: block;
+}
+#img-current {
+    transition: 0.5s;
+}
+.btn-img-op {
+    border: 0;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    filter: opacity(0.5);
+    text-shadow: 1px 1px 1px white;
+    font-size: medium;
+    cursor: pointer;
+}
