@@ -6,11 +6,10 @@
       <file name="/Dummy.txt" timestamp="1540276443178">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="D:/Documents/code/mdn/image-gallery/main.js" timestamp="1540362103056">
-        <mark key="[" line="22" column="39" />
-        <mark key="]" line="22" column="39" />
-        <mark key="." line="22" column="39" />
-        <mark key="^" line="22" column="39" />
+      <file name="D:/Documents/code/mdn/image-gallery/main.js" timestamp="1540364857460">
+        <mark key="[" line="38" column="29" />
+        <mark key="]" line="22" column="0" />
+        <mark key="." line="22" column="0" />
       </file>
       <file name="D:/Documents/code/mdn/image-gallery/style.css" timestamp="1540362539503">
         <mark key="[" line="21" column="45" />
@@ -18,7 +17,7 @@
         <mark key="." line="25" column="0" />
         <mark key="^" line="16" column="16" />
       </file>
-      <file name="D:/Documents/code/mdn/image-gallery/index.html" timestamp="1540362066590">
+      <file name="D:/Documents/code/mdn/image-gallery/index.html" timestamp="1540363776708">
         <mark key="[" line="16" column="23" />
         <mark key="]" line="16" column="29" />
         <mark key="." line="16" column="0" />
@@ -35,34 +34,34 @@
         <text encoding="base64">ICAgIGhlaWdodDogNDgwcHg7Cg==</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">dGVzdC50ZXh0Q29udGVudCA9IGJ0bkdyYXkudGV4dENvbnRlbnQ7Cg==</text>
       </register>
       <register name="&quot;" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">dGVzdC50ZXh0Q29udGVudCA9IGJ0bkdyYXkudGV4dENvbnRlbnQ7Cg==</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgICAgICBkaXZGdWxsLnN0eWxlLmFkZAo=</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgIHRlc3QudGV4dENvbnRlbnQgKz0gZGl2RnVsbC5zdHlsZS5maWx0ZXI7Cg==</text>
-      </register>
-      <register name="4" type="2">
-        <text encoding="base64">ICAgICAgICB0ZXN0LnRleHRDb250ZW50ICs9IGRpdkZ1bGwuc3R5bGUuZmlsdGVyOwo=</text>
-      </register>
-      <register name="5" type="2">
-        <text encoding="base64">ICAgICAgICB0ZXN0LnRleHRDb250ZW50ICs9IGRpdkZ1bGwuc3R5bGUuZmlsdGVyOwo=</text>
-      </register>
-      <register name="6" type="2">
         <text encoding="base64">Cg==</text>
       </register>
+      <register name="4" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIHRlc3QudGV4dENvbnRlbnQgKz0gZGl2RnVsbC5zdHlsZS5maWx0ZXI7Cg==</text>
+      </register>
+      <register name="6" type="2">
+        <text encoding="base64">ICAgICAgICB0ZXN0LnRleHRDb250ZW50ICs9IGRpdkZ1bGwuc3R5bGUuZmlsdGVyOwo=</text>
+      </register>
       <register name="7" type="2">
-        <text encoding="base64">ICAgICAgICBidG5CcmlnaHRuZXNzLnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsKICAgICAgICBidG5CbHVyLnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsKICAgICAgICBidG5HcmF5LnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsK</text>
+        <text encoding="base64">ICAgICAgICB0ZXN0LnRleHRDb250ZW50ICs9IGRpdkZ1bGwuc3R5bGUuZmlsdGVyOwo=</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">ICAgIGhlaWdodDogNDgwcHg7Cg==</text>
+        <text encoding="base64">ICAgICAgICBidG5CcmlnaHRuZXNzLnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsKICAgICAgICBidG5CbHVyLnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsKICAgICAgICBidG5HcmF5LnN0eWxlLmZpbHRlciA9ICdicmlnaHRuZXNzKDEpJzsK</text>
       </register>
       <register name="-" type="4">
         <text encoding="base64">IGhyZWY9Imh0dHBzOi8vc3RhY2twYXRoLmJvb3RzdHJhcGNkbi5jb20vYm9vdHN0cmFwLzQuMS4zL2Nzcy9ib290c3RyYXAubWluLmNzcyIgaW50ZWdyaXR5PSJzaGEzODQtTUN3OTgvU0ZuR0U4ZkpUM0dYd0VPbmdzVjdadDI3TlhGb2FvQXBtWW04MWl1WG9Qa0ZPSndKOEVSZGtuTFBNTyIgY3Jvc3NvcmlnaW49ImFub255bW91cyI+</text>
