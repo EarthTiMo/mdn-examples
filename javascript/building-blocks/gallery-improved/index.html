@@ -11,17 +11,19 @@
 <h1>照片库</h1>
 
 <div class="div-current">
-    <img src="images/pic0.jpg" id="img-current">
     <button class="btn-img-op" id="btn-brightness">变暗</button>
+    <button class="btn-img-op" id="btn-blur">模糊</button>
+    <button class="btn-img-op" id="btn-gray">黑白</button>
+    <div id="div-full"></div>
 </div>
 
 <div class="div-slide">
-    <div class="div-direction" id="div-slide-left">&lt;&lt;</div>
-    <img class="img-slide" id="img-slide-0" src="">
-    <img class="img-slide" id="img-slide-1" src="">
-    <img class="img-slide" id="img-slide-2" src="">
-    <img class="img-slide" id="img-slide-3" src="">
-    <div class="div-direction" id="div-slide-right">&gt;&gt;</div>
+    <div class="div-slide-item div-nav" id="div-nav-left">&lt;&lt;</div>
+    <div class="div-slide-item div-thumb" id="div-thumb-0"></div>
+    <div class="div-slide-item div-thumb" id="div-thumb-1"></div>
+    <div class="div-slide-item div-thumb" id="div-thumb-2"></div>
+    <div class="div-slide-item div-thumb" id="div-thumb-3"></div>
+    <div class="div-slide-item div-nav" id="div-nav-right">&gt;&gt;</div>
 </div>
 
 <script src="main.js"></script>
