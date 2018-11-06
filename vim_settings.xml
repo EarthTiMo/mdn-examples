@@ -6,11 +6,11 @@
       <file name="/Dummy.txt" timestamp="1540276443178">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="D:/Documents/code/mdn/Tetris/tetris.js" timestamp="1541489064832">
-        <mark key="[" line="172" column="22" />
-        <mark key="]" line="172" column="25" />
-        <mark key="." line="172" column="25" />
-        <mark key="^" line="172" column="25" />
+      <file name="D:/Documents/code/mdn/Tetris/tetris.js" timestamp="1541494912989">
+        <mark key="[" line="6" column="0" />
+        <mark key="]" line="6" column="23" />
+        <mark key="." line="6" column="0" />
+        <mark key="^" line="4" column="16" />
       </file>
       <file name="D:/Documents/code/mdn/image-gallery/main.js" timestamp="1540457614548">
         <mark key="[" line="32" column="34" />
@@ -23,7 +23,7 @@
         <mark key="]" line="10" column="31" />
         <mark key="." line="10" column="0" />
       </file>
-      <file name="D:/Documents/code/mdn/Tetris/index.html" timestamp="1541410258142">
+      <file name="D:/Documents/code/mdn/Tetris/index.html" timestamp="1541494321867">
         <mark key="[" line="5" column="15" />
       </file>
       <file name="D:/Documents/code/mdn/image-gallery/style.css" timestamp="1540455289867">
@@ -53,40 +53,40 @@
     <jumps />
     <registers>
       <register name="0" type="2">
-        <text encoding="base64">ICAgIFsKICAgICAgICBbIFswLDEsMF0sIFswLDEsMF0sIFswLDEsMV0gXSwKICAgICAgICBbIFswLDAsMF0sIFsxLDEsMV0sIFsxLDAsMF0gXSwKICAgICAgICBbIFsxLDEsMF0sIFswLDEsMF0sIFswLDEsMF0gXSwKICAgICAgICBbIFswLDAsMV0sIFsxLDEsMV0sIFswLDAsMF0gXQogICAgXSwK</text>
+        <text encoding="base64">ICAgICAgICBkcmF3QmxvY2soaSwgMCwgLjUsIHN0YXRYICsgcmVtKjEuNSooaS0xKSwgIGJsb2Nrc1kpOwo=</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgIGZvciAobGV0IGkgPSBibG9ja3NbbnVtYmVyLTFdKQo=</text>
+        <text encoding="base64">bGV0IG5leHQgPSBuZXh0QmxvY2soKTsK</text>
       </register>
       <register name="&quot;" type="2">
-        <text encoding="base64">ICAgIGZvciAobGV0IGkgPSBibG9ja3NbbnVtYmVyLTFdKQo=</text>
+        <text encoding="base64">bGV0IG5leHQgPSBuZXh0QmxvY2soKTsK</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgIHN3aXRjaCAobnVtYmVyKSB7CgogICAgfQo=</text>
+        <text encoding="base64">Cgo=</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgICAgICBuZXdCbG9jaygxLCAwLCAxLCBYLCBZICsgcmVtKi41KTsK</text>
+        <text encoding="base64">ICAgIGN0eC5zdHJva2VTdHlsZSA9IENPTE9SW251bWJlcl0uREFSSzsKICAgIGN0eC5saW5lV2lkdGggPSAxOwo=</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">ICAgICAgICBbIFsxLDEsMF0sIFswLDEsMF0sIFswLDEsMF0gXSwKICAgICAgICBbIFswLDAsMV0sIFsxLDEsMV0sIFswLDAsMF0gXQo=</text>
+        <text encoding="base64">ICAgICAgICB9Cg==</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">ICAgICAgICBbIFsxLDEsMF0sIFswLDEsMF0sIFswLDEsMF0gXSwKICAgICAgICBbIFswLDAsMV0sIFsxLDEsMV0sIFswLDAsMF0gXQo=</text>
+        <text encoding="base64">ICAgICAgICBmb3IgKGxldCBpID0gMTsgaSA8PSA3OyBpKyspIHsK</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgIFsKICAgICAgICAKICAgIF0K</text>
+        <text encoding="base64">ZnVuY3Rpb24gcmFuZChmcm9tLCB0bykgewogICAgcmV0dXJuIE1hdGguZmxvb3IoTWF0aC5yYW5kb20oKSAqIHRvKSArIGZyb207Cn0K</text>
       </register>
       <register name="7" type="2">
-        <text encoding="base64">ICAgICAgICBbIFswLDAsMF0sIFsxLDEsMV0sIFswLDAsMV0gXQo=</text>
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5zdHJva2VSZWN0KHggKyBqKnJlbSpzaXplLCB5ICsgaSpyZW0qc2l6ZSwgcmVtKnNpemUsIHJlbSpzaXplKTsK</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICBbIFtdIF0K</text>
+        <text encoding="base64">ICAgICAgICBkcmF3QmxvY2sobmV4dC5udW1iZXIsIG5leHQuc2VxdWVuY2UsIDEsIFgsIFkgKyByZW0qLjUpOwo=</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5zdHJva2VTdHlsZSA9IENPTE9SW251bWJlcl0uREFSSzsKICAgICAgICAgICAgICAgIGN0eC5saW5lV2lkdGggPSAxOwo=</text>
       </register>
       <register name="-" type="4">
-        <text />
+        <text>*3.5,</text>
       </register>
     </registers>
     <search>
