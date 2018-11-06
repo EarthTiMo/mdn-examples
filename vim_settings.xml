@@ -6,10 +6,10 @@
       <file name="/Dummy.txt" timestamp="1540276443178">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="D:/Documents/code/mdn/Tetris/tetris.js" timestamp="1541467531564">
-        <mark key="[" line="135" column="0" />
-        <mark key="]" line="135" column="0" />
-        <mark key="." line="135" column="0" />
+      <file name="D:/Documents/code/mdn/Tetris/tetris.js" timestamp="1541468994216">
+        <mark key="[" line="19" column="40" />
+        <mark key="]" line="19" column="40" />
+        <mark key="." line="19" column="40" />
       </file>
       <file name="D:/Documents/code/mdn/image-gallery/main.js" timestamp="1540457614548">
         <mark key="[" line="32" column="34" />
@@ -58,7 +58,7 @@
         <text encoding="base64">ICAgICAgICBjYXNlIDE6IC8vIEkKICAgICAgICAgICAgc2VxdWVuY2UgJT0gMjsKICAgICAgICAgICAgaWYgKHNlcXVlbmNlID09PSAwKSB7CiAgICAgICAgICAgICAgICBjdHguZmlsbFN0eWxlID0gQ09MT1JbbnVtYmVyXS5EQVJLOwogICAgICAgICAgICAgICAgY3R4LmZpbGxSZWN0KHggKyByZW0sIHksIHJlbSAqIHNpemUsIHJlbSAqIDQgKiBzaXplKTsKICAgICAgICAgICAgICAgIGN0eC5maWxsU3R5bGUgPSBDT0xPUltudW1iZXJdLk1FRElVTTsKICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4ICsgcmVtICsgMiwgeSArIDIsIHJlbSAqIHNpemUgLSA0LCByZW0gKiA0ICogc2l6ZSAtIDQpOwogICAgICAgICAgICB9IGVsc2UgeyAvLyBzZXF1ZW5jZSA9PT0gMQogICAgICAgICAgICAgICAgY3R4LmZpbGxTdHlsZSA9IENPTE9SW251bWJlcl0uREFSSzsKICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4LCB5LCByZW0gKiA0ICogc2l6ZSwgcmVtICogc2l6ZSk7CiAgICAgICAgICAgICAgICBjdHguZmlsbFN0eWxlID0gQ09MT1JbbnVtYmVyXS5NRURJVU07CiAgICAgICAgICAgICAgICBjdHguZmlsbFJlY3QoeCArIDIsIHkgKyAyLCByZW0gKiA0ICogc2l6ZSAtIDQsIHJlbSAqIHNpemUgLSA0KTsKICAgICAgICAgICAgfQ==</text>
       </register>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICAgICAgICBjYXNlIDE6IC8vIEkKICAgICAgICAgICAgc2VxdWVuY2UgJT0gMjsKICAgICAgICAgICAgaWYgKHNlcXVlbmNlID09PSAwKSB7CiAgICAgICAgICAgICAgICBjdHguZmlsbFN0eWxlID0gQ09MT1JbbnVtYmVyXS5EQVJLOwogICAgICAgICAgICAgICAgY3R4LmZpbGxSZWN0KHggKyByZW0sIHksIHJlbSAqIHNpemUsIHJlbSAqIDQgKiBzaXplKTsKICAgICAgICAgICAgICAgIGN0eC5maWxsU3R5bGUgPSBDT0xPUltudW1iZXJdLk1FRElVTTsKICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4ICsgcmVtICsgMiwgeSArIDIsIHJlbSAqIHNpemUgLSA0LCByZW0gKiA0ICogc2l6ZSAtIDQpOwogICAgICAgICAgICB9IGVsc2UgeyAvLyBzZXF1ZW5jZSA9PT0gMQogICAgICAgICAgICAgICAgY3R4LmZpbGxTdHlsZSA9IENPTE9SW251bWJlcl0uREFSSzsKICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4LCB5LCByZW0gKiA0ICogc2l6ZSwgcmVtICogc2l6ZSk7CiAgICAgICAgICAgICAgICBjdHguZmlsbFN0eWxlID0gQ09MT1JbbnVtYmVyXS5NRURJVU07CiAgICAgICAgICAgICAgICBjdHguZmlsbFJlY3QoeCArIDIsIHkgKyAyLCByZW0gKiA0ICogc2l6ZSAtIDQsIHJlbSAqIHNpemUgLSA0KTsKICAgICAgICAgICAgfQ==</text>
+        <text />
       </register>
       <register name="2" type="4">
         <text encoding="base64">CmNvbnN0IEJMT0NLID0gWyBbXSwKICAgIFsKICAgICAgICBbMSwgMSwgMSwgMV0sCiAgICAgICAgWyBbMV0sIFsxXSwgWzFdLCBbMV0gXQogICAgXSwKICAgIFsKICAgICAgICBbIFsxLCAxLCAxXSwgWzAsIDEsIDBdIF0sCiAgICAgICAgWyBbMCwgMV0sIFsxLCAxXSwgWzAsIDFdIF0sCiAgICAgICAgWyBbMCwgMSwgMF0sIFsxLCAxLCAxXSBdLAogICAgICAgIFsgWzEsIDBdLCBbMSwgMV0sIFsxLCAwXSBdCiAgICBdLAogICAgWwogICAgICAgIFsgWzEsIDFdLCBbMSwgMV0gXQogICAgXSwKICAgIFsKICAgICAgICBbIFswLCAxXSwgWzAsIDFdLCBbMSwgMV0gXSwKICAgICAgICBbIFsxLCAwLCAwXSwgWzEsIDEsIDFdIF0sCiAgICAgICAgWyBbMSwgMV0sIFsxLCAwXSwgWzEsIDBdIF0sCiAgICAgICAgWyBbMSwgMSwgMV0sIFswLCAwLCAxXSBdCiAgICBdLAogICAgWwogICAgICAgIFsgWzEsIDBdLCBbMSwgMF0sIFsxLCAxXSBdLAogICAgICAgIFsgWzEsIDEsIDFdLCBbMSwgMCwgMF0gXSwKICAgICAgICBbIFsxLCAxXSwgWzAsIDFdLCBbMCwgMV0gXSwKICAgICAgICBbIFswLCAwLCAxXSwgWzEsIDEsIDFdIF0KICAgIF0sCiAgICBbCgogICAgXQoKXTs=</text>
