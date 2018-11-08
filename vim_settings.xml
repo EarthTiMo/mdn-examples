@@ -1,0 +1,120 @@
+<application>
+  <component name="VimSettings">
+    <state version="4" enabled="true" />
+    <globalmarks />
+    <filemarks>
+      <file name="/Dummy.txt" timestamp="1541637648126">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="D:/Documents/code/mdn/Tetris/tetris.js" timestamp="1541573373032">
+        <mark key="[" line="129" column="50" />
+        <mark key="]" line="128" column="51" />
+        <mark key="." line="128" column="51" />
+        <mark key="^" line="128" column="51" />
+      </file>
+      <file name="D:/Documents/code/mdn/image-gallery/main.js" timestamp="1540457614548">
+        <mark key="[" line="32" column="34" />
+        <mark key="]" line="8" column="0" />
+        <mark key="." line="8" column="0" />
+        <mark key="^" line="8" column="21" />
+      </file>
+      <file name="D:/Documents/code/mdn/canvas/index.html" timestamp="1540800118809">
+        <mark key="[" line="6" column="7" />
+        <mark key="]" line="10" column="31" />
+        <mark key="." line="10" column="0" />
+      </file>
+      <file name="D:/Documents/code/mdn/Tetris/index.html" timestamp="1541572475077">
+        <mark key="[" line="5" column="15" />
+      </file>
+      <file name="D:/Documents/code/mdn/image-gallery/style.css" timestamp="1540455289867">
+        <mark key="[" line="22" column="14" />
+        <mark key="]" line="21" column="0" />
+        <mark key="." line="21" column="0" />
+      </file>
+      <file name="D:/Documents/code/mdn/image-gallery/index.html" timestamp="1540458702718">
+        <mark key="[" line="28" column="0" />
+        <mark key="]" line="28" column="0" />
+        <mark key="." line="28" column="0" />
+      </file>
+      <file name="D:/Documents/code/mdn/number-guess/index.html" timestamp="1540276433578">
+        <mark key="[" line="69" column="0" />
+        <mark key="]" line="69" column="0" />
+        <mark key="." line="69" column="0" />
+      </file>
+      <file name="D:/Documents/code/mdn/canvas/main.js" timestamp="1540802410559">
+        <mark key="]" line="27" column="30" />
+        <mark key="." line="27" column="30" />
+        <mark key="^" line="27" column="30" />
+      </file>
+      <file name="D:/Documents/code/mdn/canvas/style.css" timestamp="1540797564853">
+        <mark key="[" line="0" column="0" />
+      </file>
+    </filemarks>
+    <jumps />
+    <registers>
+      <register name="0" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5maWxsU3R5bGUgPSBDT0xPUltjdXJyZW50Lm51bWJlcl0uTUVESVVNOwogICAgICAgICAgICAgICAgY3R4LnN0cm9rZVN0eWxlID0gQ09MT1JbY3VycmVudC5udW1iZXJdLkRBUks7CiAgICAgICAgICAgICAgICBjdHgubGluZVdpZHRoID0gMTsKICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdChnYW1lWCArIGoqcmVtLCBnYW1lWSArIGkqcmVtLCByZW0sIHJlbSk7CiAgICAgICAgICAgICAgICBjdHguc3Ryb2tlUmVjdChnYW1lWCArIGoqcmVtLCBnYW1lWSArIGkqcmVtLCByZW0sIHJlbSk7Cg==</text>
+      </register>
+      <register name="1" type="2">
+        <text encoding="base64">ICAgICAgICBnYW1lV2lkdGggPSByZW0gKiAxMCwKICAgICAgICBnYW1lSGVpZ2h0ID0gcmVtICogMjA7Cg==</text>
+      </register>
+      <register name="&quot;" type="2">
+        <text encoding="base64">ICAgICAgICBnYW1lV2lkdGggPSByZW0gKiAxMCwKICAgICAgICBnYW1lSGVpZ2h0ID0gcmVtICogMjA7Cg==</text>
+      </register>
+      <register name="2" type="2">
+        <text encoding="base64">ICAgIGFkZE5ld0Jsb2NrKCk7Cg==</text>
+      </register>
+      <register name="3" type="4">
+        <text encoding="base64">ICAgICAgICAgICAgaWYgKGdhbWVQYW5lbFtpXVtqXSA9PT0gMSkgewogICAgICAgICAgICAgICAgCiAgICAgICAgICAgIH0=</text>
+      </register>
+      <register name="4" type="4">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5maWxsUmVjdCh4ICsgaipyZW0qc2l6ZSwgeSArIGkqcmVtKnNpemUsIHJlbSpzaXplLCByZW0qc2l6ZSk7CiAgICAgICAgICAgICAgICBjdHguc3Ryb2tlUmVjdCh4ICsgaipyZW0qc2l6ZSwgeSArIGkqcmVtKnNpemUsIHJlbSpzaXplLCByZW0qc2l6ZSk7</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="6" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5saW5lV2lkdGggPSAxOwo=</text>
+      </register>
+      <register name="8" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGN0eC5saW5lV2lkdGggPSAxOwo=</text>
+      </register>
+      <register name="9" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
+      </register>
+      <register name="-" type="4">
+        <text encoding="base64">IA==</text>
+      </register>
+    </registers>
+    <search>
+      <last-dir>0</last-dir>
+      <show-last>false</show-last>
+    </search>
+    <history>
+      <history-search />
+      <history-cmd />
+      <history-expr />
+      <history-input />
+    </history>
+    <shortcut-conflicts>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed A</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed V</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed X</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed C</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed F</text>
+      </shortcut-conflict>
+    </shortcut-conflicts>
+  </component>
+</application>
