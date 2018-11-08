@@ -26,10 +26,10 @@
       <file name="D:/Documents/code/mdn/Tetris/index.html" timestamp="1541572475077">
         <mark key="[" line="5" column="15" />
       </file>
-      <file name="D:/Documents/code/roy-tian.github.io/javascript/apis/drawing-graphics/tetris-game/main.js" timestamp="1541664656229">
-        <mark key="[" line="3" column="33" />
-        <mark key="]" line="3" column="33" />
-        <mark key="." line="3" column="33" />
+      <file name="D:/Documents/code/roy-tian.github.io/javascript/apis/drawing-graphics/tetris-game/main.js" timestamp="1541667658881">
+        <mark key="[" line="108" column="0" />
+        <mark key="]" line="108" column="0" />
+        <mark key="." line="108" column="0" />
       </file>
       <file name="D:/Documents/code/mdn/image-gallery/style.css" timestamp="1540455289867">
         <mark key="[" line="22" column="14" />
@@ -61,34 +61,34 @@
         <text encoding="base64">ICAgIGN0eC5zYXZlKCk7Cg==</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgIGlmIChjdXJyZW50KQo=</text>
       </register>
-      <register name="&quot;" type="4">
-        <text encoding="base64">IDQ=</text>
+      <register name="&quot;" type="2">
+        <text encoding="base64">ICAgIGlmIChjdXJyZW50KQo=</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgIGN0eC5zYXZlKCk7Cg==</text>
+        <text encoding="base64">c2V0TGF5b3V0KCk7Cg==</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgIH0K</text>
+        <text encoding="base64">cHVzaEJsb2NrKCk7Cg==</text>
       </register>
-      <register name="4" type="2">
-        <text encoding="base64">ICAgIAogICAgaWYgKGxheW91dCA9PT0gJ3NsaW0nIHx8IGxheW91dCA9PT0gJ21vYmlsZScpIHsK</text>
+      <register name="4" type="4">
+        <text encoding="base64">ICAgICAgICAgICAgaWYgKGdhbWVQYW5lbFtpXVtqXSA9PT0gMSkgewogICAgICAgICAgICAgICAgY3R4LmZpbGxTdHlsZSA9IENPTE9SW2N1cnJlbnQubnVtYmVyXS5NRURJVU07CiAgICAgICAgICAgICAgICBjdHguZmlsbFJlY3QoWCArIHJlbSpqIC0gMSwgcmVtKihpKzEpIC0gMSwgcmVtICsgMSwgcmVtICsgMSk7CiAgICAgICAgICAgfQ==</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">ICAgIH0K</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgIGlmIChsYXlvdXQgPT09ICdyZWd1bGFyJyB8fCBsYXlvdXQgPT09ICdkZXRhaWwnKSB7Cg==</text>
-      </register>
-      <register name="7" type="2">
         <text encoding="base64">ICAgIGN0eC5zYXZlKCk7Cg==</text>
       </register>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgIH0K</text>
+      </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICBjdHgucmVzdG9yZSgpOwo=</text>
+        <text encoding="base64">ICAgIAogICAgaWYgKGxheW91dCA9PT0gJ3NsaW0nIHx8IGxheW91dCA9PT0gJ21vYmlsZScpIHsK</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">fSAgICAK</text>
+        <text encoding="base64">ICAgIH0K</text>
       </register>
       <register name="-" type="4">
         <text encoding="base64">IDQ=</text>
