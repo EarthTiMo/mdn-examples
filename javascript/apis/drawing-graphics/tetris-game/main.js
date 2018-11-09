@@ -11,37 +11,37 @@ const COLOR = [
 
 const BLOCKS = [ [],
     [
-        [ [0,1,0,0], [0,1,0,0], [0,1,0,0], [0,1,0,0] ],
-        [ [0,0,0,0], [1,1,1,1], [0,0,0,0], [0,0,0,0] ]
+        [ [1], [1], [1], [1] ],
+        [ [1,1,1,1] ]
     ],
     [
-        [ [0,0,0], [1,1,1], [0,1,0] ],
-        [ [0,1,0], [1,1,0], [0,1,0] ],
-        [ [0,1,0], [1,1,1], [0,0,0] ],
-        [ [0,1,0], [1,1,1], [0,0,0] ]
+        [ [1,1,1], [0,1,0] ],
+        [ [0,1], [1,1], [0,1] ],
+        [ [0,1,0], [1,1,1] ],
+        [ [1,0], [1,1], [1,0] ]
     ],
     [
         [ [1,1], [1,1] ]
     ],
     [
-        [ [0,1,0], [0,1,0], [1,1,0] ],
-        [ [1,0,0], [1,1,1], [0,0,0] ],
-        [ [0,1,1], [0,1,0], [0,1,0] ],
-        [ [0,0,0], [1,1,1], [0,0,1] ]
+        [ [0,1], [0,1], [1,1] ],
+        [ [1,0,0], [1,1,1] ],
+        [ [1,1], [1,0], [1,0] ],
+        [ [1,1,1], [0,0,1] ]
     ],
     [
-        [ [0,1,0], [0,1,0], [0,1,1] ],
-        [ [0,0,0], [1,1,1], [1,0,0] ],
-        [ [1,1,0], [0,1,0], [0,1,0] ],
-        [ [0,0,1], [1,1,1], [0,0,0] ]
+        [ [1,0], [1,0], [1,1] ],
+        [ [1,1,1], [1,0,0] ],
+        [ [1,1], [0,1], [0,1] ],
+        [ [0,0,1], [1,1,1] ]
     ],
     [
-        [ [0,1,1], [1,1,0], [0,0,0] ],
-        [ [0,1,0], [0,1,1], [0,0,1] ]
+        [ [0,1,1], [1,1,0] ],
+        [ [1,0], [1,1], [0,1] ]
     ],
     [
-        [ [1,1,0], [0,1,1], [0,0,0] ],
-        [ [0,0,1], [0,1,1], [0,1,0] ]
+        [ [1,1,0], [0,1,1] ],
+        [ [0,1], [1,1], [1,0] ]
     ]
 ];
 
@@ -49,12 +49,11 @@ let canvas = document.getElementById('cvs-tetris');
 let ctx = canvas.getContext('2d');
 let width, height;   // 窗口的尺寸
 let rem;             // 相对单位，等于单个方块的宽度
-let layout;          // detail | regular | slim | mobile
+let layout;          // detail | regular | slim
 let score = 0, lines = 0, level = 0;
 let blockCount = [0, 0, 0, 0, 0, 0, 0, 0];
 let gamePanel = [];
 let current, next = nextBlock();
-let curX, curY;
 
 initGamePanel();
 pushBlock();
@@ -70,11 +69,11 @@ function setSizeEnv() {
         layout = 'detail';
     else if ( width < rem*28 && width >= rem*17 )
         layout = 'regular';
-    else if ( width < rem*17 && width >= rem*12 )
+    else {
         layout = 'slim';
-    else { // width < rem*12
-        rem = width / 12;
-        layout = 'mobile';
+        rem = height / 20;
+        if ( width < rem*10 )
+            rem = width / 10;
     }
 }
 
@@ -86,28 +85,31 @@ function setBackground() {
 }
 
 function setGameBox() {
-    let X = rem;
+    let X = rem, Y = rem;
     if (layout === 'detail')
         X = width/2 - rem*13;
     else if (layout === 'regular')
         X = width/2 - rem*7.5;
-    else if (layout === 'slim')
-        X = width/2 - rem*5;
+    else if (layout === 'slim') {
+        X = width / 2 - rem * 5;
+        Y = height / 2 - rem*10;
+    }
 
     ctx.save();
     ctx.fillStyle = COLOR[level].FADE;
-    ctx.fillRect(X - 1, rem - 1, rem*10 + 1, rem*20 + 1);
+    ctx.fillRect(X - 1, Y - 1, rem*10 + 1, rem*20 + 1);
 
     for (let i = 0; i < 20; i++) {
         for (let j = 0; j < 10; j++) {
             if (gamePanel[i][j] === 2) {
                 ctx.fillStyle = COLOR[level].MEDIUM;
-                ctx.fillRect(X + rem*j,  rem*(i+1), rem, rem);
+                ctx.fillRect(X + rem*j,  Y + rem*i, rem, rem);
             }
         }
     }
 
-    drawBlock(current.number, current.sequence, 1, X + rem*curX + 1, rem + rem*curY + 1);
+    drawBlock(current.number, current.sequence, 1,
+              X + rem*current.X + 1, Y + rem*current.Y + 1);
 
     ctx.restore();
 }
@@ -146,7 +148,7 @@ function setInfoBox() {
 
 function setSlimInfo() {
     let rightX = width/2 + rem*2.8,
-        Y = rem*1.6;
+        Y = height/2 - rem*9.4;
 
     ctx.save();
     ctx.fillStyle = COLOR[level].LIGHT;
@@ -171,15 +173,15 @@ function setStatBox() {
 
         ctx.fillStyle = '#000';
         ctx.font = rem*2 + 'px 微软雅黑';
-        ctx.fillText('方块统计', statX + rem*1.8, rem*3.8);
+        ctx.fillText('方块统计', statX + rem*1.5, rem*3.8);
 
-        drawBlock(1, 0, .5, statX - rem*.2,  blockY);
-        drawBlock(2, 1, .5, statX + rem*1.3,  blockY);
-        drawBlock(3, 0, .5, statX + rem*2.8,  blockY);
-        drawBlock(4, 0, .5, statX + rem*4.3,  blockY);
-        drawBlock(5, 0, .5, statX + rem*5.3,  blockY);
-        drawBlock(6, 1, .5, statX + rem*6.8,  blockY);
-        drawBlock(7, 1, .5, statX + rem*8.3,  blockY);
+        drawBlock(1, 0, .5, statX + rem*.55,  blockY);
+        drawBlock(2, 1, .5, statX + rem*1.45,  blockY);
+        drawBlock(3, 0, .5, statX + rem*2.85,  blockY);
+        drawBlock(4, 0, .5, statX + rem*4.25,  blockY);
+        drawBlock(5, 0, .5, statX + rem*5.65,  blockY);
+        drawBlock(6, 1, .5, statX + rem*7.05,  blockY);
+        drawBlock(7, 1, .5, statX + rem*8.45,  blockY);
 
         ctx.restore();
     }
@@ -187,11 +189,10 @@ function setStatBox() {
 
 
 function drawBlock(number, sequence, size, x, y) {
-    let dim = BLOCKS[number][0].length;
     ctx.save();
     ctx.fillStyle = COLOR[number].MEDIUM;
-    for (let i = 0; i < dim; i++) {
-        for (let j = 0; j < dim; j++) {
+    for (let i = 0; i < BLOCKS[number][sequence].length; i++) {
+        for (let j = 0; j < BLOCKS[number][sequence][0].length; j++) {
             if (BLOCKS[number][sequence][i][j] === 1) {
                 ctx.fillRect(x + j*rem*size-1, y + i*rem*size-1, rem*size+1, rem*size+1);
             }
@@ -216,13 +217,9 @@ function initGamePanel() {
 
 function pushBlock() {
     current = next;
-    curX = 3;
-    curY =
-        BLOCKS[current.number][current.sequence][0].reduce((acc, cur) => acc + cur) === 0 ? -1 : 0;
     next = nextBlock();
-    let dim = BLOCKS[current.number][0].length;
-    for (let i = 0; i < dim; i++) {
-        for (let j = 0; j < dim; j++) {
+    for (let i = 0; i < BLOCKS[current.number][current.sequence].length; i++) {
+        for (let j = 0; j < BLOCKS[current.number][current.sequence][0].length; j++) {
             if (BLOCKS[current.number][current.sequence][i][j] === 1) {
                 gamePanel[i][j+3] = 1;
             }
@@ -232,13 +229,23 @@ function pushBlock() {
     blockCount[current.number]++;
 }
 
+function leftBlock() {
+    
+}
+
+function downBlock() {
+    current
+}
+
 
 function nextBlock() {
     let n = rand(1, 7),
         s = rand(0, 3) % BLOCKS[n].length;
     return {
         number: n,
-        sequence: s
+        sequence: s,
+        X: 3,
+        Y: 0
     };
 }
 
