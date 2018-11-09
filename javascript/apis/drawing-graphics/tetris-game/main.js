@@ -53,7 +53,8 @@ let layout;          // detail | regular | slim
 let score = 0, lines = 0, level = 0;
 let blockCount = [0, 0, 0, 0, 0, 0, 0, 0];
 let gamePanel = [];
-let current, next = nextBlock();
+let curCol = 3, curRow = 0;
+let current, next = newBlock();
 
 initGamePanel();
 pushBlock();
@@ -85,7 +86,7 @@ function setBackground() {
 }
 
 function setGameBox() {
-    let X = rem, Y = rem;
+    let X, Y = rem;
     if (layout === 'detail')
         X = width/2 - rem*13;
     else if (layout === 'regular')
@@ -109,7 +110,7 @@ function setGameBox() {
     }
 
     drawBlock(current.number, current.sequence, 1,
-              X + rem*current.X + 1, Y + rem*current.Y + 1);
+              X + rem*curCol + 1, Y + rem*curRow + 1);
 
     ctx.restore();
 }
@@ -217,7 +218,7 @@ function initGamePanel() {
 
 function pushBlock() {
     current = next;
-    next = nextBlock();
+    next = newBlock();
     for (let i = 0; i < BLOCKS[current.number][current.sequence].length; i++) {
         for (let j = 0; j < BLOCKS[current.number][current.sequence][0].length; j++) {
             if (BLOCKS[current.number][current.sequence][i][j] === 1) {
@@ -229,24 +230,38 @@ function pushBlock() {
     blockCount[current.number]++;
 }
 
-function leftBlock() {
-    
+function moveBlockLeft() {
+    if (current.X > 0) {
+        current.X--;
+    }
+}
+
+function moveBlockRight() {
 }
 
 function downBlock() {
-    current
 }
 
 
-function nextBlock() {
+function newBlock() {
     let n = rand(1, 7),
         s = rand(0, 3) % BLOCKS[n].length;
     return {
         number: n,
-        sequence: s,
-        X: 3,
-        Y: 0
+        sequence: s
     };
+}
+
+function fit(block, row, col) {
+    if ( row < 0 || row + BLOCKS[block.number][block.sequence].length > 20 ||
+         col < 0 || col + BLOCKS[block.number][block.sequence][0].length > 10 )
+        return false;
+    for (let i = row; i < row + BLOCKS[block.number][block.sequence].length; i++)
+        for (let j = col; j < col + BLOCKS[block.number][block.sequence][0].length; j++) {
+            if (BLOCKS[i][j] === 1 && gamePanel[i][j] === 2)
+                return false;
+        }
+    return true;
 }
 
 function rand(from, to) {
@@ -262,6 +277,5 @@ function setLayout() {
     else
         setSlimInfo();
     setStatBox();
-
 }
 
