@@ -61,6 +61,7 @@ pushBlock();
 setLayout();
 window.onresize = setLayout;
 document.onkeydown = moveBlock;
+game();
 
 function setSizeEnv() {
     width = canvas.width = window.innerWidth;
@@ -93,8 +94,8 @@ function setGameBox() {
     else if (layout === 'regular')
         X = width/2 - rem*7.5;
     else if (layout === 'slim') {
-        X = width / 2 - rem * 5;
-        Y = height / 2 - rem*10;
+        X = width/2 - rem*5;
+        Y = height/2 - rem*10;
     }
 
     ctx.save();
@@ -119,32 +120,32 @@ function setInfoBox() {
 
     ctx.save();
     if (layout === 'detail' || layout === 'regular') {
-        let X = width / 2 + rem * 3.5,
-            Y = rem * 4;
+        let X = width/2 + rem*3.5,
+            Y = rem*4;
         if (layout === 'detail')
-            X = width / 2 - rem * 2;
+            X = width/2 - rem*2;
 
         ctx.fillStyle = '#000';
-        ctx.fillRect(X, Y, rem * 4, rem * 15);
+        ctx.fillRect(X, Y, rem*4, rem*15);
         ctx.fillStyle = COLOR[level].FADE;
-        ctx.fillRect(X, Y + rem * 6.5, rem * 4, rem);
-        ctx.fillRect(X, Y + rem * 9.5, rem * 4, rem);
-        ctx.fillRect(X, Y + rem * 12.5, rem * 4, rem);
+        ctx.fillRect(X, Y + rem*6.5, rem*4, rem);
+        ctx.fillRect(X, Y + rem*9.5, rem*4, rem);
+        ctx.fillRect(X, Y + rem*12.5, rem*4, rem);
 
         ctx.fillStyle = COLOR[level].LIGHT;
         ctx.font = rem + 'px 微软雅黑';
         ctx.fillText('下一方块', X, Y);
-        ctx.fillText('当前关卡', X, Y + rem * 6);
-        ctx.fillText('已消层数', X, Y + rem * 9);
-        ctx.fillText('当前得分', X, Y + rem * 12);
+        ctx.fillText('当前关卡', X, Y + rem*6);
+        ctx.fillText('已消层数', X, Y + rem*9);
+        ctx.fillText('当前得分', X, Y + rem*12);
 
         ctx.font = rem + 'px Consolas';
-        let numberX = (number) => X + rem * .08 + rem * .55 * (7 - String(number).length);
-        ctx.fillText(level, numberX(level), Y + rem * 7.3);
-        ctx.fillText(lines, numberX(lines), Y + rem * 10.3);
-        ctx.fillText(score, numberX(score), Y + rem * 13.3);
+        let numberX = (number) => X + rem*.08 + rem*.55 * (7 - String(number).length);
+        ctx.fillText(level, numberX(level), Y + rem* 7.3);
+        ctx.fillText(lines, numberX(lines), Y + rem*10.3);
+        ctx.fillText(score, numberX(score), Y + rem*13.3);
 
-        drawBlock(next.number, next.sequence, 1, X, Y + rem * .5);
+        drawBlock(next.number, next.sequence, 1, X, Y + rem*.5);
     } else {
         let rightX = width/2 + rem*2.8,
             Y = height/2 - rem*9.4;
@@ -163,26 +164,30 @@ function setInfoBox() {
 
 function setStatBox() {
     if (layout === 'detail') {
-        let statX = width/2 + rem*3,
+        let X = width/2 + rem*3,
+            Y = rem;
             blockY = height - rem*4;
         ctx.save();
         ctx.fillStyle = COLOR[level].FADE;
-        ctx.fillRect(statX - 1, rem - 1, rem*10 + 1, rem*20 + 1);
+        ctx.fillRect( X - 1, Y - 1, rem*10 + 1, rem*20 + 1);
 
         ctx.fillStyle = '#000';
         ctx.font = rem*2 + 'px 微软雅黑';
-        ctx.fillText('方块统计', statX + rem*1.5, rem*3.8);
+        ctx.fillText('方块统计',  X + rem*1.5, Y + rem*2.8);
 
-        drawBlock(1, 0, .5, statX + rem*.55,  blockY);
-        drawBlock(2, 1, .5, statX + rem*1.45,  blockY);
-        drawBlock(3, 0, .5, statX + rem*2.85,  blockY);
-        drawBlock(4, 0, .5, statX + rem*4.25,  blockY);
-        drawBlock(5, 0, .5, statX + rem*5.65,  blockY);
-        drawBlock(6, 1, .5, statX + rem*7.05,  blockY);
-        drawBlock(7, 1, .5, statX + rem*8.45,  blockY);
+        drawBlock(1, 0, .5,  X + rem*.85,  blockY);
+        drawBlock(2, 1, .5,  X + rem*1.9,  blockY);
+        drawBlock(3, 0, .5,  X + rem*3.2,  blockY);
+        drawBlock(4, 0, .5,  X + rem*4.5,  blockY);
+        drawBlock(5, 0, .5,  X + rem*5.8,  blockY);
+        drawBlock(6, 1, .5,  X + rem*7.1,  blockY);
+        drawBlock(7, 1, .5,  X + rem*8.4,  blockY);
 
-        ctx.fillStyle = COLOR[1].DARK;
-
+        for (let i = 1; i <= 7; i++) {
+            ctx.fillStyle = COLOR[i].DARK;
+            ctx.fillRect(X + rem*.7 + rem*(i - 1)*1.3, Y + rem*16.5 - rem*.2*count[i],
+                         rem*.8, rem*.2* count[i]);
+        }
         ctx.restore();
     }
 }
@@ -202,7 +207,7 @@ function drawBlock(number, sequence, size, x, y) {
 }
 
 function game() {
-
+    let interval = window.setInterval(moveDown, 1000);
 }
 
 function initPanel() {
@@ -219,10 +224,8 @@ function pushBlock() {
     currentRow = 0;
     currentCol = 3;
     current = next;
-    if ( ! reachBottom() ) {
-
+    if ( fit() ) {
         next = newBlock();
-
         count[0]++;
         count[current.number]++;
         return true;
@@ -240,83 +243,82 @@ function acceptBlock() {
 function moveBlock(e) {
     switch (e.key) {
         case 'ArrowLeft':
-            if ( !reachLeftEdge() )
-                currentCol--;
+            moveLeft();
             break;
         case 'ArrowRight':
-            if ( !reachRightEdge() )
-                currentCol++;
+            moveRight();
             break;
         case 'ArrowDown':
-            if ( !reachBottom() )
-                currentRow++;
+            moveDown();
             break;
         case 'ArrowUp':
-            let temp = current.sequence++;
-            current.sequence %= BLOCKS[current.number].length;
-          //  if ( reachBottom() )
-            //    currentRow -= blockHeight() - (20 - currentRow);
+            turnClockwise();
+            break;
+    }
+}
 
-            if ( reachRightEdge() ) {
-                let tempCol = currentCol;
-                while ( !reachLeftEdge() )
-                    currentCol--;
-                while ( !reachRightEdge() )
-                    currentCol++;
-               // if ( currentCol === tempCol )   // 当前横向空间不够方块进行转体
-                //    current.sequence = temp;    // 方块保持不变
-            }
-            break;
-        case 'Enter':
-            acceptBlock();
-            pushBlock();
-            break;
+function moveLeft() {
+    if ( fit(currentRow, currentCol-1) )
+        currentCol--;
+    setLayout();
+}
+
+function moveRight() {
+    if ( fit(currentRow, currentCol+1) )
+        currentCol++;
+    setLayout();
+}
+
+function moveDown() {
+    if ( fit(currentRow+1, currentCol) ) {
+        currentRow++;
+    }
+    else {
+        acceptBlock();
+        pushBlock();
     }
     setLayout();
 }
 
+function turnClockwise() {
+    let turnSq = current.sequence + 1;
+    turnSq %= BLOCKS[current.number].length;
+
+    if ( fit(currentRow, currentCol, current.number, turnSq) )
+        current.sequence = turnSq;
+    else {
+        let i = 0, j = 0, diff = Math.abs(blockWidth() - blockHeight());
+        for (; i <= diff; i++)
+            if (fit(currentRow, currentCol - i, current.number, turnSq))
+                break;
+        if (i === diff + 1) i = 0;
+        for (; j <= diff; j++)
+            if (fit(currentRow - j, currentCol - i, current.number, turnSq))
+                break;
+        if (j === diff + 1) j = 0;
+        if (i + j > 0) {
+            currentRow -= j;
+            currentCol -= i;
+            current.sequence = turnSq;
+        }
+    }
+    setLayout();
+}
 
 function newBlock() {
-    let n = rand(1, 7),
-        s = rand(0, 3) % BLOCKS[n].length;
-    return {
-        number: n,
-        sequence: s
-    };
+    let n = rand(1, 7), s = rand(0, 3) % BLOCKS[n].length;
+    return { number: n, sequence: s };
 }
 
-function reachLeftEdge() {
-    if (currentCol <= 0)
-        return true;
-    for (let i = 0; i < blockHeight(); i++)
-        for (let j = 0; j < blockWidth(); j++) {
-            if ( blockMatrix()[i][j] +
-                 panel[currentRow+i][currentCol+j-1] === 2)
-                return true;
-        }
-    return false;
-}
-
-function reachRightEdge() {
-    if (currentCol + blockWidth() >= 10)
-        return true;
-    for (let i = 0; i < blockHeight(); i++)
-        for (let j = blockWidth()-1; j >= 0; j--)
-            if ( blockMatrix()[i][j] +
-                 panel[currentRow+i][currentCol+j+1] === 2 )
-                return true;
-    return false;
-}
-
-function reachBottom() {
-    if (currentRow + blockHeight() >= 20)
-        return true;
-    for (let i = 0; i < blockWidth(); i++)
-        if ( blockMatrix()[blockHeight()-1][i] +
-             panel[currentRow+blockHeight()][currentCol+i] === 2 )
-            return true;
-    return false;
-
+function fit(row = currentRow, col = currentCol, number = current.number, sequence = current.sequence)  {
+    if ( row < 0 || row > 20-blockHeight(number, sequence) ||
+         col < 0 || col > 10-blockWidth(number, sequence) )
+        return false;
+    for (let i = 0; i < blockHeight(number, sequence); i++)
+        for (let j = 0; j < blockWidth(number, sequence); j++)
+            if ( blockMatrix(number, sequence)[i][j] + panel[row+i][col+j] === 2 )
+                return false;
+    return true;
 }
 
 function blockWidth(number = current.number, sequence = current.sequence) {
