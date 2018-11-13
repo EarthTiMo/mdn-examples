@@ -57,7 +57,7 @@ pushBlock();
 setLayout();
 window.onresize = setLayout;
 window.onkeydown = onKeyDown;
-window.ontouchstart = onTouchStart;
+window.ontouchstart = window.ontouchmove = window.ontouchend = onTouch;
 
 interval = window.setInterval(moveDown, 1000 - level * 100);
 
@@ -268,19 +268,34 @@ function onKeyDown(e) {
     }
 }
 
-function onTouchStart(e) {
+function onTouch(e) {
     e.preventDefault();
-    let touch = e.changedTouches[0];
-            if (touch.pageY <= height *.5)
+    let touchStart, touchMove, touchEnd, rx = 0, ry = 0;
+    switch (e.type) {
+        case 'touchstart':
+            touchStart = e.changedTouches[0];
+            break;
+        case 'touchmove':
+            if (e.changedTouches.length > 1 || event.scale && event.scale !== 1)
+                break;
+            touchMove = e.changedTouches[0];
+            rx = touchMove.pageX - touchStart.pageX;
+            ry = touchMove.pageY - touchStart.pageY;
+            if (Math.abs(rx) > Math.abs(ry))
+                rx > 0 ? moveRight() : moveLeft();
+            else if(ry > 0)
+                moveDown();
+            break;
+        case 'touchend':
+            let duration = new Date - touchStart.time;
+            if (duration >= 1000) {
                 pauseGame();
-            else {
-                if (touch.pageX <= width * .2)
-                    moveLeft();
-                else if (touch.pageX >= width * .8)
-                    moveRight();
-                else
-                    turnClockwise();
+            } else if (duration < 1000 && duration > 10) {
+                turnClockwise();
             }
+            break;
+    }
+
 }
 
 function moveLeft() {
