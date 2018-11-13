@@ -170,7 +170,7 @@ function setInfoBox() {
 function setStatBox() {
     if (layout === 'detail') {
         let X = width/2 + rem*3,
-            Y = rem;
+            Y = rem,
             blockY = height - rem*4;
         ctx.save();
         ctx.fillStyle = COLOR[level].FADE;
@@ -284,8 +284,8 @@ function onTouch(e) {
             break;
         case 'touchmove':
             pointMove = e.changedTouches[0];
-            let diffX = pointMove.pageX - pointStart.pageX;
-            let diffY = pointMove.pageY = pointStart.pageY;
+            let diffX = pointMove.pageX - pointStart.pageX,
+                diffY = pointMove.pageY - pointStart.pageY;
             if (diffX > 0 && Math.ceil(diffX) % Math.ceil(rem) )
                 moveRight();
             if (diffX < 0 && Math.ceil(diffX) % Math.ceil(rem) )
