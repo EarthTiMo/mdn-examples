@@ -13,29 +13,24 @@ const BLOCKS = [ [],
     [
         [ [1], [1], [1], [1] ],
         [ [1,1,1,1] ]
-    ],
-    [
+    ], [
         [ [1,1,1], [0,1,0] ],
         [ [0,1], [1,1], [0,1] ],
         [ [0,1,0], [1,1,1] ],
         [ [1,0], [1,1], [1,0] ]
-    ],
-    [
+    ], [
         [ [1,1], [1,1] ]
-    ],
-    [
+    ], [
         [ [0,1], [0,1], [1,1] ],
         [ [1,0,0], [1,1,1] ],
         [ [1,1], [1,0], [1,0] ],
         [ [1,1,1], [0,0,1] ]
-    ],
-    [
+    ], [
         [ [1,0], [1,0], [1,1] ],
         [ [1,1,1], [1,0,0] ],
         [ [1,1], [0,1], [0,1] ],
         [ [0,0,1], [1,1,1] ]
-    ],
-    [
+    ], [
         [ [0,1,1], [1,1,0] ],
         [ [1,0], [1,1], [0,1] ]
     ],
@@ -63,7 +58,6 @@ setLayout();
 window.onresize = setLayout;
 window.onkeydown = onKeyDown;
 window.ontouchstart = onTouch;
-window.ontouchmove = onTouch;
 window.ontouchend = onTouch;
 
 interval = window.setInterval(moveDown, 1000 - level * 100);
@@ -277,24 +271,23 @@ function onKeyDown(e) {
 
 function onTouch(e) {
     e.preventDefault();
-    let pointStart, pointMove;
+    let touch;
     switch (e.type) {
         case 'touchstart':
-            pointStart = e.changedTouches[0];
+            touch = e.changedTouches[0];
             break;
-        case 'touchmove':
-            pointMove = e.changedTouches[0];
-            let diffX = pointMove.pageX - pointStart.pageX,
-                diffY = pointMove.pageY - pointStart.pageY;
-            if (diffX > 0)
-                moveRight();
-            if (diffX < 0)
-                moveLeft();
-            if (diffY > 0)
-                moveDown();
-            break;
+
         case 'touchend':
-            turnClockwise();
+            if (touch.pageY <= height *.3)
+                pauseGame();
+            else {
+                if (touch.pageX <= width * .2)
+                    moveLeft();
+                else if (touch.pageX >= width * .8)
+                    moveRight();
+                else
+                    turnClockwise();
+            }
     }
 }
 
