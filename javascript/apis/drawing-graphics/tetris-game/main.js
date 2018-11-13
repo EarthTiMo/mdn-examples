@@ -57,8 +57,7 @@ pushBlock();
 setLayout();
 window.onresize = setLayout;
 window.onkeydown = onKeyDown;
-window.ontouchstart = onTouch;
-window.ontouchend = onTouch;
+window.ontouchstart = onTouchStart;
 
 interval = window.setInterval(moveDown, 1000 - level * 100);
 
@@ -269,16 +268,10 @@ function onKeyDown(e) {
     }
 }
 
-function onTouch(e) {
+function onTouchStart(e) {
     e.preventDefault();
-    let touch;
-    switch (e.type) {
-        case 'touchstart':
-            touch = e.changedTouches[0];
-            break;
-
-        case 'touchend':
-            if (touch.pageY <= height *.3)
+    let touch = e.changedTouches[0];
+            if (touch.pageY <= height *.5)
                 pauseGame();
             else {
                 if (touch.pageX <= width * .2)
@@ -288,7 +281,6 @@ function onTouch(e) {
                 else
                     turnClockwise();
             }
-    }
 }
 
 function moveLeft() {
