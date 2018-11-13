@@ -270,7 +270,7 @@ function onKeyDown(e) {
 
 function onTouch(e) {
     e.preventDefault();
-    let touchStart, touchMove, touchEnd, rx = 0, ry = 0;
+    let touchStart, touchMove, rx = 0, ry = 0;
     switch (e.type) {
         case 'touchstart':
             touchStart = e.changedTouches[0];
