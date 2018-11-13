@@ -286,15 +286,15 @@ function onTouch(e) {
             pointMove = e.changedTouches[0];
             let diffX = pointMove.pageX - pointStart.pageX,
                 diffY = pointMove.pageY - pointStart.pageY;
-            if (diffX > 0 && Math.ceil(diffX) % Math.ceil(rem) )
+            if (diffX > 0)
                 moveRight();
-            if (diffX < 0 && Math.ceil(diffX) % Math.ceil(rem) )
+            if (diffX < 0)
                 moveLeft();
-            if (diffY > 0 && Math.ceil(diffY) % Math.ceil(rem))
+            if (diffY > 0)
                 moveDown();
             break;
         case 'touchend':
-            pauseGame();
+            turnClockwise();
     }
 }
 
