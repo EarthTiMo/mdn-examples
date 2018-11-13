@@ -55,13 +55,18 @@ let count = [0, 0, 0, 0, 0, 0, 0, 0];
 let panel = [];
 let currentCol = 3, currentRow = 0;
 let current, next = newBlock();
+let interval, paused = false;
 
 initPanel();
 pushBlock();
 setLayout();
 window.onresize = setLayout;
-document.onkeydown = moveBlock;
-game();
+window.onkeydown = onKeyDown;
+window.ontouchstart = onTouch;
+window.ontouchmove = onTouch;
+window.ontouchend = onTouch;
+
+interval = window.setInterval(moveDown, 1000 - level * 100);
 
 function setSizeEnv() {
     width = canvas.width = window.innerWidth;
@@ -105,7 +110,7 @@ function setGameBox() {
     for (let i = 0; i < 20; i++)
         for (let j = 0; j < 10; j++)
             if (panel[i][j] === 1) {
-                ctx.fillStyle = COLOR[level].MEDIUM;
+                ctx.fillStyle = COLOR[level].DARK;
                 ctx.fillRect(X + rem*j - 1,  Y + rem*i - 1, rem + 1, rem + 1);
             }
 
@@ -206,10 +211,6 @@ function drawBlock(number, sequence, size, x, y) {
     ctx.restore();
 }
 
-function game() {
-    let interval = window.setInterval(moveDown, 1000);
-}
-
 function initPanel() {
     for (let i = 0; i < 20; i++) {
         let cur = [];
@@ -217,6 +218,20 @@ function initPanel() {
             cur.push(0);
         }
         panel.push(cur);
+    }
+}
+
+function clearPanel() {
+    for (let i = currentRow; i < currentRow + blockHeight(); i++) {
+        if ( panel[i].reduce( (arr, cur) => arr + cur ) === 10 ) {
+            lines++;
+            if (lines % 10 === 0)
+                level++;
+            for (let j = i; j > 0; j--) {
+                panel[j] = panel[j-1];
+            }
+            panel[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
     }
 }
 
@@ -240,7 +255,7 @@ function acceptBlock() {
                  panel[currentRow+i][currentCol+j] = blockMatrix()[i][j];
 }
 
-function moveBlock(e) {
+function onKeyDown(e) {
     switch (e.key) {
         case 'ArrowLeft':
             moveLeft();
@@ -254,55 +269,100 @@ function moveBlock(e) {
         case 'ArrowUp':
             turnClockwise();
             break;
+        case ' ':
+            pauseGame();
+            break;
+    }
+}
+
+function onTouch(e) {
+    e.preventDefault();
+    let pointStart, pointMove;
+    switch (e.type) {
+        case 'touchstart':
+            pointStart = e.changedTouches[0];
+            break;
+        case 'touchmove':
+            pointMove = e.changedTouches[0];
+            let diffX = pointMove.pageX - pointStart.pageX;
+            let diffY = pointMove.pageY = pointStart.pageY;
+            if (diffX > 0 && Math.ceil(diffX) % Math.ceil(rem) )
+                moveRight();
+            if (diffX < 0 && Math.ceil(diffX) % Math.ceil(rem) )
+                moveLeft();
+            if (diffY > 0 && Math.ceil(diffY) % Math.ceil(rem))
+                moveDown();
+            break;
+        case 'touchend':
+            pauseGame();
     }
 }
 
 function moveLeft() {
-    if ( fit(currentRow, currentCol-1) )
-        currentCol--;
-    setLayout();
+    if (!paused) {
+        if (fit(currentRow, currentCol - 1))
+            currentCol--;
+        setLayout();
+    }
 }
 
 function moveRight() {
-    if ( fit(currentRow, currentCol+1) )
-        currentCol++;
-    setLayout();
+    if (!paused) {
+        if (fit(currentRow, currentCol + 1))
+            currentCol++;
+        setLayout();
+    }
 }
 
 function moveDown() {
-    if ( fit(currentRow+1, currentCol) ) {
-        currentRow++;
+    if (!paused) {
+        if (fit(currentRow + 1, currentCol)) {
+            currentRow++;
+        } else {
+            acceptBlock();
+            clearPanel();
+            pushBlock();
+        }
+        setLayout();
     }
-    else {
-        acceptBlock();
-        pushBlock();
-    }
-    setLayout();
 }
 
 function turnClockwise() {
-    let turnSq = current.sequence + 1;
-    turnSq %= BLOCKS[current.number].length;
+    if (!paused) {
+        let turnSq = current.sequence + 1;
+        turnSq %= BLOCKS[current.number].length;
 
-    if ( fit(currentRow, currentCol, current.number, turnSq) )
-        current.sequence = turnSq;
-    else {
-        let i = 0, j = 0, diff = Math.abs(blockWidth() - blockHeight());
-        for (; i <= diff; i++)
-            if (fit(currentRow, currentCol - i, current.number, turnSq))
-                break;
-        if (i === diff + 1) i = 0;
-        for (; j <= diff; j++)
-            if (fit(currentRow - j, currentCol - i, current.number, turnSq))
-                break;
-        if (j === diff + 1) j = 0;
-        if (i + j > 0) {
-            currentRow -= j;
-            currentCol -= i;
+        if (fit(currentRow, currentCol, current.number, turnSq))
             current.sequence = turnSq;
+        else {
+            let i = 0, j = 0, diff = Math.abs(blockWidth() - blockHeight());
+            for (; i <= diff; i++)
+                if (fit(currentRow, currentCol - i, current.number, turnSq))
+                    break;
+            if (i === diff + 1) i = 0;
+            for (; j <= diff; j++)
+                if (fit(currentRow - j, currentCol - i, current.number, turnSq))
+                    break;
+            if (j === diff + 1) j = 0;
+            if (i + j > 0) {
+                currentRow -= j;
+                currentCol -= i;
+                current.sequence = turnSq;
+            }
         }
+        setLayout();
     }
-    setLayout();
+}
+
+function pauseGame() {
+    if (paused === true) {
+        interval = window.setInterval(moveDown, 1000 - level * 100);
+        paused = false;
+    } else {
+        window.clearInterval(interval);
+        paused = true;
+    }
+
 }
 
 function newBlock() {
