@@ -8,24 +8,17 @@ let btnBlur = document.getElementById('btn-blur');
 let btnGray = document.getElementById('btn-gray');
 
 for (let i = 0; i < TOTAL_IMAGES; i++) {
-    images[i] = 'images/pic' + i + '.jpg';
-}
-
-function deploySlide(index = 0) {
-    for (let i = 0; i < SLIDE_SIZE; i++) {
-        let currentThumb = document.getElementById('div-thumb-' + i);
-        currentThumb.style.backgroundImage = 'url(' + images[i + index] + ')';
-    }
+    images[i] = '../images/pic' + (i+1) + '.jpg';
 }
 
 deploySlide();
 
-document.getElementById('div-nav-left').onclick =  () => {
+document.getElementById('div-nav-left').onclick = () => {
     if (slideFirstIndex > 0)
         deploySlide(--slideFirstIndex);
 };
 
-document.getElementById('div-nav-right').onclick =  () => {
+document.getElementById('div-nav-right').onclick = () => {
     if (slideFirstIndex < TOTAL_IMAGES - SLIDE_SIZE)
         deploySlide(++slideFirstIndex);
 };
@@ -73,3 +66,9 @@ document.querySelectorAll('.div-thumb').forEach(value => {
         () => divFull.style.backgroundImage = value.style.backgroundImage;
 });
 
+function deploySlide(index = 0) {
+    for (let i = 0; i < SLIDE_SIZE; i++) {
+        let currentThumb = document.getElementById('div-thumb-' + i);
+        currentThumb.style.backgroundImage = 'url(' + images[i+index] + ')';
+    }
+}

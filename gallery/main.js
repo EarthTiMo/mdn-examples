@@ -10,10 +10,12 @@ for(var i = 1; i <= 5; i++) {
   var newImage = document.createElement('img');
   newImage.setAttribute('src', 'images/pic' + i + '.jpg');
   thumbBar.appendChild(newImage);
-  newImage.onclick = function(e) {
-    var imgSrc = e.target.getAttribute('src');
-    displayImage(imgSrc);
-  }
+  newImage.onclick = on_newImage_click;
+}
+
+function on_newImage_click(e) {
+  var imgSrc = e.target.getAttribute('src');
+  displayImage(imgSrc); 
 }
 
 function displayImage(imgSrc) {
