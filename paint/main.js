@@ -1,14 +1,12 @@
-var ongoingTouches = [];
- 
-document.body.onload  = function startup() {
+function startup() {
   var el = document.getElementsByTagName("canvas")[0];
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
   el.addEventListener("touchmove", handleMove, false);
   log("initialized.");
-};
-
+}
+ var ongoingTouches = [];
  function handleStart(evt) {
   evt.preventDefault();
   log("touchstart.");
@@ -27,17 +25,14 @@ document.body.onload  = function startup() {
     log("touchstart:" + i + ".");
   }
 }
-
  function handleMove(evt) {
   evt.preventDefault();
   var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
-
   for (var i = 0; i < touches.length; i++) {
     var color = colorForTouch(touches[i]);
     var idx = ongoingTouchIndexById(touches[i].identifier);
-
     if (idx >= 0) {
       log("continuing touch "+idx);
       ctx.beginPath();
@@ -48,7 +43,6 @@ document.body.onload  = function startup() {
       ctx.lineWidth = 4;
       ctx.strokeStyle = color;
       ctx.stroke();
-
       ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
       log(".");
     } else {
@@ -56,18 +50,15 @@ document.body.onload  = function startup() {
     }
   }
 }
-
  function handleEnd(evt) {
   evt.preventDefault();
   log("touchend");
   var el = document.getElementsByTagName("canvas")[0];
   var ctx = el.getContext("2d");
   var touches = evt.changedTouches;
-
   for (var i = 0; i < touches.length; i++) {
     var color = colorForTouch(touches[i]);
     var idx = ongoingTouchIndexById(touches[i].identifier);
-
     if (idx >= 0) {
       ctx.lineWidth = 4;
       ctx.fillStyle = color;
@@ -81,7 +72,6 @@ document.body.onload  = function startup() {
     }
   }
 }
-
  function handleCancel(evt) {
   evt.preventDefault();
   log("touchcancel.");
@@ -92,8 +82,7 @@ document.body.onload  = function startup() {
     ongoingTouches.splice(idx, 1);  // remove it; we're done
   }
 }
-
-function colorForTouch(touch) {
+ function colorForTouch(touch) {
   var r = touch.identifier % 16;
   var g = Math.floor(touch.identifier / 3) % 16;
   var b = Math.floor(touch.identifier / 7) % 16;
@@ -104,12 +93,9 @@ function colorForTouch(touch) {
   log("color for touch with identifier " + touch.identifier + " = " + color);
   return color;
 }
-
-function copyTouch(touch) {
+ function copyTouch(touch) {
   return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
-} 
-
-function ongoingTouchIndexById(idToFind) {
+} function ongoingTouchIndexById(idToFind) {
   for (var i = 0; i < ongoingTouches.length; i++) {
     var id = ongoingTouches[i].identifier;
     
@@ -119,8 +105,8 @@ function ongoingTouchIndexById(idToFind) {
   }
   return -1;    // not found
 }
-
-function log(msg) {
-    document.getElementById('logs').innerHTML +=
-        new Date().toString().substring(16, 24) + ' ' + msg + '<br>';
+ function log(msg) {
+  var p = document.getElementById('logs');
+  p.innerHTML = 
+    new Date().toString().substring(16, 24) + ' ' + msg + "\n" + p.innerHTML;
 }
