@@ -31,15 +31,15 @@ svg:not(:root) {
 
 .box {
     border: 1px solid #000;
-    width: 100%;
+    width: 600px;
 }
 
 #canvas {
-    height: 80%;
+    height: 600px;
 }
 
 #logs {
-    height: 20%;
+    height: 200px;
     overflow: auto;
     font-family: monospace;
 }
