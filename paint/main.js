@@ -2,28 +2,28 @@ let ongoingTouches = [];
 let el = document.getElementById("canvas");
 let ctx = el.getContext("2d");
 
-function startup() {
+window.onload = function startup() {
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
   el.addEventListener("touchmove", handleMove, false);
-  log("initialized.");
+  log("初始化成功。");
 }
 
 function handleStart(evt) {
   evt.preventDefault();
-  log("touchstart.");
+  log("触摸操作开始。");
   let touches = evt.changedTouches;
         
   for (let i = 0; i < touches.length; i++) {
-    log("touchstart:" + i + "...");
+    log("开始第 " + i + " 个触摸 ...");
     ongoingTouches.push(copyTouch(touches[i]));
     let color = colorForTouch(touches[i]);
     ctx.beginPath();
     ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
     ctx.fillStyle = color;
     ctx.fill();
-    log("touchstart:" + i + ".");
+    log("第 " + i + " 个触摸已开始。");
   }
 }
 
@@ -34,7 +34,7 @@ function handleMove(evt) {
     let color = colorForTouch(touches[i]);
     let idx = ongoingTouchIndexById(touches[i].identifier);
     if (idx >= 0) {
-      log("continuing touch "+idx);
+      log("继续第 " + idx + "个触摸");
       ctx.beginPath();
       log("ctx.moveTo(" + ongoingTouches[idx].pageX + ", " + ongoingTouches[idx].pageY + ");");
       ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
@@ -46,7 +46,7 @@ function handleMove(evt) {
       ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
       log(".");
     } else {
-      log("can't figure out which touch to continue");
+      log("无法继续执行触摸。");
     }
   }
 }
@@ -74,7 +74,7 @@ function handleEnd(evt) {
 
 function handleCancel(evt) {
   evt.preventDefault();
-  log("touchcancel.");
+  log("触摸取消。");
   let touches = evt.changedTouches;
   
   for (let i = 0; i < touches.length; i++) {
@@ -91,7 +91,7 @@ function colorForTouch(touch) {
   g = g.toString(16); // make it a hex digit
   b = b.toString(16); // make it a hex digit
   let color = "#" + r + g + b;
-  log("color for touch with identifier " + touch.identifier + " = " + color);
+  log("identifier " + touch.identifier + " 的颜色为：" + color);
   return color;
 }
 
