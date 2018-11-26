@@ -3,20 +3,12 @@ let el = document.getElementById("canvas");
 let ctx = el.getContext("2d");
 
 window.onload = function startup() {
-  layout();
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
   el.addEventListener("touchmove", handleMove, false);
   log("初始化成功。");
-}
-
-window.onresize = layout;
-
-function layout() {
-  el.width = window.innerWidth - 20;
-  el.height = window.innerHeight * 0.8;
-}
+};
 
 function handleStart(evt) {
   evt.preventDefault();
@@ -28,7 +20,8 @@ function handleStart(evt) {
     ongoingTouches.push(copyTouch(touches[i]));
     let color = colorForTouch(touches[i]);
     ctx.beginPath();
-    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
+    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false); 
+    // 触摸开始时画一个圆
     ctx.fillStyle = color;
     ctx.fill();
     log("第 " + i + " 个触摸已开始。");
@@ -44,14 +37,15 @@ function handleMove(evt) {
     if (idx >= 0) {
       log("继续第 " + idx + " 个触摸");
       ctx.beginPath();
-      log("ctx.moveTo(" + ongoingTouches[idx].pageX + ", " + ongoingTouches[idx].pageY + ");");
+      log("ctx.moveTo(" + ongoingTouches[idx].pageX + ", " +
+                          ongoingTouches[idx].pageY + ");");
       ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
       log("ctx.lineTo(" + touches[i].pageX + ", " + touches[i].pageY + ");");
       ctx.lineTo(touches[i].pageX, touches[i].pageY);
       ctx.lineWidth = 4;
       ctx.strokeStyle = color;
       ctx.stroke();
-      ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
+      ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // 切换到新触摸
       log(".");
     } else {
       log("无法继续执行触摸。");
@@ -72,8 +66,9 @@ function handleEnd(evt) {
       ctx.beginPath();
       ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
       ctx.lineTo(touches[i].pageX, touches[i].pageY);
-      ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
-      ongoingTouches.splice(idx, 1);  // remove it; we're done
+      ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8); 
+      // 触摸结束时画一个正方形
+      ongoingTouches.splice(idx, 1);  // 用完后删除
     } else {
       log("无法明确哪结束哪个触摸。");
     }
@@ -87,17 +82,19 @@ function handleCancel(evt) {
   
   for (let i = 0; i < touches.length; i++) {
     let idx = ongoingTouchIndexById(touches[i].identifier);
-    ongoingTouches.splice(idx, 1);  // remove it; we're done
+    ongoingTouches.splice(idx, 1);  // 用完后删除
   }
 }
+
+// 以下是 helper funcs
 
 function colorForTouch(touch) {
   let r = touch.identifier % 16;
   let g = Math.floor(touch.identifier / 3) % 16;
   let b = Math.floor(touch.identifier / 7) % 16;
-  r = r.toString(16); // make it a hex digit
-  g = g.toString(16); // make it a hex digit
-  b = b.toString(16); // make it a hex digit
+  r = r.toString(16); // 转换为十六进制字符串
+  g = g.toString(16); // 转换为十六进制字符串
+  b = b.toString(16); // 转换为十六进制字符串
   let color = "#" + r + g + b;
   log("identifier " + touch.identifier + " 的颜色为：" + color);
   return color;
@@ -119,7 +116,7 @@ function ongoingTouchIndexById(idToFind) {
       return i;
     }
   }
-  return -1;    // not found
+  return -1;    // 未找到
 }
 
 function log(msg) {
