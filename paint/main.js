@@ -3,11 +3,19 @@ let el = document.getElementById("canvas");
 let ctx = el.getContext("2d");
 
 window.onload = function startup() {
+  layout();
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
   el.addEventListener("touchmove", handleMove, false);
   log("初始化成功。");
+}
+
+window.onresize = layout;
+
+function layout() {
+  el.width = window.innerWidth - 20;
+  el.height = window.innerHeight * 0.8;
 }
 
 function handleStart(evt) {
@@ -34,7 +42,7 @@ function handleMove(evt) {
     let color = colorForTouch(touches[i]);
     let idx = ongoingTouchIndexById(touches[i].identifier);
     if (idx >= 0) {
-      log("继续第 " + idx + "个触摸");
+      log("继续第 " + idx + " 个触摸");
       ctx.beginPath();
       log("ctx.moveTo(" + ongoingTouches[idx].pageX + ", " + ongoingTouches[idx].pageY + ");");
       ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
@@ -53,7 +61,7 @@ function handleMove(evt) {
 
 function handleEnd(evt) {
   evt.preventDefault();
-  log("touchend");
+  log("触摸结束。");
   let touches = evt.changedTouches;
   for (let i = 0; i < touches.length; i++) {
     let color = colorForTouch(touches[i]);
@@ -67,7 +75,7 @@ function handleEnd(evt) {
       ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
       ongoingTouches.splice(idx, 1);  // remove it; we're done
     } else {
-      log("can't figure out which touch to end");
+      log("无法明确哪结束哪个触摸。");
     }
   }
 }
@@ -96,7 +104,11 @@ function colorForTouch(touch) {
 }
 
 function copyTouch(touch) {
-  return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
+  return {
+     identifier: touch.identifier,
+     pageX: touch.pageX,
+     pageY: touch.pageY
+  };
 }
 
 function ongoingTouchIndexById(idToFind) {
