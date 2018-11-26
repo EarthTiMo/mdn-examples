@@ -1,23 +1,24 @@
+let ongoingTouches = [];
+let el = document.getElementById("canvas");
+let ctx = el.getContext("2d");
+
 function startup() {
-  var el = document.getElementsByTagName("canvas")[0];
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   el.addEventListener("touchcancel", handleCancel, false);
   el.addEventListener("touchmove", handleMove, false);
   log("initialized.");
 }
- var ongoingTouches = [];
- function handleStart(evt) {
+
+function handleStart(evt) {
   evt.preventDefault();
   log("touchstart.");
-  var el = document.getElementsByTagName("canvas")[0];
-  var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
+  let touches = evt.changedTouches;
         
-  for (var i = 0; i < touches.length; i++) {
+  for (let i = 0; i < touches.length; i++) {
     log("touchstart:" + i + "...");
     ongoingTouches.push(copyTouch(touches[i]));
-    var color = colorForTouch(touches[i]);
+    let color = colorForTouch(touches[i]);
     ctx.beginPath();
     ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
     ctx.fillStyle = color;
@@ -25,14 +26,13 @@ function startup() {
     log("touchstart:" + i + ".");
   }
 }
- function handleMove(evt) {
+
+function handleMove(evt) {
   evt.preventDefault();
-  var el = document.getElementsByTagName("canvas")[0];
-  var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
-  for (var i = 0; i < touches.length; i++) {
-    var color = colorForTouch(touches[i]);
-    var idx = ongoingTouchIndexById(touches[i].identifier);
+  let touches = evt.changedTouches;
+  for (let i = 0; i < touches.length; i++) {
+    let color = colorForTouch(touches[i]);
+    let idx = ongoingTouchIndexById(touches[i].identifier);
     if (idx >= 0) {
       log("continuing touch "+idx);
       ctx.beginPath();
@@ -50,15 +50,14 @@ function startup() {
     }
   }
 }
- function handleEnd(evt) {
+
+function handleEnd(evt) {
   evt.preventDefault();
   log("touchend");
-  var el = document.getElementsByTagName("canvas")[0];
-  var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
-  for (var i = 0; i < touches.length; i++) {
-    var color = colorForTouch(touches[i]);
-    var idx = ongoingTouchIndexById(touches[i].identifier);
+  let touches = evt.changedTouches;
+  for (let i = 0; i < touches.length; i++) {
+    let color = colorForTouch(touches[i]);
+    let idx = ongoingTouchIndexById(touches[i].identifier);
     if (idx >= 0) {
       ctx.lineWidth = 4;
       ctx.fillStyle = color;
@@ -72,32 +71,37 @@ function startup() {
     }
   }
 }
- function handleCancel(evt) {
+
+function handleCancel(evt) {
   evt.preventDefault();
   log("touchcancel.");
-  var touches = evt.changedTouches;
+  let touches = evt.changedTouches;
   
-  for (var i = 0; i < touches.length; i++) {
-    var idx = ongoingTouchIndexById(touches[i].identifier);
+  for (let i = 0; i < touches.length; i++) {
+    let idx = ongoingTouchIndexById(touches[i].identifier);
     ongoingTouches.splice(idx, 1);  // remove it; we're done
   }
 }
- function colorForTouch(touch) {
-  var r = touch.identifier % 16;
-  var g = Math.floor(touch.identifier / 3) % 16;
-  var b = Math.floor(touch.identifier / 7) % 16;
+
+function colorForTouch(touch) {
+  let r = touch.identifier % 16;
+  let g = Math.floor(touch.identifier / 3) % 16;
+  let b = Math.floor(touch.identifier / 7) % 16;
   r = r.toString(16); // make it a hex digit
   g = g.toString(16); // make it a hex digit
   b = b.toString(16); // make it a hex digit
-  var color = "#" + r + g + b;
+  let color = "#" + r + g + b;
   log("color for touch with identifier " + touch.identifier + " = " + color);
   return color;
 }
- function copyTouch(touch) {
+
+function copyTouch(touch) {
   return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
-} function ongoingTouchIndexById(idToFind) {
-  for (var i = 0; i < ongoingTouches.length; i++) {
-    var id = ongoingTouches[i].identifier;
+}
+
+function ongoingTouchIndexById(idToFind) {
+  for (let i = 0; i < ongoingTouches.length; i++) {
+    let id = ongoingTouches[i].identifier;
     
     if (id == idToFind) {
       return i;
@@ -105,8 +109,9 @@ function startup() {
   }
   return -1;    // not found
 }
- function log(msg) {
-  var p = document.getElementById('log');
+
+function log(msg) {
+  let p = document.getElementById('log');
   p.innerHTML = 
     new Date().toString().substring(16, 24) + ' ' + msg + "\n" + p.innerHTML;
 }
