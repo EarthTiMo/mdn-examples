@@ -106,7 +106,7 @@ function startup() {
   return -1;    // not found
 }
  function log(msg) {
-  var p = document.getElementById('logs');
+  var p = document.getElementById('log');
   p.innerHTML = 
     new Date().toString().substring(16, 24) + ' ' + msg + "\n" + p.innerHTML;
 }

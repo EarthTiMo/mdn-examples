@@ -28,19 +28,3 @@ svg:not(:root) {
     width:90%;
     padding:5px 10px 5px 26px
 }
-
-.box {
-    border: 1px solid #000;
-    width: 600px;
-}
-
-#canvas {
-    height: 600px;
-}
-
-#logs {
-    height: 200px;
-    overflow: auto;
-    font-family: monospace;
-}
-
