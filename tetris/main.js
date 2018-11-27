@@ -138,24 +138,25 @@ function setInfoBox() {
         ctx.fillText('当前得分', X, Y + rem*12);
 
         ctx.font = rem + 'px Consolas';
-        let numberX = (number) => X + rem*.08 + rem*.55 * (7 - String(number).length);
+        let numberX = 
+            (number) => X + rem*0.08 + rem*0.55 * (7 - String(number).length);
         ctx.fillText(level, numberX(level), Y + rem* 7.3);
         ctx.fillText(lines, numberX(lines), Y + rem*10.3);
         ctx.fillText(score, numberX(score), Y + rem*13.3);
 
-        drawBlock(next.number, next.sequence, 1, X, Y + rem*.5);
+        drawBlock(next.number, next.sequence, 1, X, Y + rem*0.5);
     } else {
         let rightX = width/2 + rem*2.8,
             Y = height/2 - rem*9.4;
         ctx.fillStyle = COLOR[level].LIGHT;
-        ctx.font = rem*.5 + 'px consolas';
-        ctx.globalAlpha = .5;
+        ctx.font = rem*0.5 + 'px consolas';
+        ctx.globalAlpha = 0.5;
         ctx.fillText(lines, width/2 - rem*4.8, Y);
 
-        ctx.font = rem*.5 + 'px 微软雅黑';
+        ctx.font = rem*0.5 + 'px 微软雅黑';
         ctx.fillText('下一方块', rightX, Y);
 
-        drawBlock(next.number, next.sequence, .5, rightX, Y + rem*.2);
+        drawBlock(next.number, next.sequence, 0.5, rightX, Y + rem*0.2);
     }
     ctx.restore();
 }
@@ -173,18 +174,19 @@ function setStatBox() {
         ctx.font = rem*2 + 'px 微软雅黑';
         ctx.fillText('方块统计',  X + rem*1.5, Y + rem*2.8);
 
-        drawBlock(1, 0, .5,  X + rem*.85,  blockY);
-        drawBlock(2, 1, .5,  X + rem*1.9,  blockY);
-        drawBlock(3, 0, .5,  X + rem*3.2,  blockY);
-        drawBlock(4, 0, .5,  X + rem*4.5,  blockY);
-        drawBlock(5, 0, .5,  X + rem*5.8,  blockY);
-        drawBlock(6, 1, .5,  X + rem*7.1,  blockY);
-        drawBlock(7, 1, .5,  X + rem*8.4,  blockY);
+        drawBlock(1, 0, 0.5,  X + rem*0.85,  blockY);
+        drawBlock(2, 1, 0.5,  X + rem*1.9,  blockY);
+        drawBlock(3, 0, 0.5,  X + rem*3.2,  blockY);
+        drawBlock(4, 0, 0.5,  X + rem*4.5,  blockY);
+        drawBlock(5, 0, 0.5,  X + rem*5.8,  blockY);
+        drawBlock(6, 1, 0.5,  X + rem*7.1,  blockY);
+        drawBlock(7, 1, 0.5,  X + rem*8.4,  blockY);
 
         for (let i = 1; i <= 7; i++) {
             ctx.fillStyle = COLOR[i].DARK;
-            ctx.fillRect(X + rem*.7 + rem*(i - 1)*1.3, Y + rem*16.5 - rem*.2*count[i],
-                         rem*.8, rem*.2* count[i]);
+            ctx.fillRect(X + rem*0.7 + rem*(i - 1)*1.3,
+                         Y + rem*16.5 - rem*0.2*count[i],
+                         rem*0.8, rem*0.2* count[i]);
         }
         ctx.restore();
     }
@@ -194,13 +196,14 @@ function setStatBox() {
 function drawBlock(number, sequence, size, x, y) {
     ctx.save();
     ctx.fillStyle = COLOR[number].MEDIUM;
-    for (let i = 0; i < blockHeight(number, sequence); i++)
+    for (let i = 0; i < blockHeight(number, sequence); i++) {
         for (let j = 0; j < blockWidth(number, sequence); j++) {
             if (blockMatrix(number, sequence)[i][j] === 1) {
                 ctx.fillRect(x + j*rem*size-1, y + i*rem*size-1,
                              rem*size+1, rem*size+1);
             }
         }
+    }
     ctx.restore();
 }
 
@@ -287,7 +290,7 @@ function onTouch(e) {
                 moveDown();
             break;
         case 'touchend':
-            let duration = new Date - touchStart.time;
+            let duration = new Date() - touchStart.time;
             if (duration >= 1000) {
                 pauseGame();
             } else if (duration < 1000 && duration > 10) {
@@ -370,14 +373,19 @@ function newBlock() {
     return { number: n, sequence: s };
 }
 
-function fit(row = currentRow, col = currentCol, number = current.number, sequence = current.sequence)  {
+function fit(row = currentRow, col = currentCol, 
+             number = current.number, sequence = current.sequence)  {
     if ( row < 0 || row > 20-blockHeight(number, sequence) ||
          col < 0 || col > 10-blockWidth(number, sequence) )
         return false;
-    for (let i = 0; i < blockHeight(number, sequence); i++)
-        for (let j = 0; j < blockWidth(number, sequence); j++)
-            if ( blockMatrix(number, sequence)[i][j] + panel[row+i][col+j] === 2 )
+    for (let i = 0; i < blockHeight(number, sequence); i++) {
+        for (let j = 0; j < blockWidth(number, sequence); j++) {
+            if ( blockMatrix(number, sequence)[i][j] + panel[row+i][col+j] ===
+                 2 ) {
                 return false;
+            }
+        }
+    }
     return true;
 }
 
