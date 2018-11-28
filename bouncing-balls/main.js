@@ -1,6 +1,6 @@
 const BALLS_COUNT = 25;
-const BALL_SIZE_MIN = 5;
-const BALL_SIZE_MAX = 40;
+const BALL_SIZE_MIN = 10;
+const BALL_SIZE_MAX = 20;
 const BALL_SPEED_MAX = 7;
 
 // 设定画布
