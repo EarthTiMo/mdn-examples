@@ -40,14 +40,14 @@ const BLOCKS = [ [],
     ]
 ];
 
-let canvas = document.getElementById('cvs-tetris');
-let ctx = canvas.getContext('2d');
+const canvas = document.getElementById('cvs-tetris');
+const ctx = canvas.getContext('2d');
 let width, height;   // 窗口的尺寸
 let rem;             // 相对单位，等于单个方块的宽度
 let layout;          // detail | regular | slim
 let score = 0, lines = 0, level = 0;
-let count = [0, 0, 0, 0, 0, 0, 0, 0];
-let panel = [];
+const count = [0, 0, 0, 0, 0, 0, 0, 0];
+const panel = [];
 let currentCol = 3, currentRow = 0;
 let current, next = newBlock();
 let interval, paused = false;
@@ -117,10 +117,8 @@ function setInfoBox() {
 
     ctx.save();
     if (layout === 'detail' || layout === 'regular') {
-        let X = width/2 + rem*3.5,
-            Y = rem*4;
-        if (layout === 'detail')
-            X = width/2 - rem*2;
+        const X = layout === 'regular' ? width/2 + rem*3.5 : width/2 - rem*2,
+              Y = rem*4;
 
         ctx.fillStyle = '#000';
         ctx.fillRect(X, Y, rem*4, rem*15);
@@ -137,7 +135,7 @@ function setInfoBox() {
         ctx.fillText('当前得分', X, Y + rem*12);
 
         ctx.font = rem + 'px Consolas';
-        let numberX = 
+        const numberX = 
             (number) => X + rem*0.08 + rem*0.55 * (7 - String(number).length);
         ctx.fillText(level, numberX(level), Y + rem* 7.3);
         ctx.fillText(lines, numberX(lines), Y + rem*10.3);
@@ -145,8 +143,8 @@ function setInfoBox() {
 
         drawBlock(next.number, next.sequence, 1, X, Y + rem*0.5);
     } else {
-        let rightX = width/2 + rem*2.8,
-            Y = height/2 - rem*9.4;
+        const rightX = width/2 + rem*2.8,
+              Y = height/2 - rem*9.4;
         ctx.fillStyle = COLOR[level].LIGHT;
         ctx.font = rem*0.5 + 'px consolas';
         ctx.globalAlpha = 0.5;
@@ -162,7 +160,7 @@ function setInfoBox() {
 
 function setStatBox() {
     if (layout === 'detail') {
-        let X = width/2 + rem*3,
+        const X = width/2 + rem*3,
             Y = rem,
             blockY = height - rem*4;
         ctx.save();
@@ -208,7 +206,7 @@ function drawBlock(number, sequence, size, x, y) {
 
 function initPanel() {
     for (let i = 0; i < 20; i++) {
-        let cur = [];
+        const cur = [];
         for (let j = 0; j < 10; j++) {
             cur.push(0);
         }
@@ -301,13 +299,13 @@ function moveDown() {
 
 function turnClockwise() {
     if (!paused) {
-        let turnSq = current.sequence + 1;
-        turnSq %= BLOCKS[current.number].length;
+        const turnSq = (current.sequence + 1) % BLOCKS[current.number].length;
 
         if (fit(currentRow, currentCol, current.number, turnSq))
             current.sequence = turnSq;
         else {
-            let i = 0, j = 0, diff = Math.abs(blockWidth() - blockHeight());
+            let i = 0, j = 0;
+            const diff = Math.abs(blockWidth() - blockHeight());
             for (; i <= diff; i++)
                 if (fit(currentRow, currentCol - i, current.number, turnSq))
                     break;
@@ -338,7 +336,7 @@ function pauseGame() {
 }
 
 function newBlock() {
-    let n = rand(1, 7), s = rand(0, 3) % BLOCKS[n].length;
+    const n = rand(1, 7), s = rand(0, 3) % BLOCKS[n].length;
     return { number: n, sequence: s };
 }
 
