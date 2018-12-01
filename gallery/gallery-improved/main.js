@@ -2,10 +2,11 @@ const TOTAL_IMAGES = 10;
 const SLIDE_SIZE = 4;
 let images = [];
 let slideFirstIndex = 0;
-let divFull = document.getElementById('div-full');
-let btnBrightness = document.getElementById('btn-brightness');
-let btnBlur = document.getElementById('btn-blur');
-let btnGray = document.getElementById('btn-gray');
+const divFull = document.getElementById('div-full');
+const btnBrightness = document.getElementById('btn-brightness');
+const btnBlur = document.getElementById('btn-blur');
+const btnGray = document.getElementById('btn-gray');
+
 
 for (let i = 0; i < TOTAL_IMAGES; i++) {
     images[i] = '../images/pic' + (i+1) + '.jpg';
@@ -68,7 +69,7 @@ document.querySelectorAll('.div-thumb').forEach(value => {
 
 function deploySlide(index = 0) {
     for (let i = 0; i < SLIDE_SIZE; i++) {
-        let currentThumb = document.getElementById('div-thumb-' + i);
+        const currentThumb = document.getElementById('div-thumb-' + i);
         currentThumb.style.backgroundImage = 'url(' + images[i+index] + ')';
     }
 }
