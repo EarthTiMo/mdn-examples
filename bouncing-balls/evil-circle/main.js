@@ -4,7 +4,7 @@ const BALL_SIZE_MAX = 20;
 const BALL_SPEED_MAX = 7;
 
 class Shape {
-    letructor(x, y, velX, velY, exists) {
+    constructor(x, y, velX, velY, exists) {
         this.x = x;
         this.y = y;
         this.velX = velX;
@@ -14,7 +14,7 @@ class Shape {
 }
 
 class Ball extends Shape {
-    letructor(x, y, velX, velY, color, size, exists) {
+    constructor(x, y, velX, velY, color, size, exists) {
         super(x, y, velX, velY, exists);
 
         this.color = color;
@@ -65,7 +65,7 @@ class Ball extends Shape {
 }
 
 class EvilCircle extends Shape {
-    letructor(x, y, exists) {
+    constructor(x, y, exists) {
         super(x, y, exists);
 
         this.velX = BALL_SPEED_MAX;
