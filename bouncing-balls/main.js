@@ -40,10 +40,12 @@ function Ball(x, y, velX, velY, color, size) {
 // 定义绘制球的函数
 
 Ball.prototype.draw = function() {
+  ctx.save();
   ctx.beginPath();
   ctx.fillStyle = this.color;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
+  ctx.restore();
 };
 
 // 定义更新球的函数
@@ -73,7 +75,7 @@ Ball.prototype.update = function() {
 
 Ball.prototype.collisionDetect = function() {
   for(var j = 0; j < balls.length; j++) {
-    if( ! (this === balls[j]) ) {
+    if( this !== balls[j]) {
       var dx = this.x - balls[j].x;
       var dy = this.y - balls[j].y;
       var distance = Math.sqrt(dx * dx + dy * dy);
