@@ -1,22 +1,20 @@
-.fx {
+body {
     display: flex;
-    margin-left: -20px;
-    margin-right: -20px;
 }
     
-.fx > div {
+.flex {
     padding-left: 20px;
     padding-right: 20px;
 }
     
-.fx > div:first-child {
-    width: 30%;
-    position: fixed;
+.flex-left {
+    flex: 1;
+    flex-grow: 1;
 }
     
-.flex {
-    flex: 1;
-    
+.flex-right {
+    flex: 2;
+    flex-grow: 2;
 }
     
 #test-target {
@@ -27,4 +25,5 @@
 }
 
 #console-log {
+    overflow: auto;
 }
