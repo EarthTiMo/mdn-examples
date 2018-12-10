@@ -3,6 +3,17 @@ const BALL_SIZE_MIN = 10;
 const BALL_SIZE_MAX = 20;
 const BALL_SPEED_MAX = 7;
 
+// 设定画布和初始数据
+
+let para = document.querySelector('p');
+let canvas = document.querySelector('canvas');
+let ctx = canvas.getContext('2d');
+
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+// 设定形状类层次结构
+
 class Shape {
     constructor(x, y, velX, velY, exists) {
         this.x = x;
@@ -145,23 +156,18 @@ class EvilCircle extends Shape {
     }
 }
 
-// 设定画布和初始数据
 
-let para = document.querySelector('p');
-let canvas = document.querySelector('canvas');
-let ctx = canvas.getContext('2d');
-
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+// 球和恶魔圈
 
 let balls = [];
 let count = 0;
-
 let evilBall = new EvilCircle(
     random(0, width),
     random(0, height),
     true
 );
+
+// 执行动画
 
 loop();
 
