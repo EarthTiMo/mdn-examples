@@ -18,5 +18,4 @@ JavaScript 入门|什么是 JavaScript？|[代码](https://github.com/roy-tian/m
 弹球 + 恶魔圈|对象章节测验|[代码](https://github.com/roy-tian/mdn-examples/tree/master/javascript/bouncing-balls-evil-circle)|[在线演示](https://roy-tian.github.io/mdn-examples/javascript/bouncing-balls-evil-circle)
 按键事件|KeyboardEvent.key|[代码](https://github.com/roy-tian/mdn-examples/tree/master/javascript/key-event)|[在线演示](https://roy-tian.github.io/mdn-examples/javascript/key-event)
 触摸绘图板|触摸事件|[代码](https://github.com/roy-tian/mdn-examples/tree/master/javascript/touch-paint)|[在线演示](https://roy-tian.github.io/mdn-examples/javascript/touch-paint)
-俄罗斯方块|键盘 + 触摸|[代码](https://github.com/roy-tian/mdn-examples/tree/master/javascript/tetris)|[在线演示](https://roy-tian.github.io/mdn-examples/tetris)
-
+俄罗斯方块|画布|[代码](https://github.com/roy-tian/mdn-examples/tree/master/javascript/tetris)|[在线演示](https://roy-tian.github.io/mdn-examples/javascript/tetris)
