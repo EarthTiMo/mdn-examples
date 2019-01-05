@@ -9,7 +9,7 @@ const btnGray = document.getElementById('btn-gray');
 
 
 for (let i = 0; i < TOTAL_IMAGES; i++) {
-    images[i] = '../images/pic' + (i+1) + '.jpg';
+    images[i] = '../gallery/images/pic' + (i+1) + '.jpg';
 }
 
 deploySlide();
