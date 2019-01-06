@@ -25,27 +25,27 @@
 
 <p>完整的 Express 本地开发环境包括 Node.js、NPM 包管理器和 <strong>Express 应用生成器</strong>（可选）。</p>
 
-<p><em>Node&nbsp;</em>和&nbsp;<em>NPM 包管理器可以用二进制包、安</em><font><font>装程序或系统包管理器一并安装（下文将介绍）。</font><font>然后在开发每个 Express web 应用时，由 NPM 针对当前应用将&nbsp;</font></font><em><font><font>Express</font></font></em><font><font>（以及模板引擎、数据库驱动程序、身份验证中间件、静态文件托管中间件等其它库）</font></font><em><font><font>作为依赖项进行安装。</font></font></em></p>
+<p>Node 和 NPM 包管理器可以用二进制包、安装程序或系统包管理器一并安装（下文将介绍）。然后在开发每个 Express web 应用时，由 NPM 针对当前应用将 Express（以及模板引擎、数据库驱动程序、身份验证中间件、静态文件托管中间件等其它库）作为依赖项进行安装。</p>
 
 <p>NPM 也可以安装（全局的）<strong>Express 应用生成器</strong>，可用于创建遵循 <a href="/zh-CN/docs/Web/Apps/Fundamentals/Modern_web_app_architecture/MVC_architecture">MVC模式</a> 的 Express 应用框架。它不是必备的，因为无需这个工具就可以创建 Express 应用（或相同架构布局或依赖的 Express 应用）。但我们还是会使用它，因为它更容易上手，还有助于我们模块化管理应用结构。</p>
 
 <div class="note">
-<p><strong>注:</strong>&nbsp;与其他&nbsp;web 应用框架不同，Node/Express 开发环境不包含独立的 web 服务器，这里，每个 web 应用自己创建、自己运行 web 服务器！</p>
+<p><strong>注:</strong> 与其他 web 应用框架不同，Node/Express 开发环境不包含独立的 web 服务器，这里，每个 web 应用自己创建、自己运行 web 服务器！</p>
 </div>
 
 <p>典型的开发环境中还需要一些外围工具，包括用于编写代码的<a href="zh-CN/docs/Learn/Common_questions/实用文本编辑器">文本编辑器</a>或 IDE ，用于代码控管理的工具（比如代码版本控制工具 <a href="https://git-scm.com/">Git</a>）。我们假定你已经安装了这些工具（尤其是文本编辑器）。</p>
 
 <h3 id="支持什么操作系统？">支持哪些操作系统？</h3>
 
-<p>Node 可以在 Windows、macOS、Linux 的诸多发行版本或 Docker 等环境运行（完整列表见 Node <a href="https://nodejs.org/zh-cn/download/">下载页面</a>）。几乎所有的个人电脑都具备&nbsp;Node 开发所需性能。Express 运行在 Node 环境中，因此可运行 Node 的平台均可运行 Express。</p>
+<p>Node 可以在 Windows、macOS、Linux 的诸多发行版本或 Docker 等环境运行（完整列表见 Node <a href="https://nodejs.org/zh-cn/download/">下载页面</a>）。几乎所有的个人电脑都具备 Node 开发所需性能。Express 运行在 Node 环境中，因此可运行 Node 的平台均可运行 Express。</p>
 
-<p>本文将介绍&nbsp;Windows、macOS 和 Ubuntu Linux 上的安装步骤。</p>
+<p>本文将介绍 Windows、macOS 和 Ubuntu Linux 上的安装步骤。</p>
 
 <h3 id="你应该选择NodeExpress的哪个版本？">应该选择 Node/Express 的哪个版本？</h3>
 
-<p>Node 有许多&nbsp;<a href="https://nodejs.org/zh-cn/blog/release/">发行版本</a>，新版包含 bug 的修复，对最新版本&nbsp;ECMAScript 标准的支持，以及&nbsp;API 的改进。</p>
+<p>Node 有许多 <a href="https://nodejs.org/zh-cn/blog/release/">发行版本</a>，新版包含 bug 的修复，对最新版本 ECMAScript 标准的支持，以及 API 的改进。</p>
 
-<p>通常你应该选择最新的 LTS 发行版（Long-term supported，长期支持版），因为它比当前发布版（current）更稳定。当前发布版包含最新的特性（维护中），如果你需要 LTS 版本中没有提供的特征，那么可以选择它。&nbsp;</p>
+<p>通常你应该选择最新的 LTS 发行版（Long-term supported，长期支持版），因为它比当前发布版（current）更稳定。当前发布版包含最新的特性（维护中），如果你需要 LTS 版本中没有提供的特征，那么可以选择它。 </p>
 
 <p>对于 Express ，应选用最新版本。</p>
 
@@ -55,20 +55,20 @@
 
 <h2 id="安装_Node">安装 Node</h2>
 
-<p>先在操作系统上安装 Node.js 和 NPM 后才可使用 Express。接下来将介绍如何最简便地在&nbsp;Ubuntu&nbsp;18.04、macOS Mojave 以及&nbsp;Windows 10 上安装 Node.js 最新的 LTS 版本。.</p>
+<p>先在操作系统上安装 Node.js 和 NPM 后才可使用 Express。接下来将介绍如何最简便地在 Ubuntu 18.04、macOS Mojave 以及 Windows 10 上安装 Node.js 最新的 LTS 版本。.</p>
 
 <div class="note">
-<p><strong>提示：</strong>以下内容将介绍在上述三种&nbsp;OS 上安装 Node 和 NPM 的最简便方法。如果你使用其它的操作系统，或者只是想了解更多的安装方法，可以参考&nbsp;<a href="https://nodejs.org/zh-cn/download/package-manager/">通过包管理器方式安装&nbsp;Node.js</a>&nbsp;(nodejs.org).</p>
+<p><strong>提示：</strong>以下内容将介绍在上述三种 OS 上安装 Node 和 NPM 的最简便方法。如果你使用其它的操作系统，或者只是想了解更多的安装方法，可以参考 <a href="https://nodejs.org/zh-cn/download/package-manager/">通过包管理器方式安装 Node.js</a> (nodejs.org).</p>
 </div>
 
-<h3 id="Windows_and_Mac_OS_X">Windows 和&nbsp;macOS</h3>
+<h3 id="Windows_and_Mac_OS_X">Windows 和 macOS</h3>
 
 <p>在 Windows 和 macOS 上安装 Node 和 NPM 非常简单明了，使用现成的安装包就行了：</p>
 
 <ol>
  <li>下载安装包:
   <ol>
-   <li>访问&nbsp;<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></li>
+   <li>访问 <a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></li>
    <li>左侧按钮上写着“推荐多数用户使用（LTS）”，点击下载。</li>
   </ol>
  </li>
@@ -77,7 +77,7 @@
 
 <h3 id="Ubuntu_16.04">Ubuntu 18.04</h3>
 
-<p>安装 Node 最新的 LTS 版本的最简便方法就是使用&nbsp;<a href="https://nodejs.org/zh-cn/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages">包管理器</a>，可以直接从 Ubuntu 二进制发行仓库中下载。通过在终端运行以下两行简单的命令就可以做到：</p>
+<p>安装 Node 最新的 LTS 版本的最简便方法就是使用 <a href="https://nodejs.org/zh-cn/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages">包管理器</a>，可以直接从 Ubuntu 二进制发行仓库中下载。通过在终端运行以下两行简单的命令就可以做到：</p>
 
 <pre class="brush: bash">
 <code>curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
@@ -118,17 +118,17 @@ const port = 3000;
 // 创建 HTTP 服务器
 const server = http.createServer((req, res) =&gt; {
 
-&nbsp;&nbsp;// 用 HTTP 状态码和内容类型（Content-Type）设置 HTTP 响应头
-&nbsp; res.statusCode = 200;
-&nbsp; res.setHeader('Content-Type', 'text/plain');
+  // 用 HTTP 状态码和内容类型（Content-Type）设置 HTTP 响应头
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
 
-&nbsp; // 发送响应体
-&nbsp; res.end('Hello World\n');
+  // 发送响应体
+  res.end('Hello World\n');
 });
 
 // 监听 3000 端口的请求，注册一个回调函数记录监听开始
 server.listen(port, hostname, () =&gt; {
-&nbsp; console.log('服务器运行于 http://${hostname}:${port}/');
+  console.log('服务器运行于 http://${hostname}:${port}/');
 });
 </pre>
 
@@ -149,17 +149,17 @@ $ node hellonode.js
 
 <h2 id="使用NPM">使用 NPM</h2>
 
-<p>构建 Node 应用过程中，<a href="https://docs.npmjs.com/">NPM</a>&nbsp;是除了 Node 本身之外最重要的工具。可用于获取应用开发、测试以及生产所需的所有包（JavaScript 库）。也可运行开发过程中使用的测试单元和工具。&nbsp;</p>
+<p>构建 Node 应用过程中，<a href="https://docs.npmjs.com/">NPM</a> 是除了 Node 本身之外最重要的工具。可用于获取应用开发、测试以及生产所需的所有包（JavaScript 库）。也可运行开发过程中使用的测试单元和工具。 </p>
 
 <div class="note">
 <p><strong>注：</strong>以 Node 的角度来看，Express 只是一个用 NPM 安装、供人使用的包而已。</p>
 </div>
 
-<p>你可以用 NPM 手动逐个安装所需包。但通常我们用&nbsp;<a href="https://docs.npmjs.com/files/package.json">package.json</a>&nbsp;文件来管理依赖。我们把每个<font><font>依赖以一个</font></font>&nbsp;JavaScript “包”的形式（其中<font><font>包括名称、版本、描述，初始执行文件、生产依赖，开发依赖、支持的&nbsp;</font></font><em><font><font>Node&nbsp;</font></font></em><font><font>版本，等等</font></font>）罗<font><font>列在这个文件中。</font></font><strong><font><font>package.json</font></font></strong><font><font>&nbsp;文件包含 NPM 获取和运行应用程序所需的所有内容（如果你正在编写可重用的库，则可以用它把你的包上传到 NPM 仓库中供其他用户使用）。</font></font></p>
+<p>你可以用 NPM 手动逐个安装所需包。但通常我们用 <a href="https://docs.npmjs.com/files/package.json">package.json</a> 文件来管理依赖。我们把每个<font><font>依赖以一个</font></font> JavaScript “包”的形式（其中<font><font>包括名称、版本、描述，初始执行文件、生产依赖，开发依赖、支持的 </font></font><em><font><font>Node </font></font></em><font><font>版本，等等</font></font>）罗<font><font>列在这个文件中。</font></font><strong><font><font>package.json</font></font></strong><font><font> 文件包含 NPM 获取和运行应用程序所需的所有内容（如果你正在编写可重用的库，则可以用它把你的包上传到 NPM 仓库中供其他用户使用）。</font></font></p>
 
 <h3 id="添加依赖项">添加依赖项</h3>
 
-<p>下面介绍用&nbsp;NPM 下载包、将包保存进工程依赖树，以及在 Node 应用中调用包的方法和步骤。</p>
+<p>下面介绍用 NPM 下载包、将包保存进工程依赖树，以及在 Node 应用中调用包的方法和步骤。</p>
 
 <div class="note">
 <p><strong>注：</strong>现在我们将讲解获取和安装 Express 包的步骤。稍后我们将解释为什么可以直接对 Express 包（乃至其它包）使用 <strong>Express 应用生成器</strong>。这段对理解 NPM 的工作原理和应用生成器的工作机制有一定的帮助。</p>
@@ -171,11 +171,11 @@ $ node hellonode.js
 mkdir myapp
 cd myapp</pre>
  </li>
- <li>然后，使用 NPM 的 <code>init</code>&nbsp;命令为应用创建一个 <strong>package.json</strong> 文件。这个命令向你请求一系列的信息，包括应用的名称和版本，程序初始进入点的文件名（默认为 <strong>index.js</strong>）。现在先接受默认信息即可：
+ <li>然后，使用 NPM 的 <code>init</code> 命令为应用创建一个 <strong>package.json</strong> 文件。这个命令向你请求一系列的信息，包括应用的名称和版本，程序初始进入点的文件名（默认为 <strong>index.js</strong>）。现在先接受默认信息即可：
   <pre class="brush: bash">
 npm init</pre>
 
-  <p>打开&nbsp;<strong>package.json</strong>&nbsp;文件，你将看到所接受的默认信息，最后一条是许可证信息：</p>
+  <p>打开 <strong>package.json</strong> 文件，你将看到所接受的默认信息，最后一条是许可证信息：</p>
 
   <pre class="brush: json">
 {
@@ -191,11 +191,11 @@ npm init</pre>
 }
 </pre>
  </li>
- <li>接下来在&nbsp;<strong>myapp</strong>&nbsp;目录中安装 Express，用下面的命令将其保存在&nbsp;<strong>package.json</strong>&nbsp;文件中的依赖表里：
+ <li>接下来在 <strong>myapp</strong> 目录中安装 Express，用下面的命令将其保存在 <strong>package.json</strong> 文件中的依赖表里：
   <pre class="brush: bash">
 npm install express --save</pre>
 
-  <p>此时&nbsp;<strong>package.json</strong>&nbsp;文件的底部会出现依赖列表（"dependencies"），其中包含 Express：</p>
+  <p>此时 <strong>package.json</strong> 文件的底部会出现依赖列表（"dependencies"），其中包含 Express：</p>
 
   <pre class="brush: json">
 {
@@ -214,23 +214,23 @@ npm install express --save</pre>
 }
 </pre>
  </li>
- <li>可以调用&nbsp;<code>require()</code>&nbsp;函数来使用库：
+ <li>可以调用 <code>require()</code> 函数来使用库：
   <pre>
 <code><strong>const express = require('express');
 </strong>const app = express();
 
 app.get('/', (req, res) =&gt; {
-&nbsp; res.send('Hello World!')
+  res.send('Hello World!')
 });
 
 app.listen(8000, () =&gt; {
-&nbsp; console.log('示例程序正在监听 8000 端口！')
+  console.log('示例程序正在监听 8000 端口！')
 });</code>
 </pre>
 
-  <p>以上代码展示了一个最简单的 "HelloWorld"&nbsp;Express 应用。它导入了 "express" 模块并用它创建了一个服务器（app）来监听 8000 端口，并且在控制台打印了一条信息以提示测试服务器的正确 URL。<code>app.get()</code> 函数只响应对特定路径（<code>'/'</code>）的&nbsp;HTTP <code>GET</code>&nbsp;请求，此处的响应就是发送 "Hello World!"。<br />
+  <p>以上代码展示了一个最简单的 "HelloWorld" Express 应用。它导入了 "express" 模块并用它创建了一个服务器（app）来监听 8000 端口，并且在控制台打印了一条信息以提示测试服务器的正确 URL。<code>app.get()</code> 函数只响应对特定路径（<code>'/'</code>）的 HTTP <code>GET</code> 请求，此处的响应就是发送 "Hello World!"。<br />
    <br />
-   在 myapp 应用的根目录下新建一个&nbsp;<strong>index.js</strong>&nbsp;文件，将上述代码粘贴进来并保存。</p>
+   在 myapp 应用的根目录下新建一个 <strong>index.js</strong> 文件，将上述代码粘贴进来并保存。</p>
  </li>
  <li>在命令行输入 node + 文件名 即可启动服务器：
   <pre class="brush: bash">
@@ -241,14 +241,14 @@ $ node index.js
  <li>在浏览器中访问这个 URL（<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>），如果一切正常，浏览器会直接显示出 "Hello world" 字符串。</li>
 </ol>
 
-<h3 id="Development_dependencies">开发依赖（Development dependencies）</h3>
+<h3 id="开发依赖">开发依赖（Development dependencies）</h3>
 
-<p>如果一个依赖只在开发过程中用到，应该将其保存为“开发依赖”（这样，包的用户便无需在生产环境中安装它们）。比如，如果要使用&nbsp;<a href="http://eslint.org/">eslint</a>（一款流行的 JavaScript lint 工具）你可以这样调用 NPM：</p>
+<p>如果一个依赖只在开发过程中用到，应该将其保存为“开发依赖”（这样，包的用户便无需在生产环境中安装它们）。比如，如果要使用 <a href="http://eslint.org/">eslint</a>（一款流行的 JavaScript lint 工具）你可以这样调用 NPM：</p>
 
 <pre class="brush: bash" rel="Command Line">
 <code>npm install eslint --save-dev</code></pre>
 
-<p>当前应用的&nbsp;<strong>package.json&nbsp;</strong>文件中将自动添加以下项目：</p>
+<p>当前应用的 <strong>package.json </strong>文件中将自动添加以下项目：</p>
 
 <pre class="brush: js">
   "devDependencies": {
@@ -262,97 +262,99 @@ $ node index.js
 
 <h3 id="运行任务">运行任务</h3>
 
-<p>在 <strong>package.json</strong> 中，除了定义和获取依赖，还可以定义脚本，然后通过&nbsp;npm&nbsp;<a href="https://docs.npmjs.com/cli/run-script">run-script</a>&nbsp;命令来运行。这个用法普遍用于自动运行测试单元或部分应用，也可用于构建工具链（比如运行工具来压缩 JavaScript 文件或图片，lint 或分析代码，等等）。</p>
+<p>在 <strong>package.json</strong> 中，除了定义和获取依赖，还可以定义脚本，然后通过 npm <a href="https://docs.npmjs.com/cli/run-script">run-script</a> 命令来运行。这个用法普遍用于自动运行测试单元或部分应用，也可用于构建工具链（比如运行工具来压缩 JavaScript 文件或图片，lint 或分析代码，等等）。</p>
 
 <div class="note">
-<p><strong>注：</strong><a href="http://gulpjs.com/">Gulp</a>&nbsp;和&nbsp;<a href="http://gruntjs.com/">Grunt</a>&nbsp;等任务运行器可用于运行测试单元或其它外部工具。</p>
+<p><strong>注：</strong><a href="http://gulpjs.com/">Gulp</a> 和 <a href="http://gruntjs.com/">Grunt</a> 等任务运行器可用于运行测试单元或其它外部工具。</p>
 </div>
 
-<p>举例说，我们可以在&nbsp;<strong>package.json</strong>&nbsp;文件中添加以下内容来定义一个脚本，从而对上文的代码运行 eslint（假设我们应用的代码在 /src/js 文件夹下）：</p>
+<p>举例说，我们可以在 <strong>package.json</strong> 文件中添加以下内容来定义一个脚本，从而对上文的代码运行 eslint（假设我们应用的代码在 /src/js 文件夹下）：</p>
 
 <pre class="brush: js">
 "scripts": {
   ...
   "lint": "eslint src/js"
-&nbsp; ...
+  ...
 }
 </pre>
 
-<p>To explain a little further, <code>eslint src/js</code> is a command that we could enter in our terminal/command line to run <code>eslint</code> on JavaScript files contained in the <code>src/js</code> directory inside our app directory. Including the above inside our app's package.json file provides a shortcut for this command — <code>lint</code>.</p>
+<p>深入解释一下，<code>eslint src/js</code> 命令可以在终端/命令行对应用目录下的 src/js 目录中的 JavaScript 文件运行 <code>eslint</code>。把上面一段脚本添加进应用的 package.json 中还可以为此命令提供一个快捷方式—— <code>lint</code>。</p>
 
-<p>We would then be able to run <em>eslint</em> using NPM by calling:</p>
+<p>然后就可以用 NPM 这样运行 eslint 了：</p>
 
 <pre class="brush: bash" rel="Command Line">
-<code>npm run-script lint
-# OR (using the alias)
-npm run lint</code>
-</pre>
+<code>npm run-script lint</code></pre>
 
-<p>This example may not look any shorter than the original command, but you can include much bigger commands inside your npm scripts, including chains of multiple commands. You could identify a single npm script that runs all your tests at once.</p>
+<p>或使用别名：</p>
 
-<h2 id="Installing_the_Express_Application_Generator">Installing the Express Application Generator</h2>
+<pre class="brush: bash">
+<code>npm run lint</code></pre>
 
-<p>The <a href="https://expressjs.com/en/starter/generator.html">Express Application Generator</a> tool generates an Express application "skeleton".&nbsp;You can install the generator using NPM as shown (the&nbsp;<code>-g</code> flag installs the tool globally so that you can call it from anywhere):</p>
+<p>这个示例看上去并没有让原始命令简洁多少，但是你可以在 NPM 脚本中加入更长的命令，甚至是多命令链。比如你可以让单一一个 NPM 脚本来一次运行所有的测试单元。</p>
 
-<pre>
+<h2 id="Installing_the_Express_Application_Generator">安装 Express 应用生成器</h2>
+
+<p><a href="https://expressjs.com/en/starter/generator.html">Express 应用生成器</a> 工具可以生成一个 Express 应用的“框架”。你可以用 NPM 这样安装它：（<code>-g</code> 参数可以把该工具全局安装，那样就可以在任意应用中使用了）</p>
+
+<pre class="brush: bash">
 <code>npm install express-generator -g</code></pre>
 
-<p>To create an <em>Express</em> app named "helloworld" with the default settings, navigate to where you want to create it and run the app as shown:</p>
+<p>进入应用目录，运行以下命令，即可创建一个名为 "helloworld" 的 Express 应用：</p>
 
 <pre class="brush: bash">
 express helloworld</pre>
 
 <div class="note">
-<p><strong>Note:&nbsp;</strong>You can also specify the template library to use and a number of other settings. Use the <code>help</code> command to see all the options:</p>
+<p><strong>注：</strong>你也可以指定模板库来使用其它丰富的设置。可通过 <code>help</code> 参数来查看所有选项：</p>
 
 <pre class="brush: bash">
 express --help
 </pre>
 </div>
 
-<p>NPM will create the new Express app in a sub folder of your current location, displaying build progress on the console. On completion, the tool will display the commands you need to enter to install the Node dependencies and start the app.</p>
+<p>NPM 将在当前位置的子目录中创建新的 Express 应用，你可以在控制台看到构建的过程。在完成时，NPM 会提示你需要安装哪些 Node 依赖，以及如何开启应用。</p>
 
 <div class="note">
-<p>The new app will have a&nbsp;<strong>package.json</strong> file in its root directory. You can open this to see what dependencies are installed, including Express and&nbsp;the template library Jade:</p>
+<p>新应用的根目录有一个 <strong>package.json</strong> 文件。你可以打开它看看都安装了哪些依赖，其中可以看到 Express 和 Jade 模板库：</p>
 
 <pre class="brush: js">
 {
-&nbsp; "name": "helloworld",
-&nbsp; "version": "0.0.0",
-&nbsp; "private": true,
-&nbsp; "scripts": {
-&nbsp; &nbsp; "start": "node ./bin/www"
-&nbsp; },
-&nbsp; "dependencies": {
-&nbsp; &nbsp; "body-parser": "~1.18.2",
-&nbsp; &nbsp; "cookie-parser": "~1.4.3",
-&nbsp; &nbsp; "debug": "~2.6.9",
-&nbsp; &nbsp; "express": "~4.15.5",
-&nbsp; &nbsp; "jade": "~1.11.0",
-&nbsp; &nbsp; "morgan": "~1.9.0",
-&nbsp; &nbsp; "serve-favicon": "~2.4.5"
-&nbsp; }
+  "name": "helloworld",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0"
+  }
 }</pre>
 </div>
 
-<p>Install all the dependencies for the helloworld app using NPM as shown:</p>
+<p>用下列命令可为 helloworld 应用安装所有依赖：</p>
 
 <pre class="brush: bash">
 cd helloworld
 npm install
 </pre>
 
-<p>Then run the app (the commands are slightly different for Windows and Linux/Mac), as shown below:</p>
+<p>然后运行这个应用（Windows 环境）：</p>
 
 <pre class="brush: bash">
-# Run the helloworld on Windows
 SET DEBUG=helloworld:* &amp; npm start
-
-# Run helloworld on Linux/Mac OS X
-DEBUG=helloworld:* npm start
 </pre>
 
-<p>The DEBUG command creates useful logging, resulting in an output like that shown below.</p>
+<p>（Linux/macOS 环境）：</p>
+
+<pre class="brush: bash">
+DEBUG=helloworld:* npm start</pre>
+
+<p>DEBUG 配置项可以为你展示应用运行时返回的有用的日志信息，如下所示：</p>
 
 <pre class="brush: bash">
 &gt;SET DEBUG=helloworld:* &amp; npm start
@@ -360,48 +362,44 @@ DEBUG=helloworld:* npm start
 &gt; helloworld@0.0.0 start D:\Github\expresstests\helloworld
 &gt; node ./bin/www
 
-&nbsp; helloworld:server Listening on port 3000 +0ms</pre>
+  helloworld:server Listening on port 3000 +0ms</pre>
 
-<p>Open a browser and navigate to&nbsp;<a href="http://127.0.0.1:3000/">http://127.0.0.1:3000/</a> to see the default Express welcome page.</p>
+<p>打开浏览器并访问 <a href="http://127.0.0.1:3000/">http://127.0.0.1:3000/</a> 你将看到 Express 的默认欢迎页面。</p>
 
 <p><img alt="Express - Generated App Default Screen" src="https://mdn.mozillademos.org/files/14331/express_default_screen.png" style="border-style:solid; border-width:1px; display:block; height:301px; margin:0px auto; width:675px" /></p>
 
-<p>We'll talk more about the generated app when we get to the article on generating a skeleton application.</p>
+<p>我们稍后在创建应用框架一节中讨论生成应用的具体细节。</p>
 
 <ul>
 </ul>
 
-<h2 id="總結">總結</h2>
+<h2 id="小结">小结</h2>
 
-<p>你現在有一個Node開發環境在你的電腦上運行，可以用來創造Express網頁應用。你也看到如何用NPM來加載 Express到一個應用中，以及看到如何使用Express應用產生器，創建應用，然後執行它們。</p>
+<p>现在你已经配置好了 Node 开发环境，可以用于创建 Express 应用了。你还了解了用 NPM 导入 Express 的步骤，以及使用 Express 应用生成器来创建应用的方法，还有如何运行。</p>
 
-<p>下一篇文章，我們開始跟著教程一步一步實作，使用這個開發環境與搭配工具，建立一個完整的網頁應用。</p>
+<p>下一节中我们将开始用上述的环境和工具通过实战逐步搭建一个完整的 web 应用。</p>
 
-<h2 id="See_also">See also</h2>
+<h2 id="另请参阅">另请参阅</h2>
 
 <ul>
- <li><a href="https://nodejs.org/en/download/">Downloads</a> page (nodejs.org)</li>
- <li><a href="https://nodejs.org/en/download/package-manager/">Installing Node.js via package manager</a>&nbsp;(nodejs.org)</li>
- <li><a href="http://expressjs.com/en/starter/installing.html">Installing Express</a> (expressjs.com)</li>
- <li><a href="https://expressjs.com/en/starter/generator.html">Express Application Generator</a> (expressjs.com)</li>
+ <li><a href="https://nodejs.org/zh-cn/download/">Node.js 下载页面</a> （nodejs.org 官方中文页面）</li>
+ <li><a href="https://nodejs.org/zh-cn/download/package-manager/">通过包管理器方式安装 Node.js</a> （nodejs.org 官方中文页面）</li>
+ <li><a href="http://www.expressjs.com.cn/starter/installing.html">安装 Express</a> （expressjs.com.cn 中文镜像页面）</li>
+ <li><a href="http://www.expressjs.com.cn/starter/generator.html">Express 应用程序生成器</a> （expressjs.com.cn 中文镜像页面）</li>
 </ul>
 
 <p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Introduction", "Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs")}}</p>
 
-<p>&nbsp;</p>
-
-<h2 id="In_this_module">In this module</h2>
+<h2 id="本章目录">本章目录</h2>
 
 <ul>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction">Express/Node introduction</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment">Setting up a Node (Express) development environment</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express Tutorial: The Local Library website</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website">Express Tutorial Part 2: Creating a skeleton website</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose">Express Tutorial Part 3: Using a Database (with Mongoose)</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/routes">Express Tutorial Part 4: Routes and controllers</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data">Express Tutorial Part 5: Displaying library data</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/forms">Express Tutorial Part 6: Working with forms</a></li>
- <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/deployment">Express Tutorial Part 7: Deploying to production</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Introduction">Express/Node 入门</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置 Node（Express）开发环境</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程：本地图书馆网站</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website">Express 教程 2：创建站点框架</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/mongoose">Express 教程 3：使用数据库（Mongoose）</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/routes">Express 教程 4：路由和控制器</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Displaying_data">Express 教程 5：显示图书馆数据</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/forms">Express 教程 6：使用表单</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/deployment">Express 教程 7：部署至生产环境</a></li>
 </ul>
-
-<p>&nbsp;</p>
