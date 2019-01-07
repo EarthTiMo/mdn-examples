@@ -1,80 +1,530 @@
 <div>{{LearnSidebar}}</div>
 
-<div>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/development_environment", "Learn/Server-side/Express_Nodejs/skeleton_website", "Learn/Server-side/Express_Nodejs")}}</div>
+<p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs/mongoose", "Learn/Server-side/Express_Nodejs")}}</p>
 
-<p class="summary">在实战教程第一节中，你将了解所学的内容，对「本地图书馆」示例网站有一个初步的印象&nbsp;。本章接下来的内容将逐步完成这个网站。</p>
+<p class="summary"><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程</a>&nbsp;的第二节将演示如何创建一个可添加具体的路由、模板/视图、和数据库调用的“骨架”站点。</p>
 
 <table class="learn-box standard-table">
  <tbody>
   <tr>
    <th scope="row">预备知识:</th>
-   <td>阅读 <a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Introduction">Expres 入门</a>。进行以后的小节还需要阅读&nbsp;<a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">配置 Node 开发环境</a>。</td>
+   <td><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">配置 Node 开发环境</a>。复习 Express 教程。</td>
   </tr>
   <tr>
-   <th scope="row">学习目标:</th>
-   <td>引入本教程的示例应用，了解所涉及的所有主题。</td>
+   <th scope="row">目标:</th>
+   <td>掌握用 <strong>Express 应用生成器</strong> 创建站点的方法。</td>
   </tr>
  </tbody>
 </table>
 
 <h2 id="概览">概览</h2>
 
-<p>欢迎来到 MDN "本地图书馆" Express (Node) 教程，我们将开发一个管理本地图书馆编目的网站。</p>
+<p>本节演示了如何使用&nbsp;<a href="http://www.expressjs.com.cn/starter/generator.html">Express 应用生成器</a>&nbsp;创建一个可添加具体路由、模板/视图和数据库调用的“骨架”网站。这里我们将该生成器为我们的&nbsp;<a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">本地图书馆网站</a>&nbsp;创建框架，以便在以后章节添加其它代码。过程非常简单，只需要在命令行运行&nbsp;生成器 + 项目名称 即可，此外还可以指定站点的模板引擎和 CSS 生成器。</p>
 
-<p>本系列教程中，你将：</p>
-
-<ul>
- <li>使用 <em>Express </em>应用生成器创建一个应用骨架。</li>
- <li>启动和停止 Node web 服务器。</li>
- <li>使用数据库存放应用的数据。</li>
- <li>创建路由来请求不同信息，创建模板（"视图"）来渲染 HTML 数据以在浏览器中显示。</li>
- <li>使用表单。</li>
- <li>部署应用到生产环境。</li>
-</ul>
-
-<p>你可能已经学过（或之前接触过）其中的部分主题。学完列系教程后，你就有足够技能来独立开发简单的 Express 应用。</p>
-
-<h2 id="本地图书馆网站">本地图书馆网站（LocalLibrary）</h2>
-
-<p>我们给本地图书馆网站起一个名字——LocalLibrary，本系列教程将自始至终使用这个名字。顾名思义，此网站为一家小型本地图书馆提供一个线上图书编目，用户可以能够浏览库中的书目，还能管理他们的帐号。</p>
-
-<p>本示例是精心挑选的，它规模灵活，可以配合我们的需要进行自由调整。还能演示绝大多数&nbsp;Express 特性。更重要的是，这里提供的指引对所有网站都适用：</p>
-
-<ul>
- <li>教程前几节中我们将定义一个简单的、只能浏览的图书馆，会员可以在网站找书。通过这几节我们来学习大多数网站都会涉及的一项操作：从数据库读取并呈现内容。</li>
- <li>跟随教程的进展，图书馆的示例子会逐步扩充，以演示更高级的网站特征。比如我们会加入新增数目的功能，并以此来演示表单和用户授权的用法。</li>
-</ul>
-
-<p>尽管这个示例具备相当可观的扩展度，但依然有理由把它叫做<strong>本地</strong>图书馆（<strong>Local</strong>Library）。&nbsp;我们希望呈现给你最少的信息，从而帮助你尽快上手并运行 Express。因此，我们只保留书名、本数、作者以及其它关键信息。我们会省略掉其它可能用到的信息，也不会提供多图书馆架构或“大型图书馆"等特性的支持。</p>
-
-<h2 id="我卡住了，哪里有源代码">我被难住了，哪里有源代码?</h2>
-
-<p>本教程进行过程中，我们将在每个知识点为你提供适当的代码片段，其中一些内容我们希望你能（在一定指引下）自己填充。</p>
-
-<p>别总是复制粘贴这些片段，试着独立完成，长期来看这样做是有好处的，你下次编写类似代码时将更熟练。</p>
-
-<p>如果实在进行不下去，可以参考 <a href="https://github.com/mdn/express-locallibrary-tutorial">Github</a>&nbsp;上的完整版本。</p>
+<p>以下内容介绍了应用生成器的用法，以及视图 / CSS 的一些不同选项。还介绍了站点骨架的组织结构。最后，我们将介绍站点的运行方法，从而对其进行验证。</p>
 
 <div class="note">
-<p><strong>注：</strong>本教程中的代码，已在特定版本（项目的<a href="https://github.com/mdn/express-locallibrary-tutorial/blob/master/package.json"> package.json</a>&nbsp;文档中列出）的 node、Express 及其它模组的环境下通过测试。</p>
+<p><strong>注：</strong>Express 应用生成器并非唯一的 Express 应用生成工具，而且生成的项目不是组织文件和目录的唯一可行方式。然而，生成的网站具有易于扩展和理解的模块化结构。有关 最小的 Express 应用，请参阅&nbsp;<a href="http://expressjs.com.cn/starter/hello-world.html">Hello world示例</a>（Express 镜像站）。</p>
 </div>
+
+<h2 id="使用应用产生器">使用应用产生器</h2>
+
+<p>你应该已经安装了生成器，它是&nbsp;<a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置 Node 开发环境</a>&nbsp;的一部分。提醒你一下，可以使用 NPM 来安装全局的生成器，如下所示：</p>
+
+<pre class="brush: bash">
+<code>npm install express-generator -g</code></pre>
+
+<p>生成器有许多选项，可以使用&nbsp;<code>--help</code>（或&nbsp;<code>-h</code>）命令进行查看：</p>
+
+<pre class="brush: bash">
+$ express --help
+
+&nbsp; Usage: express [options] [dir]
+
+&nbsp; Options:
+
+&nbsp; &nbsp; -h, --help &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; output usage information
+&nbsp; &nbsp; &nbsp; &nbsp; --version &nbsp; &nbsp; &nbsp; &nbsp;output the version number
+&nbsp; &nbsp; -e, --ejs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add ejs engine support
+&nbsp; &nbsp; &nbsp; &nbsp; --pug &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add pug engine support
+&nbsp; &nbsp; &nbsp; &nbsp; --hbs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add handlebars engine support
+&nbsp; &nbsp; -H, --hogan &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add hogan.js engine support
+&nbsp; &nbsp; -v, --view &lt;engine&gt; &nbsp;add view &lt;engine&gt; support (ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)
+&nbsp; &nbsp; -c, --css &lt;engine&gt; &nbsp; add stylesheet &lt;engine&gt; support (less|stylus|compass|sass) (defaults to plain css)
+&nbsp; &nbsp; &nbsp; &nbsp; --git &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add .gitignore
+&nbsp; &nbsp; -f, --force &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;force on non-empty directory
+</pre>
+
+<p>可以直接运行 express 命令来使用 Jade 视图引擎和纯 CSS 在当前目录中创建项目。（如果指定目录名，则在子目录中创建项目）。</p>
+
+<pre class="brush: bash">
+<code>express</code></pre>
+
+<p>还可以使用&nbsp;<code>--view</code>&nbsp;选择视图（模板）引擎，并且/或者使用&nbsp;<code>--css</code>&nbsp;选择 CSS 生成引擎。</p>
+
+<div class="note">
+<p><strong>注：</strong>选择模板引擎的其他选项（例如 <code>--hogan</code>, <code>--ejs</code>, <code>--hbs</code>&nbsp;等）已弃用。请使用 <code>--view</code>（或 <code>-v</code>）。</p>
+</div>
+
+<h3 id="我应该用哪个视图引擎">我应该用哪个视图引擎？</h3>
+
+<p>Express 应用生成器支持多款流行的视图/模板引擎，包括&nbsp;<a href="https://www.npmjs.com/package/ejs">EJS</a>、<a href="http://github.com/donpark/hbs">Hbs</a>、<a href="https://pugjs.org/api/getting-started.html">Pug</a> (Jade)、<a href="https://www.npmjs.com/package/twig">Twig</a> 和 <a href="https://www.npmjs.com/package/vash">Vash</a>，缺省选项是&nbsp;Jade。Express 本身也可以支持大量其他模板语言，<a href="https://github.com/expressjs/express/wiki#template-engines">开箱即用</a>。</p>
+
+<div class="note">
+<p><strong>注：</strong>如果要使用生成器不支持的模板引擎，请参阅&nbsp;<a href="http://expressjs.com.cn/guide/using-template-engines.html">在 Express 中使用模板引擎</a>（Express 文档）和所选用的视图引擎的文档。</p>
+</div>
+
+<p>一般来说，你应该选择一个大而全的模板引擎，可以尽快进入生产状态。换句话说，就像你选择其他组件一样！选用模板引擎需要考虑以下因素：</p>
+
+<ul>
+ <li>进入生产状态的时间——如果你的团队已经有某个模板语言的经验，那么用它可能更快进入生产状态。否则你应该考虑所选模板引擎的学习曲线。</li>
+ <li>流行度和活跃度——要评估所选引擎的流行程度，以及它是否拥有活跃的社区。在网站的生命周期中遇到问题时，是否能够获得相关支持非常重要。</li>
+ <li>风格——某些模板引擎使用特定标记，来标识插入“普通” HTML 中的内容，而另一些模板引擎使用不同的语法（例如使用缩进和块名称）构造 HTML。</li>
+ <li>性能/渲染时间。</li>
+ <li>功能——你应该考虑所选引擎是否具有以下功能：
+  <ul>
+   <li>布局继承：可以定义基本模板，然后 “继承” 它的一部分，使不同页面可以有不同的呈现。这通常比包含大量所需组件，或每次从头开始构建模板更好。</li>
+   <li>“包含”支持：可以通过包含其他模板来构建新模板。</li>
+   <li>简明的变量和循环控制语法。</li>
+   <li>能够在模板级别过滤变量值（例如，将变量设置为大写，或格式化日期值）。</li>
+   <li>能够生成 HTML 以外的输出格式（例如 JSON 或 XML）。</li>
+   <li>支持异步操作和流。</li>
+   <li>可以在同时在客户端和服务器上使用。如果一款模板引擎可以在客户端上使用，那么在客户端提供数据并完成所有（或大多数）渲染就成为可能。</li>
+  </ul>
+ </li>
+</ul>
+
+<div class="note">
+<p><strong>提示：</strong>互联网上有许多资源，可帮助你选择合适的视图/模板引擎。</p>
+</div>
+
+<p>本项目选用<a href="https://pugjs.org/api/getting-started.html"> Pug </a>模板引擎（Jade 是它不久前的曾用名），它是最流行的 Express / JavaScript 模板语言之一，且对&nbsp;Express 生成器&nbsp;<a href="https://github.com/expressjs/express/wiki#template-engines">开箱即用</a>。</p>
+
+<h3 id="我應該用哪個CSS樣式引擎">我应该用哪个 CSS 样式引擎？</h3>
+
+<p>Express 应用生成器支持最常见的 CSS 样式表引擎：<a href="http://lesscss.org/">LESS</a>, <a href="http://sass-lang.com/">SASS</a>, <a href="http://compass-style.org/">Compass</a>, <a href="http://stylus-lang.com/">Stylus</a>。</p>
+
+<div class="note">
+<p><strong>注：</strong>CSS 的一些限制导致某些任务完成起来非常困难。CSS 样式表引擎提供了更强大的语法来定义&nbsp;CSS，然后将定义编译为纯&nbsp;CSS 供浏览器使用。</p>
+</div>
+
+<p>与模板引擎一样，你也应该使用样式表引擎，这可以最大化团队生产力。本项目将使用原始 CSS（默认的），因为我们对 CSS 要求不复杂，没有必要使用引擎。</p>
+
+<h3 id="我应该用哪个数据库">我应该用哪个数据库?</h3>
+
+<p>生成器生成的代码不使用、也不包含任何数据库。 Express 应用可以使用 Node 支持的所有&nbsp;<a href="https://expressjs.com/en/guide/database-integration.html">数据库</a>（Express 本身不提供数据库管理机制）。</p>
+
+<p>我们后续讨论数据库集成问题。</p>
+
+<h2 id="创建项目">创建项目</h2>
+
+<p>我们为即将构建&nbsp;LocalLibrary 示例应用创建一个名为 express-locallibrary-tutorial 的项目，对其使用 Pug 模板库，但不使用 CSS 样式表引擎。</p>
+
+<p>首先，进入准备放置项目的目录，然后在命令提示符运行 Express 应用生成器，如下所示：</p>
+
+<pre class="brush: bash">
+express express-locallibrary-tutorial --view=pug
+</pre>
+
+<p>生成器将创建（并列出）项目的文件。</p>
+
+<pre class="brush: bash">
+   create : express-locallibrary-tutorial
+   create : express-locallibrary-tutorial/package.json
+   create : express-locallibrary-tutorial/app.js
+   create : express-locallibrary-tutorial/public/images
+   create : express-locallibrary-tutorial/public
+   create : express-locallibrary-tutorial/public/stylesheets
+   create : express-locallibrary-tutorial/public/stylesheets/style.css
+   create : express-locallibrary-tutorial/public/javascripts
+   create : express-locallibrary-tutorial/routes
+   create : express-locallibrary-tutorial/routes/index.js
+   create : express-locallibrary-tutorial/routes/users.js
+   create : express-locallibrary-tutorial/views
+   create : express-locallibrary-tutorial/views/index.pug
+   create : express-locallibrary-tutorial/views/layout.pug
+   create : express-locallibrary-tutorial/views/error.pug
+   create : express-locallibrary-tutorial/bin
+   create : express-locallibrary-tutorial/bin/www
+
+   install dependencies:
+     &gt; cd express-locallibrary-tutorial &amp;&amp; npm install
+
+   run the app:
+     &gt; SET DEBUG=express-locallibrary-tutorial:* &amp; npm start</pre>
+
+<p>在输出结束时，生成器提供关于「如何安装依赖关系」的指示信息（如<strong>package.json</strong> 文件中所列），以及如何运行应用程序（上述说明适用于Windows；在Linux / macOS上，它们会略有不同）。</p>
+
+<h2 id="运行骨架网站">运行骨架网站</h2>
+
+<p>在这一时间点上，我们有一个完整的骨架项目。该网站实际上并没有做太多工作，但运行它，能夠展示它是如何工作的。</p>
+
+<ol>
+ <li>首先安装依赖项（安装命令<code>install</code>，将获取项目的 <strong>package.json</strong> 文件中列出的所有依赖项包）。
+
+  <pre class="brush: bash">
+cd express-locallibrary-tutorial
+npm install</pre>
+ </li>
+ <li>然后运行该应用程序。
+  <ul>
+   <li>在Windows上，使用此命令:
+    <pre class="brush: bash">
+SET DEBUG=express-locallibrary-tutorial:* &amp; npm start</pre>
+   </li>
+   <li>在macOS or Linux，使用此命令:
+    <pre class="brush: bash">
+DEBUG=express-locallibrary-tutorial:* npm start
+</pre>
+   </li>
+  </ul>
+ </li>
+ <li>然后在浏览器中加载 <a href="http://localhost:3000/">http://localhost:3000/</a> ，以访问该应用程序。</li>
+</ol>
+
+<p>你应该会看到一个浏览器页面，就像这样:</p>
+
+<p><img alt="Browser for default Express app generator website" src="https://mdn.mozillademos.org/files/14375/ExpressGeneratorSkeletonWebsite.png" style="display:block; height:403px; margin:0px auto; width:576px" /></p>
+
+<p>你有一个能工作的 Express 应用了，让它在 <a href="http://localhost:3000/">http://localhost:3000/</a> 服务 。</p>
+
+<div class="note">
+<p><strong>注意:</strong> 您也可以使用<code>npm start</code>命令启动应用程序。如下图所示，指定 DEBUG 变量可启用控制台日志记录/调试。例如，当你访问上面的页面时，你会看到像这样的调试输出：</p>
+
+<pre class="brush: bash">
+&gt;SET DEBUG=express-locallibrary-tutorial:* &amp; npm start
+
+&gt; express-locallibrary-tutorial@0.0.0 start D:\express-locallibrary-tutorial
+&gt; node ./bin/www
+
+  express-locallibrary-tutorial:server Listening on port 3000 +0ms
+GET / 200 288.474 ms - 170
+GET /stylesheets/style.css 200 5.799 ms - 111
+GET /favicon.ico 404 34.134 ms - 1335</pre>
+</div>
+
+<h2 id="让伺服器在档案更改时重新启动">让伺服器在档案更改时重新启动</h2>
+
+<p>在您重新启动服务器之前，您对 Express 网站所做的任何更改，目前都不可见。每次进行更改时，必须停止并重新启动服务器，很快变得非常烦人，因此值得花时间使服务器在需要时，自动重新启动。</p>
+
+<p>这种工具中，最简单的之一就是<a href="https://github.com/remy/nodemon"> nodemon</a>。这通常是全局安装的（因为它是一个“工具”），但在这里，我们将在本地安装和使用它，作为开发人员依赖项，以便任何使用该项目的开发人员，在安装应用程序时自动获取它。在骨架项目的根目录中，使用以下命令：</p>
+
+<pre class="brush: bash">
+npm install --save-dev nodemon</pre>
+
+<p>如果您打开项目的 <strong>package.json</strong> 文件，您现在将看到一个具有此依赖关系的新区段：</p>
+
+<pre class="brush: json">
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+</pre>
+
+<p>由于该工具没有全局安装，我们无法从命令行启动它（除非我们将其添加到路径中），但是我们可以从 NPM 脚本中调用它，因为 NPM 知道所有关于安装的软件包的信息。找到你的 package.json 的脚本 <code>scripts </code>区块。我们更新<code>scripts </code>区块，最初的一行，以<code>"start"</code>开头，在该行的末尾添加逗号，并添加 <code>"devstart" </code>开头的一行，如下所示：</p>
+
+<pre class="brush: json">
+  "scripts": {
+    "start": "node ./bin/www"<strong>,</strong>
+<strong>    "devstart": "nodemon ./bin/www"</strong>
+  },
+</pre>
+
+<p>现在我们可以用与前面几乎完全相同的方式，启动服务器，但使用指定的 devstart 命令：</p>
+
+<ul>
+ <li>在 Windows，使用此命令:
+  <pre class="brush: bash">
+SET DEBUG=express-locallibrary-tutorial:* &amp; npm <strong>run devstart</strong></pre>
+ </li>
+ <li>在 macOS or Linux，使用此命令:
+  <pre class="brush: bash">
+DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong>
+</pre>
+ </li>
+</ul>
+
+<div class="note">
+<p><strong>注意:</strong> 现在，如果您编辑项目中的任何文件，服务器将重新启动（或者您可以随时在命令提示符下，键入<code>rs</code>来重新启动它）。您仍需要重新加载浏览器，以刷新页面。</p>
+
+<p>我们现在必须调用“<code>npm run <em>&lt;scriptname&gt;</em></code>”而不是 <code>npm start</code>，因为“start”实际上是映射到指定脚本的 NPM 命令。我们可以在启动脚本中替换该命令，但我们只想在开发期间使用 nodemon，因此创建新的脚本命令是有意义的。</p>
+</div>
+
+<h2 id="从产生器得到的项目">从产生器得到的项目</h2>
+
+<p>现在我们来看看我们刚刚创建的项目。</p>
+
+<h3 id="目錄結構">目錄結構</h3>
+
+<p>从产生器得到的生成项目，现在已经安装了依赖项，具有以下文件结构 （<strong>不</strong>带前缀 “/” 的项目，表示文件）。<strong>package.json </strong>文件定义了应用程序依赖项，和其他信息。它还定义了一个启动脚本，它将调用应用程序入口点 JavaScript 文件 <strong>/bin/www</strong>。这设置了一些应用程序的错误处理，然后加载 <strong>app.js </strong>，来完成剩下的工作。应用程序路径，存储在<strong> /routes</strong> 目录下的单独模块中。模板存储在 /<strong>views</strong> 目录下。</p>
+
+<pre>
+/express-locallibrary-tutorial
+    <strong>app.js</strong>
+    /bin
+&nbsp;       <strong>www</strong>
+    <strong>package.json</strong>
+    /node_modules
+&nbsp;       [about 4,500 subdirectories and files]
+    /public
+&nbsp;       /images
+&nbsp;       /javascripts
+&nbsp;       /stylesheets
+&nbsp;           <strong>style.css</strong>
+    /routes
+        <strong>index.js</strong>
+&nbsp;       <strong>users.js</strong>
+    /views
+&nbsp;       <strong>error.pug</strong>
+        <strong>index.pug</strong>
+&nbsp;       <strong>layout.pug</strong>
+    
+</pre>
+
+<p>以下各节将详细介绍这些文件。</p>
+
+<h3 id="package.json">package.json</h3>
+
+<p><strong>package.json </strong>文件定义了应用程序依赖关系，和其他信息：</p>
+
+<pre class="brush: json">
+{
+&nbsp; "name": "express-locallibrary-tutorial",
+&nbsp; "version": "0.0.0",
+&nbsp; "private": true,
+&nbsp; "scripts": {
+&nbsp; &nbsp; "start": "node ./bin/www",
+&nbsp; &nbsp; "devstart": "nodemon ./bin/www"
+&nbsp; },
+&nbsp; "dependencies": {
+&nbsp; &nbsp; "body-parser": "~1.18.2",
+&nbsp; &nbsp; "cookie-parser": "~1.4.3",
+&nbsp; &nbsp; "debug": "~2.6.9",
+&nbsp; &nbsp; "express": "~4.16.2",
+&nbsp; &nbsp; "morgan": "~1.9.0",
+&nbsp; &nbsp; "pug": "~2.0.0-rc.4",
+&nbsp; &nbsp; "serve-favicon": "~2.4.5"
+&nbsp; },
+&nbsp; "devDependencies": {
+&nbsp; &nbsp; "nodemon": "^1.14.11"
+&nbsp; }
+}
+</pre>
+
+<p>依赖关系包括 <em>express</em> 包，和我们所选视图引擎（<em>pug</em>）的包。另外，我们还有以下的包，在许多 Web 应用程序中很有用：</p>
+
+<ul>
+ <li><a href="https://www.npmjs.com/package/body-parser">body-parser</a>:&nbsp; 这解析传入HTTP请求的正文 body 部分，并更容易提取包含信息的不同部分。例如，您可以使用它来读取 <code>POST </code>参数。</li>
+ <li><a href="https://www.npmjs.com/package/cookie-parser">cookie-parser</a>:&nbsp; 用于解析 cookie header 并填充 <code>req.cookies</code>（本质上提供了访问 cookie 信息的便捷方法）。</li>
+ <li><a href="https://www.npmjs.com/package/debug">debug</a>: 一个小型 node 调试程序，仿照 node 核心的调试技术建立的。</li>
+ <li><a href="https://www.npmjs.com/package/morgan">morgan</a>:&nbsp; 搭配 node 使用的 HTTP 请求记录器中间层软件。</li>
+ <li><a href="https://www.npmjs.com/package/serve-favicon">serve-favicon</a>:&nbsp; 用于提供收藏图标 <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a> 的 node 中间层软件（这是用于表示浏览器选项卡、书签等网站内的图标）。</li>
+</ul>
+
+<p>脚本部分，定义了一个“开始” "<em>start</em>" 脚本，当我们调用 <code>npm start</code>&nbsp; 来启动服务器时，这就是我们所调用的脚本。从脚本定义中，您可以看到这实际上用 node 启动了 JavaScript 文件 <strong>./bin/www</strong>。它还定义了一个“devstart” 脚本，我们在调用 <code>npm run devstart </code>时调用它。这将启动相同的 <strong>./bin/www </strong>文件，但使用 nodemon 调用而不是 node 。</p>
+
+<pre class="brush: json">
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+</pre>
+
+<h3 id="www_文件">www 文件</h3>
+
+<p>文件 <strong>/bin/www </strong>是应用程序入口点！它做的第一件事是 <code>require()</code> “真实” 应用程序入口点（即项目根目录中的 <strong>app.js</strong> ），<strong>app.js </strong>会设置并返回<code><a href="http://expressjs.com/en/api.html">express() </a></code>应用程序的对象。</p>
+
+<pre class="brush: js">
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+<strong>var app = require('../app');</strong>
+</pre>
+
+<div class="note">
+<p><strong>注意:</strong> <code>require()</code> 是一个全局 node 函数，用于将模块导入当前文件。这里我们使用相对路径指定<strong> app.js</strong> 模块，并省略可选的（.<strong>js</strong>）文件扩展名。</p>
+</div>
+
+<p>此文件中的其余代码，将设置一个 node 运行的 HTTP 服务器，并将应用 <code>app</code> 设置为特定的端口（在环境变量中定义，如果变量未定义，则定义为3000），并开始监听和报告服务器错误和连接。现在你并不需要知道代码的其他内容（这个文件中的所有内容都是 “样板文件” ），但如果你感兴趣，可以随时查看它。</p>
+
+<h3 id="app.js">app.js</h3>
+
+<p>此文件创建一个 <code>express </code>应用程序对象（按传统命名为 <code>app</code>），使用各种设置和中间件，以设置应用程序，然后从模块导出应用程序。下面的代码只显示了文件的一部分，创建和导出应用程序对象的部分：</p>
+
+<pre class="brush: js">
+<code>var express = require('express');
+var app = express();
+...
+</code>module.exports = app;
+</pre>
+
+<p>回到上面的<strong> www</strong> 入口点文件，它是在导入该文件时，提供给调用者的这个 <code>module.exports</code> 对象。让我们详细了解<strong> app.js</strong> 文件。首先，我们使用 <code>require()</code>将一些有用的node 库导入到文件中，其中包括我们先前使用 NPM 为应用程序下载的 express，serve-favicon，morgan，<em>cookie-parser</em> 和 body-parser；和<em>path </em>库，它是解析文件和目录路径的核心 node 库。</p>
+
+<pre class="brush: js">
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+</pre>
+
+<p>然后我们<code>require()</code>来自我们的路由目录的模块。这些模块/文件包含用于处理特定的相关“路由”集合（URL路径）的代码。当我们扩展骨架应用程序，例如列出图书馆中的所有书籍时，我们将添加一个新文件，来处理与书籍相关的路由。</p>
+
+<pre class="brush: js">
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+</pre>
+
+<div class="note">
+<p><strong>注意:</strong> 此时我们刚刚导入了模块；我们还没有真正使用过它的路由（在文件的更下方一点将使用到路由）。</p>
+</div>
+
+<p>接下来，我们使用导入的 express 模块​​，创建应用程序 <code>app</code> 对象，然后使用它来设置视图（模板）引擎。引擎的设置有两个部分。首先我们设置 '<code>views</code>' 值，来指定模板将被存储的文件夹（在这种情况下是子文件夹 <strong>/views</strong>）。然后我们设置 '<code>view engine</code>' 的值，来指定模板库（在本例中为 “pug” ）。</p>
+
+<pre class="brush: js">
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+</pre>
+
+<p>下一组函数调用 <code>app.use()</code>，将中间件的库，添加到请求处理链中。除了我们之前导入的第三方库之外，我们还使用 <code>express.static</code> 中间件，来使 <em>Express</em> 提供在项目根目录下，<strong>/public</strong> 目录中的所有静态文件。</p>
+
+<pre class="brush: js">
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+<strong>app.use(express.static(path.join(__dirname, 'public')));</strong>
+</pre>
+
+<p>现在所有其他中间件都已设置完毕，我们将（先前导入的）路由处理代码，添加到请求处理链中。导入的代码，将为网站的不同部分定义特定路由：</p>
+
+<pre class="brush: js">
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+</pre>
+
+<div class="note">
+<p><strong>注意:</strong> 上面指定的路径 ('/' and '<code>/users'</code>)，被视为定义在导入文件中的路由前缀。因此，例如，如果导入的用户模块 <strong>users</strong>为<code>/profile</code>定义了路由，则可以在 <code>/users/profile</code>中访问该路由。我们将在后面的文章中，详细讨论路由。</p>
+</div>
+
+<p>文件中的最后一个中间件，为错误和 HTTP 404 响应添加了处理程序方法。</p>
+
+<pre class="brush: js">
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+</pre>
+
+<p>Express 应用程序对象（app）现已完全完成配置。最后一步，是将其添加到模块导出（这允许它通过 <strong>/bin/www </strong>导入）。</p>
+
+<pre class="brush: js">
+module.exports = app;</pre>
+
+<h3 id="路由">路由</h3>
+
+<p>路由文档<strong>/routes/users.js </strong>如下所示（路由文件共享一个类似的结构，所以我们不需要也显示<strong>index.js</strong>）。首先加载 express 模块​​，并使用它获取 <code>express.Router</code>对象。然后它在该对象上指定一个路由，最后从模块中导出路由器（这就是允许将文件导入到 <strong>app.js </strong>中的路由）。</p>
+
+<pre class="brush: js">
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+<strong>router.get('/', function(req, res, next) {
+&nbsp; res.send('respond with a resource');
+});</strong>
+
+module.exports = router;
+</pre>
+
+<p>该路由定义了一个回调，只要检测到具有正确模式的HTTP <code>GET </code>请求，就会调用该回调。匹配模式是模块导入时指定的路由（'<code>/users</code>'），加上（'<code>/</code>'）文件中定义的任何内容。换句话说，当收到<code>/users/</code>的 URL 时，将使用此路由。</p>
+
+<div class="note">
+<p><strong>提示:</strong> 尝试运行带有 node 的服务器，并在浏览器中访问以下 URL: <a href="http://localhost:3000/users/">http://localhost:3000/users/</a>。您应该看到一条消息：'respond with a resource'。</p>
+</div>
+
+<p>上面有趣的事情是，回调函数有第三个参数 '<code>next</code>'，因此是一个中间件函数，而不是简单的路由回调。虽然代码当前不使用 <code>next </code>参数，但如果要在<code>'/'</code>根路由路径中，添加多个路由处理程序，将来可能会有用。</p>
+
+<h3 id="視圖(模板)">視圖(模板)</h3>
+
+<p>视图（模板）存储在 <strong>/views</strong> 目录中（如 <strong>app.js</strong> 中指定的）并且被赋予文件扩展名<strong>.pug</strong>。方法 <code><a href="http://expressjs.com/en/4x/api.html#res.render">Response.render()</a></code>用于呈现指定的模板，以及在对象中传递的命名变量的值，然后将结果作为响应发送。在來自 <strong>/routes/index.js</strong> 的以下代码中，您可以看到，该路由如何使用模板 "index" 传递模板变量 "title" ，以呈现响应。</p>
+
+<pre class="brush: js">
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
+</pre>
+
+<p>上面路由的相应模板在下面给出（<strong>index.pug</strong>）。我们稍后会详细讨论这个语法。您现在需要知道的是，标题变量<code>title</code>（值为 <code>'Express'</code>）将插入模板中指定的位置。</p>
+
+<pre>
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+</pre>
+
+<h2 id="挑战自己">挑战自己</h2>
+
+<p>在 <strong>/routes/users.js</strong> 中创建一个新路由，它将在 <code>/users/cool/</code>上显示文本 “You're so cool”。通过运行服务器，并在浏览器中访问 <a href="http://localhost:3000/users/cool/">http://localhost:3000/users/cool/ </a>来测试它</p>
+
+<ul>
+</ul>
 
 <h2 id="总结">总结</h2>
 
-<p>现在，你对 LocalLibrary 网站和即将学习的东西又多了解了一点，下面，我们开始创建一个用于存放它的&nbsp;<a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website">框架</a>&nbsp;吧！</p>
+<p>你现在为 <a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">本地图书馆</a> 创建了一个骨架网站项目，并且用 node 验证了它能够运行。最重要的，你也理解了项目的结构，因此你也明白了我们需要为本地图书馆加上路由和视图。</p>
 
-<p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/development_environment", "Learn/Server-side/Express_Nodejs/skeleton_website", "Learn/Server-side/Express_Nodejs")}}</p>
+<p>接下来我们将开始修改骨架，让它能像一个图书馆网站一样运作。</p>
 
-<h2 id="本章目录">本章目录</h2>
+<p>&nbsp;</p>
+
+<h2 id="另見">另見</h2>
 
 <ul>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Introduction">Express/Node 入门</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置&nbsp;Node（Express）开发环境</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程：本地图书馆网站</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website">Express 教程 2：创建站点框架</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/mongoose">Express 教程 3：使用数据库（Mongoose）</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/routes">Express 教程 4：路由和控制器</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Displaying_data">Express 教程 5：显示图书馆数据</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/forms">Express 教程 6：使用表单</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/deployment">Express 教程 7：部署至生产环境</a></li>
+ <li><a href="https://expressjs.com/en/starter/generator.html">Express 應用產生器</a> (Express 官方文檔)</li>
+ <li><a href="https://expressjs.com/en/guide/using-template-engines.html">在Express中使用模板引擎</a> (Express 官方文檔)</li>
 </ul>
+
+<p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs/mongoose", "Learn/Server-side/Express_Nodejs")}}</p>
+
+<p>&nbsp;</p>
+
+<h2 id="本系列教程">本系列教程</h2>
+
+<ul>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction">Express/Node introduction</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment">Setting up a Node (Express) development environment</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express Tutorial: The Local Library website</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website">Express Tutorial Part 2: Creating a skeleton website</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose">Express Tutorial Part 3: Using a Database (with Mongoose)</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/routes">Express Tutorial Part 4: Routes and controllers</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data">Express Tutorial Part 5: Displaying library data</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/forms">Express Tutorial Part 6: Working with forms</a></li>
+ <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/deployment">Express Tutorial Part 7: Deploying to production</a></li>
+</ul>
+
+<p>&nbsp;</p>
