@@ -50,38 +50,43 @@
 <p>你应该已经安装好了生成器，它是 <a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置 Node 开发环境</a> 的一部分。提醒你一下，可以使用 NPM 来安装全局的生成器，如下所示：</p>
 
 <pre class="brush: bash">
-<code>npm install express-generator -g</code></pre>
+$ sudo npm install express-generator -g</pre>
 
 <p>生成器有许多选项，可以使用 <code>--help</code>（或 <code>-h</code>）命令进行查看：</p>
+
+<p><img alt="express 生成器的帮助信息" src="https://mdn.mozillademos.org/files/16407/express-help.png" /></p>
+
+<p>大意如下：</p>
 
 <pre class="brush: bash">
 $ express --help
 
-  Usage: express [options] [dir]
+  用法：express [options] [dir]
 
-  Options:
+  选项：
 
-    -h, --help           output usage information
-        --version        output the version number
-    -e, --ejs            add ejs engine support
-        --pug            add pug engine support
-        --hbs            add handlebars engine support
-    -H, --hogan          add hogan.js engine support
-    -v, --view &lt;engine&gt;  add view &lt;engine&gt; support (ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)
-    -c, --css &lt;engine&gt;   add stylesheet &lt;engine&gt; support (less|stylus|compass|sass) (defaults to plain css)
-        --git            add .gitignore
-    -f, --force          force on non-empty directory
+
+        --version        打印版本号
+    -e, --ejs            添加 ejs 引擎支持
+        --pug            添加 pug 引擎支持
+        --hbs            添加 handlebars 引擎支持
+    -H, --hogan          添加 hogan.js 引擎支持
+    -v, --view &lt;engine&gt;  添加 &lt;engine&gt; 试图引擎支持 (ejs|hbs|hjs|jade|pug|twig|vash) (默认为 jade)
+    -c, --css &lt;engine&gt;   添加 &lt;engine&gt; 样式表引擎支持 (less|stylus|compass|sass) (默认为纯 css)
+        --git            添加 .gitignore
+    -f, --force          对非空文件夹强制执行
+    -h, --help           打印帮助信息
 </pre>
 
 <p>可以直接运行 express 命令来使用 Jade 视图引擎和纯 CSS 在当前目录中创建项目。（如果指定目录名，则在子目录中创建项目）。</p>
 
 <pre class="brush: bash">
-<code>express</code></pre>
+express</pre>
 
 <p>还可以使用 <code>--view</code> 选择视图（模板）引擎，并且/或者使用 <code>--css</code> 选择 CSS 生成引擎。</p>
 
 <div class="note">
-<p><strong>注：</strong>选择模板引擎的其他选项（例如 <code>--hogan</code>, <code>--ejs</code>, <code>--hbs</code> 等）已弃用。请使用 <code>--view</code>（或 <code>-v</code>）。</p>
+<p><strong>注：</strong>不推荐用 <code>--hogan</code>、<code>--ejs</code>、<code>--hbs</code> 等参数选用模板引擎。请使用 <code>--view</code>（或 <code>-v</code>）。</p>
 </div>
 
 <h3 id="我应该用哪个视图引擎">我应该用哪个视图引擎？</h3>
@@ -138,39 +143,9 @@ $ express --help
 
 <p>我们为即将构建 LocalLibrary 示例应用创建一个名为 express-locallibrary-tutorial 的项目，对其使用 Pug 模板库，但不使用 CSS 样式表引擎。</p>
 
-<p>首先，进入准备放置项目的目录，然后在命令提示符运行 Express 应用生成器，如下所示：</p>
+<p>首先，进入准备放置项目的目录，然后在命令提示符运行 Express 应用生成器，生成器将创建（并列出）项目的文件：</p>
 
-<pre class="brush: bash">
-$ cd express-locallibrary-tutorial
-$ express --view=pug
-</pre>
-
-<p>生成器将创建（并列出）项目的文件。</p>
-
-<pre class="brush: bash">
-   create : public/
-   create : public/javascripts/
-   create : public/images/
-   create : public/stylesheets/
-   create : public/stylesheets/style.css
-   create : routes/
-   create : routes/index.js
-   create : routes/users.js
-   create : views/
-   create : views/error.pug
-   create : views/index.pug
-   create : views/layout.pug
-   create : app.js
-   create : package.json
-   create : bin/
-   create : bin/www
-
-   install dependencies:
-     $ npm install
-
-   run the app:
-     $ DEBUG=express-locallibrary-tutorial:* npm start
-</pre>
+<p><img alt="用 express 生成器生成一个应用" src="https://mdn.mozillademos.org/files/16408/express.png" /></p>
 
 <p>生成器在最后还告诉你如何安装（<strong>package.json</strong> 中所列的）依赖，以及如何运行该应用。</p>
 
@@ -188,37 +163,26 @@ npm install</pre>
   <pre class="brush: bash">
 DEBUG=express-locallibrary-tutorial:* npm start</pre>
  </li>
- <li>最后在浏览器中访问 <a href="http://localhost:3000/">http://localhost:3000/</a> ，就可以访问该应用。你应该可以看到： <img alt="Express 应用生成器生成的应用启动成功" src="https://mdn.mozillademos.org/files/16405/express.png" style="display:block; margin:0px auto" /></li>
+ <li>最后在浏览器中访问 <a href="http://localhost:3000/">http://localhost:3000/</a> ，就可以访问该应用。你应该可以看到： <img alt="Express 应用生成器生成的应用启动成功" src="https://mdn.mozillademos.org/files/16410/success.png" /></li>
 </ol>
 
 <p>一个 Express 应用就配置成功了，它托管于 localhost:3000。</p>
 
-<div class="note">
-<p><strong>注：</strong>指定 DEBUG 变量可启用控制台日志记录/调试。例如，当你访问上面的页面时，你会看到像这样的调试输出：</p>
+<div class="note"><strong>注：</strong>指定 DEBUG 变量可启用控制台日志记录/调试。例如，当你访问上面的页面时，你会看到像这样的调试输出： <img alt="用 npm start 启动这个应用" src="https://mdn.mozillademos.org/files/16409/npm-start.png" /> 直接通过 <code>npm start</code> 命令启动应用也是可行的，但不会看到调试信息。</div>
 
-<pre class="brush: bash">
-&gt;SET DEBUG=express-locallibrary-tutorial:* &amp; npm start
-&gt; express-locallibrary-tutorial@0.0.0 start D:\express-locallibrary-tutorial
-&gt; node ./bin/www
-  express-locallibrary-tutorial:server Listening on port 3000 +0ms
-GET / 200 288.474 ms - 170
-GET /stylesheets/style.css 200 5.799 ms - 111
-GET /favicon.ico 404 34.134 ms - 1335</pre>
-直接通过 <code>npm start</code> 命令启动应用也是可行的，但不会看到调试输出。</div>
-
-<h2 id="让伺服器在档案更改时重新启动">让服务器在文件改动时重启</h2>
+<h2 id="让服务器在文件改动时重启">让服务器在文件改动时重启</h2>
 
 <p>只有重启服务器才能看到对 Express 网站所做的改动。每次更改后手动启停服务器实在太烦人了，有必要花点时间让这项工作自动化。</p>
 
 <p><a href="https://github.com/remy/nodemon">nodemon</a> 是最简便的自动化工具之一。通常我们将其全局安装（因为它是一个“工具”）：</p>
 
 <pre class="brush: bash">
-npm install -g nodemon</pre>
+$ sudo npm install -g nodemon</pre>
 
 <p>这里我们还可以把它作为开发依赖将安装在本地，于是使用这个项目的开发人员只要安装这个应用就能自动获得。通过以下命令将其安装在骨架项目的根目录：</p>
 
 <pre class="brush: bash">
-npm install --save-dev nodemon</pre>
+$ npm install --save-dev nodemon</pre>
 
 <p>然后打开项目的 <strong>package.json</strong> 文件中生成了一个新的属性：</p>
 
@@ -240,12 +204,12 @@ npm install --save-dev nodemon</pre>
 <p>现在我们可以用新建的 devstart 命令启动服务器：</p>
 
 <pre class="brush: bash">
-DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
+$ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 
 <p>现在，如果编辑项目中的任何文件，服务器将重新启动（或者可以随时使用 rs 命令来重启）。查看更新的页面需要点击浏览器的“刷新”。</p>
 
 <div class="note">
-<p><strong>注：</strong>这里必须使用“<code>npm run <em>&lt;scriptname&gt;</em></code>”命令，而不是 <code>npm start</code>，因为 “start” 本质上是映射到脚本的一条 NPM 命令。我们可以在 start 脚本中替换它，但我们只想在开发期间使用 nodemon，因此有必要创建一条新的脚本命令。</p>
+<p><strong>注：</strong>这里必须使用“<code>npm <strong>run <em>&lt;scriptname&gt;</em></strong></code>”命令，而不是 <code>npm start</code>，因为 “start” 本质上是映射到脚本的一条 NPM 命令。我们可以在 start 脚本中替换它，但我们只想在开发期间使用 nodemon，因此有必要创建一条新的脚本命令。</p>
 </div>
 
 <h2 id="从产生器得到的项目">生成的项目</h2>
@@ -313,13 +277,13 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 <p>依赖包括 <em>express</em> 包，和选用的视图引擎包（<em>pug</em>）。还有以下一些实用的包：</p>
 
 <ul>
- <li><a href="https://www.npmjs.com/package/cookie-parser">cookie-parser</a>:  用于解析 cookie 头来填充 <code>req.cookies</code>（提供了访问 cookie 信息的便捷方法）。</li>
+ <li><a href="https://www.npmjs.com/package/cookie-parser">cookie-parser</a>: 用于解析 cookie 头来填充 <code>req.cookies</code>（提供了访问 cookie 信息的便捷方法）。</li>
  <li><a href="https://www.npmjs.com/package/debug">debug</a>: 一个小型 node 调试程序，仿照 node 核心的调试技术建立。</li>
- <li><a href="https://www.npmjs.com/package/morgan">morgan</a>:  node 用 HTTP 请求记录器中间件。</li>
- <li><a href="https://www.npmjs.com/package/serve-favicon">serve-favicon</a>:  用于托管 <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a>（在浏览器选项卡、收藏夹处标识网站用的图标）的 node 中间件。</li>
+ <li><a href="https://www.npmjs.com/package/morgan">morgan</a>: node 用 HTTP 请求记录器中间件。</li>
+ <li><a href="https://www.npmjs.com/package/serve-favicon">serve-favicon</a>: 用于托管 <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a>（在浏览器选项卡、收藏夹处标识网站用的图标）的 node 中间件。</li>
 </ul>
 
-<p>脚本部分，定义了一个 "<em>start</em>" 脚本，当我们运行 <code>npm start</code>  时会调用它来启动服务器。在脚本定义中可以看到 start 实际上运行了 "node <strong>./bin/www"</strong>。还有一个 "devstart" 脚本，我们可以通过运行 <code>npm run devstart</code> 来运行 "nodemon <strong>./bin/www</strong>"。</p>
+<p>脚本部分，定义了一个 "<em>start</em>" 脚本，当我们运行 <code>npm start</code> 时会调用它来启动服务器。在脚本定义中可以看到 start 实际上运行了 "node <strong>./bin/www"</strong>。还有一个 "devstart" 脚本，我们可以通过运行 <code>npm run devstart</code> 来运行 "nodemon <strong>./bin/www</strong>"。</p>
 
 <pre class="brush: json">
   "scripts": {
@@ -337,6 +301,7 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 
 /**
  * Module dependencies.
+ * 模块依赖项。
  */
 
 <strong>var app = require('../app');</strong>
@@ -388,6 +353,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+// 视图引擎设定
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 </pre>
@@ -396,6 +362,7 @@ app.set('view engine', 'pug');
 
 <pre class="brush: js">
 // uncomment after placing your favicon in /public
+// 把图标置于 /public 后取消下一行的注释符号
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -419,6 +386,7 @@ app.use('/users', usersRouter);
 
 <pre class="brush: js">
 // catch 404 and forward to error handler
+// 捕获 404 并传递至错误处理器
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -426,12 +394,15 @@ app.use(function(req, res, next) {
 });
 
 // error handler
+// 错误处理器
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+   // 设置 locals，仅提供开发过程中的错误处理
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+   // 渲染出错页面
   res.status(err.status || 500);
   res.render('error');
 });
@@ -466,7 +437,7 @@ module.exports = router;
 
 <p>上面有趣的事情是，回调函数有第三个参数 '<code>next</code>'，因此是一个中间件函数，而不是简单的路由回调。虽然代码当前不使用 <code>next </code>参数，但如果要在<code>'/'</code>根路由路径中，添加多个路由处理程序，将来可能会有用。</p>
 
-<h3 id="視圖(模板)">視圖(模板)</h3>
+<h3 id="視圖(模板)">视图（模板）</h3>
 
 <p>视图（模板）存储在 <strong>/views</strong> 目录中（如 <strong>app.js</strong> 中指定的）并且被赋予文件扩展名<strong>.pug</strong>。方法 <code><a href="http://expressjs.com/en/4x/api.html#res.render">Response.render()</a></code>用于呈现指定的模板，以及在对象中传递的命名变量的值，然后将结果作为响应发送。在來自 <strong>/routes/index.js</strong> 的以下代码中，您可以看到，该路由如何使用模板 "index" 传递模板变量 "title" ，以呈现响应。</p>
 
@@ -500,17 +471,16 @@ block content
 
 <p>接下来我们将开始修改骨架，让它能像一个图书馆网站一样运作。</p>
 
-<p> </p>
+<p>  </p>
 
-<h2 id="另見">另見</h2>
+<h2 id="另見">另请参阅</h2>
 
 <ul>
- <li><a href="https://expressjs.com/en/starter/generator.html">Express 應用產生器</a> (Express 官方文檔)</li>
- <li><a href="https://expressjs.com/en/guide/using-template-engines.html">在Express中使用模板引擎</a> (Express 官方文檔)</li>
+ <li><a href="http://www.expressjs.com.cn/starter/generator.html">Express 应用生成器</a>  （Express 中文镜像文档）</li>
+ <li><a href="http://www.expressjs.com.cn/guide/using-template-engines.html">在 Express 中使用模板引擎</a>（Express 镜像文档）</li>
 </ul>
 
 <p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs/mongoose", "Learn/Server-side/Express_Nodejs")}}</p>
-
 
 <h2 id="本章目录">本章目录</h2>
 
