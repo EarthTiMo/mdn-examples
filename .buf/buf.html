@@ -30,12 +30,21 @@
 <h2 id="使用应用产生器">使用应用生成器</h2>
 
 <div class="blockIndicator note" role="complementary">
-<p>译注：Windows 下的命令提示符与 Linux/macOS&nbsp;终端的概念和用法略有不同，本教程中命令操作将主要基于 *nux 的 bash 终端，为在 Windows 10 上获得一致的体验，可以：</p>
+<p><strong>译注：</strong>本教程中命令操作将主要基于Linux/macOS 的 bash 终端，Windows 的命令提示符cmd/PowerShell 与 bash 的概念和用法略有不同， 为在 Windows 上获得一致的体验，可以：</p>
 
 <ul>
- <li>使用&nbsp;<a href="http://www.msys2.org/">MSYS2</a>&nbsp;提供的 bash。（若你已经安装了&nbsp;<a href="https://git-scm.com/">Git</a>，其内置的 bash 可供使用，无需重复安装 MSYS2）</li>
- <li>&nbsp;</li>
+ <li>自己弄懂 cmd/PowerShell&nbsp;与 bash 的区别。</li>
+ <li>使用&nbsp;<a href="http://www.msys2.org/">MSYS2</a>&nbsp;提供的 bash。（若你已经安装了&nbsp;<a href="https://git-scm.com/">Git</a>，其内置的 bash 可供使用，无需再次安装 MSYS2）（推荐）</li>
+ <li>到 Windows 10 的&nbsp;Microsoft Store 中搜索 Linux，安装你喜欢的发行版。（有 Ubuntu 18.04、openSUSE 42、Debian 等流行版本）（使用前需要先安装 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL</a>）</li>
 </ul>
+
+<p>- Roy Tian.</p>
+</div>
+
+<div class="blockIndicator note" role="complementary">
+<p><strong>译注：</strong>你可能已经发现国内用&nbsp;NPM 太慢了！这是由众所周知的不可抗力造成的。可用淘宝提供的 <a href="https://npm.taobao.org/">CNPM</a> 代替之，功能和用法基本一致。</p>
+
+<p>- Roy Tian.</p>
 </div>
 
 <p>你应该已经安装好了生成器，它是&nbsp;<a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置 Node 开发环境</a>&nbsp;的一部分。提醒你一下，可以使用 NPM 来安装全局的生成器，如下所示：</p>
@@ -132,96 +141,86 @@ $ express --help
 <p>首先，进入准备放置项目的目录，然后在命令提示符运行 Express 应用生成器，如下所示：</p>
 
 <pre class="brush: bash">
-express express-locallibrary-tutorial --view=pug
+$ cd express-locallibrary-tutorial
+$ express --view=pug
 </pre>
 
 <p>生成器将创建（并列出）项目的文件。</p>
 
 <pre class="brush: bash">
-   create : express-locallibrary-tutorial
-   create : express-locallibrary-tutorial/package.json
-   create : express-locallibrary-tutorial/app.js
-   create : express-locallibrary-tutorial/public/images
-   create : express-locallibrary-tutorial/public
-   create : express-locallibrary-tutorial/public/stylesheets
-   create : express-locallibrary-tutorial/public/stylesheets/style.css
-   create : express-locallibrary-tutorial/public/javascripts
-   create : express-locallibrary-tutorial/routes
-   create : express-locallibrary-tutorial/routes/index.js
-   create : express-locallibrary-tutorial/routes/users.js
-   create : express-locallibrary-tutorial/views
-   create : express-locallibrary-tutorial/views/index.pug
-   create : express-locallibrary-tutorial/views/layout.pug
-   create : express-locallibrary-tutorial/views/error.pug
-   create : express-locallibrary-tutorial/bin
-   create : express-locallibrary-tutorial/bin/www
+&nbsp; &nbsp;create : public\
+&nbsp; &nbsp;create : public\javascripts\
+&nbsp; &nbsp;create : public\images\
+&nbsp; &nbsp;create : public\stylesheets\
+&nbsp; &nbsp;create : public\stylesheets\style.css
+&nbsp; &nbsp;create : routes\
+&nbsp; &nbsp;create : routes\index.js
+&nbsp; &nbsp;create : routes\users.js
+&nbsp; &nbsp;create : views\
+&nbsp; &nbsp;create : views\error.pug
+&nbsp; &nbsp;create : views\index.pug
+&nbsp; &nbsp;create : views\layout.pug
+&nbsp; &nbsp;create : app.js
+&nbsp; &nbsp;create : package.json
+&nbsp; &nbsp;create : bin\
+&nbsp; &nbsp;create : bin\www
 
-   install dependencies:
-     &gt; cd express-locallibrary-tutorial &amp;&amp; npm install
+&nbsp; &nbsp;install dependencies:
+&nbsp; &nbsp; &nbsp;&gt; npm install
 
-   run the app:
-     &gt; SET DEBUG=express-locallibrary-tutorial:* &amp; npm start</pre>
+&nbsp; &nbsp;run the app:
+&nbsp; &nbsp; &nbsp;&gt; DEBUG=express-locallibrary-tutorial:* npm start
+</pre>
 
-<p>在输出结束时，生成器提供关于「如何安装依赖关系」的指示信息（如<strong>package.json</strong> 文件中所列），以及如何运行应用程序（上述说明适用于Windows；在Linux / macOS上，它们会略有不同）。</p>
+<p>生成器在最后还告诉你如何安装（<strong>package.json</strong> 中所列的）依赖，以及如何运行该应用。</p>
 
 <h2 id="运行骨架网站">运行骨架网站</h2>
 
-<p>在这一时间点上，我们有一个完整的骨架项目。该网站实际上并没有做太多工作，但运行它，能夠展示它是如何工作的。</p>
+<p>现在我们已经拥有一个完整的项目骨架。虽然这个网站现在还做不了什么，但运行一下，展示一下工作原理也是值得的。</p>
 
 <ol>
- <li>首先安装依赖项（安装命令<code>install</code>，将获取项目的 <strong>package.json</strong> 文件中列出的所有依赖项包）。
+ <li>首先，安装依赖项（<code>install</code>&nbsp;命令将获取项目的 <strong>package.json</strong> 文件中列出的所有依赖项包）。
 
   <pre class="brush: bash">
-cd express-locallibrary-tutorial
 npm install</pre>
  </li>
- <li>然后运行该应用程序。
-  <ul>
-   <li>在Windows上，使用此命令:
-    <pre class="brush: bash">
-SET DEBUG=express-locallibrary-tutorial:* &amp; npm start</pre>
-   </li>
-   <li>在macOS or Linux，使用此命令:
-    <pre class="brush: bash">
-DEBUG=express-locallibrary-tutorial:* npm start
-</pre>
-   </li>
-  </ul>
+ <li>然后运行该应用。
+  <pre class="brush: bash">
+DEBUG=express-locallibrary-tutorial:* npm start</pre>
  </li>
- <li>然后在浏览器中加载 <a href="http://localhost:3000/">http://localhost:3000/</a> ，以访问该应用程序。</li>
+ <li>最后在浏览器中访问&nbsp;<a href="http://localhost:3000/">http://localhost:3000/</a> ，就可以访问该应用。你应该可以看到： <img alt="Express 应用生成器生成的应用启动成功" src="https://mdn.mozillademos.org/files/16405/express.png" style="display:block; margin:0px auto" /></li>
 </ol>
 
-<p>你应该会看到一个浏览器页面，就像这样:</p>
-
-<p><img alt="Browser for default Express app generator website" src="https://mdn.mozillademos.org/files/14375/ExpressGeneratorSkeletonWebsite.png" style="display:block; height:403px; margin:0px auto; width:576px" /></p>
-
-<p>你有一个能工作的 Express 应用了，让它在 <a href="http://localhost:3000/">http://localhost:3000/</a> 服务 。</p>
+<p>一个 Express 应用就配置成功了，它托管于 localhost:3000。</p>
 
 <div class="note">
-<p><strong>注意:</strong> 您也可以使用<code>npm start</code>命令启动应用程序。如下图所示，指定 DEBUG 变量可启用控制台日志记录/调试。例如，当你访问上面的页面时，你会看到像这样的调试输出：</p>
+<p><strong>注：</strong>指定 DEBUG 变量可启用控制台日志记录/调试。例如，当你访问上面的页面时，你会看到像这样的调试输出：</p>
 
 <pre class="brush: bash">
 &gt;SET DEBUG=express-locallibrary-tutorial:* &amp; npm start
-
 &gt; express-locallibrary-tutorial@0.0.0 start D:\express-locallibrary-tutorial
 &gt; node ./bin/www
-
   express-locallibrary-tutorial:server Listening on port 3000 +0ms
 GET / 200 288.474 ms - 170
 GET /stylesheets/style.css 200 5.799 ms - 111
 GET /favicon.ico 404 34.134 ms - 1335</pre>
-</div>
+直接通过 <code>npm start</code> 命令启动应用也是可行的，但不会看到调试输出。</div>
 
-<h2 id="让伺服器在档案更改时重新启动">让伺服器在档案更改时重新启动</h2>
+<h2 id="让伺服器在档案更改时重新启动">让服务器在文件改动时重启</h2>
 
-<p>在您重新启动服务器之前，您对 Express 网站所做的任何更改，目前都不可见。每次进行更改时，必须停止并重新启动服务器，很快变得非常烦人，因此值得花时间使服务器在需要时，自动重新启动。</p>
+<p>只有重启服务器才能看到对 Express 网站所做的改动。每次更改后手动启停服务器实在太烦人了，有必要花点时间让这项工作自动化。</p>
 
-<p>这种工具中，最简单的之一就是<a href="https://github.com/remy/nodemon"> nodemon</a>。这通常是全局安装的（因为它是一个“工具”），但在这里，我们将在本地安装和使用它，作为开发人员依赖项，以便任何使用该项目的开发人员，在安装应用程序时自动获取它。在骨架项目的根目录中，使用以下命令：</p>
+<p><a href="https://github.com/remy/nodemon">nodemon</a>&nbsp;是最简便的自动化工具之一。通常我们将其全局安装（因为它是一个“工具”）：</p>
+
+<pre class="brush: bash">
+npm install -g nodemon</pre>
+
+<p>这里我们还可以把它作为开发依赖将安装在本地，于是使用这个项目的开发人员只要安装这个应用就能自动获得。通过以下命令将其安装在骨架项目的根目录：</p>
 
 <pre class="brush: bash">
 npm install --save-dev nodemon</pre>
 
-<p>如果您打开项目的 <strong>package.json</strong> 文件，您现在将看到一个具有此依赖关系的新区段：</p>
+<p>此时打开项目的 <strong>package.json</strong> 文件中生成了一个新的属性：</p>
 
 <pre class="brush: json">
   "devDependencies": {
@@ -229,7 +228,7 @@ npm install --save-dev nodemon</pre>
   }
 </pre>
 
-<p>由于该工具没有全局安装，我们无法从命令行启动它（除非我们将其添加到路径中），但是我们可以从 NPM 脚本中调用它，因为 NPM 知道所有关于安装的软件包的信息。找到你的 package.json 的脚本 <code>scripts </code>区块。我们更新<code>scripts </code>区块，最初的一行，以<code>"start"</code>开头，在该行的末尾添加逗号，并添加 <code>"devstart" </code>开头的一行，如下所示：</p>
+<p>由于我们没有全局安装该工具，因此无法从命令行启动它（除非我们将其添加到路径中），但是我们可以在&nbsp;NPM 脚本中调用它，因为 NPM 了解所有已安装的包。找到&nbsp;package.json 的&nbsp;<code>scripts</code>&nbsp;部分。我们&nbsp;<code>"start"</code>&nbsp;一行的末尾添加逗号，并在新的一行中添加 <code>"devstart"</code>，如下所示：</p>
 
 <pre class="brush: json">
   "scripts": {
@@ -238,19 +237,10 @@ npm install --save-dev nodemon</pre>
   },
 </pre>
 
-<p>现在我们可以用与前面几乎完全相同的方式，启动服务器，但使用指定的 devstart 命令：</p>
+<p>现在我们可以用新建的 devstart 命令启动服务器：</p>
 
-<ul>
- <li>在 Windows，使用此命令:
-  <pre class="brush: bash">
-SET DEBUG=express-locallibrary-tutorial:* &amp; npm <strong>run devstart</strong></pre>
- </li>
- <li>在 macOS or Linux，使用此命令:
-  <pre class="brush: bash">
-DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong>
-</pre>
- </li>
-</ul>
+<pre class="brush: bash">
+DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 
 <div class="note">
 <p><strong>注意:</strong> 现在，如果您编辑项目中的任何文件，服务器将重新启动（或者您可以随时在命令提示符下，键入<code>rs</code>来重新启动它）。您仍需要重新加载浏览器，以刷新页面。</p>
@@ -535,5 +525,3 @@ block content
  <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/forms">Express Tutorial Part 6: Working with forms</a></li>
  <li><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/deployment">Express Tutorial Part 7: Deploying to production</a></li>
 </ul>
-
-<p>&nbsp;</p>
