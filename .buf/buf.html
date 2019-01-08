@@ -2,7 +2,7 @@
 
 <p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs/mongoose", "Learn/Server-side/Express_Nodejs")}}</p>
 
-<p class="summary"><a href="/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程</a> 的第二节将演示如何创建一个可添加具体的路由、模板/视图、和数据库调用的“骨架”站点。</p>
+<p class="summary"><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程</a> 的第二节将演示如何创建一个可添加具体的路由、模板/视图、和数据库调用的“骨架”站点。</p>
 
 <table class="learn-box standard-table">
  <tbody>
@@ -30,19 +30,19 @@
 <h2 id="使用应用产生器">使用应用生成器</h2>
 
 <div class="blockIndicator note" role="complementary">
-<p><strong>译注：</strong>本教程中命令操作将主要基于Linux/macOS 的 bash 终端，Windows 的命令提示符cmd/PowerShell 与 bash 的概念和用法略有不同， 为在 Windows 上获得一致的体验，可以：</p>
+<p><strong>译注：</strong>本教程中命令操作将主要基于 Linux/macOS 的 bash 终端，Windows 的命令提示符 cmd/PowerShell 与 bash 的概念和用法略有不同， 为在 Windows 上获得一致的体验，可以：</p>
 
 <ul>
  <li>自己弄懂 cmd/PowerShell 与 bash 的区别。</li>
- <li>使用 <a href="http://www.msys2.org/">MSYS2</a> 提供的 bash。（若你已经安装了 <a href="https://git-scm.com/">Git</a>，其内置的 bash 可供使用，无需再次安装 MSYS2）（推荐）</li>
- <li>到 Windows 10 的 Microsoft Store 中搜索 Linux，安装你喜欢的发行版。（有 Ubuntu 18.04、openSUSE 42、Debian 等流行版本）（使用前需要先安装 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL</a>）</li>
+ <li>使用 <a href="http://www.msys2.org/">MSYS2</a> 提供的 bash。（若你已经安装了 <a href="https://git-scm.com/">Git</a>，其内置了 bash 供使用，无需再次安装 MSYS2）（推荐）</li>
+ <li>到 Microsoft Store 中搜索“Linux”，安装你喜欢的（Ubuntu 18.04、openSUSE 42、Debian 等）子系统。（仅限 Windows 10，使用前需要先安装 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL</a>）</li>
 </ul>
 
 <p>- Roy Tian.</p>
 </div>
 
 <div class="blockIndicator note" role="complementary">
-<p><strong>译注：</strong>你可能已经发现国内用 NPM 太慢了！这是由众所周知的不可抗力造成的。可用淘宝提供的 <a href="https://npm.taobao.org/">CNPM</a> 代替之，功能和用法基本一致。</p>
+<p><strong>译注：</strong>你可能已经发现国内用 NPM 太慢了！这是由众所周知的不可抗力造成的。可用淘宝提供的 <a href="https://npm.taobao.org/">CNPM</a> 代替之，功能和用法基本一致（只是不能上传自己的包）。</p>
 
 <p>- Roy Tian.</p>
 </div>
@@ -118,7 +118,7 @@ $ express --help
 
 <p>本项目选用<a href="https://pugjs.org/api/getting-started.html"> Pug </a>模板引擎（Jade 是它不久前的曾用名），它是最流行的 Express / JavaScript 模板语言之一，且对 Express 生成器 <a href="https://github.com/expressjs/express/wiki#template-engines">开箱即用</a>。</p>
 
-<h3 id="我應該用哪個CSS樣式引擎">我应该用哪个 CSS 样式引擎？</h3>
+<h3 id="我应该用哪个CSS样式引擎">我应该用哪个 CSS 样式引擎？</h3>
 
 <p>Express 应用生成器支持最常见的 CSS 样式表引擎：<a href="http://lesscss.org/">LESS</a>, <a href="http://sass-lang.com/">SASS</a>, <a href="http://compass-style.org/">Compass</a>, <a href="http://stylus-lang.com/">Stylus</a>。</p>
 
@@ -128,7 +128,7 @@ $ express --help
 
 <p>与模板引擎一样，你也应该使用样式表引擎，这可以最大化团队生产力。本项目将使用原始 CSS（默认的），因为我们对 CSS 要求不复杂，没有必要使用引擎。</p>
 
-<h3 id="我应该用哪个数据库">我应该用哪个数据库?</h3>
+<h3 id="我应该用哪个数据库">我应该用哪个数据库？</h3>
 
 <p>生成器生成的代码不使用、也不包含任何数据库。 Express 应用可以使用 Node 支持的所有 <a href="https://expressjs.com/en/guide/database-integration.html">数据库</a>（Express 本身不提供数据库管理机制）。</p>
 
@@ -148,28 +148,28 @@ $ express --view=pug
 <p>生成器将创建（并列出）项目的文件。</p>
 
 <pre class="brush: bash">
-   create : public\
-   create : public\javascripts\
-   create : public\images\
-   create : public\stylesheets\
-   create : public\stylesheets\style.css
-   create : routes\
-   create : routes\index.js
-   create : routes\users.js
-   create : views\
-   create : views\error.pug
-   create : views\index.pug
-   create : views\layout.pug
+   create : public/
+   create : public/javascripts/
+   create : public/images/
+   create : public/stylesheets/
+   create : public/stylesheets/style.css
+   create : routes/
+   create : routes/index.js
+   create : routes/users.js
+   create : views/
+   create : views/error.pug
+   create : views/index.pug
+   create : views/layout.pug
    create : app.js
    create : package.json
-   create : bin\
-   create : bin\www
+   create : bin/
+   create : bin/www
 
    install dependencies:
-     &gt; npm install
+     $ npm install
 
    run the app:
-     &gt; DEBUG=express-locallibrary-tutorial:* npm start
+     $ DEBUG=express-locallibrary-tutorial:* npm start
 </pre>
 
 <p>生成器在最后还告诉你如何安装（<strong>package.json</strong> 中所列的）依赖，以及如何运行该应用。</p>
@@ -220,11 +220,11 @@ npm install -g nodemon</pre>
 <pre class="brush: bash">
 npm install --save-dev nodemon</pre>
 
-<p>此时打开项目的 <strong>package.json</strong> 文件中生成了一个新的属性：</p>
+<p>然后打开项目的 <strong>package.json</strong> 文件中生成了一个新的属性：</p>
 
 <pre class="brush: json">
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.18.9"
   }
 </pre>
 
@@ -242,19 +242,19 @@ npm install --save-dev nodemon</pre>
 <pre class="brush: bash">
 DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 
-<div class="note">
-<p><strong>注意:</strong> 现在，如果您编辑项目中的任何文件，服务器将重新启动（或者您可以随时在命令提示符下，键入<code>rs</code>来重新启动它）。您仍需要重新加载浏览器，以刷新页面。</p>
+<p>现在，如果编辑项目中的任何文件，服务器将重新启动（或者可以随时使用 rs 命令来重启）。查看更新的页面需要点击浏览器的“刷新”。</p>
 
-<p>我们现在必须调用“<code>npm run <em>&lt;scriptname&gt;</em></code>”而不是 <code>npm start</code>，因为“start”实际上是映射到指定脚本的 NPM 命令。我们可以在启动脚本中替换该命令，但我们只想在开发期间使用 nodemon，因此创建新的脚本命令是有意义的。</p>
+<div class="note">
+<p><strong>注：</strong>这里必须使用“<code>npm run <em>&lt;scriptname&gt;</em></code>”命令，而不是 <code>npm start</code>，因为 “start” 本质上是映射到脚本的一条 NPM 命令。我们可以在 start 脚本中替换它，但我们只想在开发期间使用 nodemon，因此有必要创建一条新的脚本命令。</p>
 </div>
 
-<h2 id="从产生器得到的项目">从产生器得到的项目</h2>
+<h2 id="从产生器得到的项目">生成的项目</h2>
 
-<p>现在我们来看看我们刚刚创建的项目。</p>
+<p>我们来看看刚刚创建的项目。</p>
 
-<h3 id="目錄結構">目錄結構</h3>
+<h3 id="目录结构">目录结构</h3>
 
-<p>从产生器得到的生成项目，现在已经安装了依赖项，具有以下文件结构 （<strong>不</strong>带前缀 “/” 的项目，表示文件）。<strong>package.json </strong>文件定义了应用程序依赖项，和其他信息。它还定义了一个启动脚本，它将调用应用程序入口点 JavaScript 文件 <strong>/bin/www</strong>。这设置了一些应用程序的错误处理，然后加载 <strong>app.js </strong>，来完成剩下的工作。应用程序路径，存储在<strong> /routes</strong> 目录下的单独模块中。模板存储在 /<strong>views</strong> 目录下。</p>
+<p>已经安装好了依赖项的生成项目的文件结构如下 （<strong>不</strong>带 “/” 前缀的项目即文件）：</p>
 
 <pre>
 /express-locallibrary-tutorial
@@ -263,7 +263,7 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
         <strong>www</strong>
     <strong>package.json</strong>
     /node_modules
-        [about 4,500 subdirectories and files]
+        [约 4,500 个子文件夹和文件]
     /public
         /images
         /javascripts
@@ -279,11 +279,13 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
     
 </pre>
 
-<p>以下各节将详细介绍这些文件。</p>
+<p><strong>package.json </strong>文件定义依赖项和其他信息，以及一个启动脚本，它将调用应用程序入口——<strong>/bin/www</strong>（一个 JavaScript 文件），其中设置了一些应用的错误处理，加载 <strong>app.js </strong>来完成其余工作。<strong>/routes</strong> 目录中用不同模块保存应用路由。/<strong>views</strong> 目录保存模板。</p>
+
+<p>下面来详细介绍这些文件。</p>
 
 <h3 id="package.json">package.json</h3>
 
-<p><strong>package.json </strong>文件定义了应用程序依赖关系，和其他信息：</p>
+<p><strong>package.json </strong>文件中定义了应用依赖和其他信息：</p>
 
 <pre class="brush: json">
 {
@@ -291,35 +293,33 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/www"
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.16.2",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "pug": "~2.0.0-rc.4",
-    "serve-favicon": "~2.4.5"
+    "pug": "2.0.0-beta11"
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.18.9"
   }
 }
 </pre>
 
-<p>依赖关系包括 <em>express</em> 包，和我们所选视图引擎（<em>pug</em>）的包。另外，我们还有以下的包，在许多 Web 应用程序中很有用：</p>
+<p>依赖包括 <em>express</em> 包，和选用的视图引擎包（<em>pug</em>）。还有以下一些实用的包：</p>
 
 <ul>
- <li><a href="https://www.npmjs.com/package/body-parser">body-parser</a>: 这解析传入HTTP请求的正文 body 部分，并更容易提取包含信息的不同部分。例如，您可以使用它来读取 <code>POST </code>参数。</li>
- <li><a href="https://www.npmjs.com/package/cookie-parser">cookie-parser</a>: 用于解析 cookie header 并填充 <code>req.cookies</code>（本质上提供了访问 cookie 信息的便捷方法）。</li>
- <li><a href="https://www.npmjs.com/package/debug">debug</a>: 一个小型 node 调试程序，仿照 node 核心的调试技术建立的。</li>
- <li><a href="https://www.npmjs.com/package/morgan">morgan</a>: 搭配 node 使用的 HTTP 请求记录器中间层软件。</li>
- <li><a href="https://www.npmjs.com/package/serve-favicon">serve-favicon</a>: 用于提供收藏图标 <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a> 的 node 中间层软件（这是用于表示浏览器选项卡、书签等网站内的图标）。</li>
+ <li><a href="https://www.npmjs.com/package/cookie-parser">cookie-parser</a>:  用于解析 cookie 头来填充 <code>req.cookies</code>（提供了访问 cookie 信息的便捷方法）。</li>
+ <li><a href="https://www.npmjs.com/package/debug">debug</a>: 一个小型 node 调试程序，仿照 node 核心的调试技术建立。</li>
+ <li><a href="https://www.npmjs.com/package/morgan">morgan</a>:  node 用 HTTP 请求记录器中间件。</li>
+ <li><a href="https://www.npmjs.com/package/serve-favicon">serve-favicon</a>:  用于托管 <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a>（在浏览器选项卡、收藏夹处标识网站用的图标）的 node 中间件。</li>
 </ul>
 
-<p>脚本部分，定义了一个“开始” "<em>start</em>" 脚本，当我们调用 <code>npm start</code> 来启动服务器时，这就是我们所调用的脚本。从脚本定义中，您可以看到这实际上用 node 启动了 JavaScript 文件 <strong>./bin/www</strong>。它还定义了一个“devstart” 脚本，我们在调用 <code>npm run devstart </code>时调用它。这将启动相同的 <strong>./bin/www </strong>文件，但使用 nodemon 调用而不是 node 。</p>
+<p>脚本部分，定义了一个 "<em>start</em>" 脚本，当我们运行 <code>npm start</code>  时会调用它来启动服务器。在脚本定义中可以看到 start 实际上运行了 "node <strong>./bin/www"</strong>。还有一个 "devstart" 脚本，我们可以通过运行 <code>npm run devstart</code> 来运行 "nodemon <strong>./bin/www</strong>"。</p>
 
 <pre class="brush: json">
   "scripts": {
@@ -330,7 +330,7 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 
 <h3 id="www_文件">www 文件</h3>
 
-<p>文件 <strong>/bin/www </strong>是应用程序入口点！它做的第一件事是 <code>require()</code> “真实” 应用程序入口点（即项目根目录中的 <strong>app.js</strong> ），<strong>app.js </strong>会设置并返回<code><a href="http://expressjs.com/en/api.html">express() </a></code>应用程序的对象。</p>
+<p>文件 <strong>/bin/www </strong>是应用入口！它做的第一件事是 <code>require()</code> “真实” 的应用入口（即项目根目录中的 <strong>app.js</strong> ），<strong>app.js </strong>会设置并返回 <code><a href="http://expressjs.com/en/api.html">express()</a></code><a href="http://expressjs.com/en/api.html"> </a>应用对象。</p>
 
 <pre class="brush: js">
 #!/usr/bin/env node
@@ -343,14 +343,14 @@ DEBUG=express-locallibrary-tutorial:* npm <strong>run devstart</strong></pre>
 </pre>
 
 <div class="note">
-<p><strong>注意:</strong> <code>require()</code> 是一个全局 node 函数，用于将模块导入当前文件。这里我们使用相对路径指定<strong> app.js</strong> 模块，并省略可选的（.<strong>js</strong>）文件扩展名。</p>
+<p><strong>注意:</strong> <code>require()</code> 是一个全局的 node 函数，可将模块导入当前文件。这里我们使用相对路径指定<strong> app.js</strong> 模块，并省略了 .<strong>js</strong> 扩展名（可选）。</p>
 </div>
 
-<p>此文件中的其余代码，将设置一个 node 运行的 HTTP 服务器，并将应用 <code>app</code> 设置为特定的端口（在环境变量中定义，如果变量未定义，则定义为3000），并开始监听和报告服务器错误和连接。现在你并不需要知道代码的其他内容（这个文件中的所有内容都是 “样板文件” ），但如果你感兴趣，可以随时查看它。</p>
+<p>文件的其余部分先为 <code>app</code> 设置端口（环境变量中的预定义值或默认值 3000），再创建一个 node 版 HTTP 服务器，然后开始监听请求，报告服务器错误和连接信息。其他内容可暂时忽略（这里所有内容都是机器生成的模板），但感兴趣的话可以随时回来看看。</p>
 
 <h3 id="app.js">app.js</h3>
 
-<p>此文件创建一个 <code>express </code>应用程序对象（按传统命名为 <code>app</code>），使用各种设置和中间件，以设置应用程序，然后从模块导出应用程序。下面的代码只显示了文件的一部分，创建和导出应用程序对象的部分：</p>
+<p>此文件创建一个 <code>express</code> 应用对象（一般命名为 <code>app</code>），通过各种设置选项和中间件来设置这个应用，然后从模块中导出该应用。下面的代码只显示了文件中创建和导出应用程序对象的部分：</p>
 
 <pre class="brush: js">
 <code>var express = require('express');
@@ -359,7 +359,9 @@ var app = express();
 </code>module.exports = app;
 </pre>
 
-<p>回到上面的<strong> www</strong> 入口点文件，它是在导入该文件时，提供给调用者的这个 <code>module.exports</code> 对象。让我们详细了解<strong> app.js</strong> 文件。首先，我们使用 <code>require()</code>将一些有用的node 库导入到文件中，其中包括我们先前使用 NPM 为应用程序下载的 express，serve-favicon，morgan，<em>cookie-parser</em> 和 body-parser；和<em>path </em>库，它是解析文件和目录路径的核心 node 库。</p>
+<p>上文的<strong> www</strong> 入口文件中 <code>require()</code> 的 <code>app</code> 就是这里的 <code>module.exports</code> 。</p>
+
+<p>我们来详细了解一下<strong> app.js</strong> 文件。首先，它使用 <code>require()</code> 导入了一些有用的 node 库，其中包括之前用 NPM 下载的 express，serve-favicon，morgan 和 <em>cookie-parser，还有一个 </em><em>path </em>库，它是用于解析文件和目录的核心 node 库。</p>
 
 <pre class="brush: js">
 var express = require('express');
@@ -367,10 +369,9 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 </pre>
 
-<p>然后我们<code>require()</code>来自我们的路由目录的模块。这些模块/文件包含用于处理特定的相关“路由”集合（URL路径）的代码。当我们扩展骨架应用程序，例如列出图书馆中的所有书籍时，我们将添加一个新文件，来处理与书籍相关的路由。</p>
+<p>然后我们来 <code>require()</code> 自己的路由目录中的模块。这些模块/文件用于处理特定的“路由”（URL路径）。当我们扩展骨架应用时，比如列出所有馆藏书目时，我们会添加一个新文件来处理与藏书相关的路由。</p>
 
 <pre class="brush: js">
 var indexRouter = require('./routes/index');
@@ -378,7 +379,7 @@ var usersRouter = require('./routes/users');
 </pre>
 
 <div class="note">
-<p><strong>注意:</strong> 此时我们刚刚导入了模块；我们还没有真正使用过它的路由（在文件的更下方一点将使用到路由）。</p>
+<p><strong>注意:</strong> 此时我们刚刚导入了模块；还没有真正使用过其中的路由（文件更下方一点会使用）。</p>
 </div>
 
 <p>接下来，我们使用导入的 express 模块​​，创建应用程序 <code>app</code> 对象，然后使用它来设置视图（模板）引擎。引擎的设置有两个部分。首先我们设置 '<code>views</code>' 值，来指定模板将被存储的文件夹（在这种情况下是子文件夹 <strong>/views</strong>）。然后我们设置 '<code>view engine</code>' 的值，来指定模板库（在本例中为 “pug” ）。</p>
@@ -499,7 +500,7 @@ block content
 
 <p>接下来我们将开始修改骨架，让它能像一个图书馆网站一样运作。</p>
 
-<p>&nbsp;</p>
+<p> </p>
 
 <h2 id="另見">另見</h2>
 
@@ -510,11 +511,12 @@ block content
 
 <p>{{PreviousMenuNext("Learn/Server-side/Express_Nodejs/Tutorial_local_library_website", "Learn/Server-side/Express_Nodejs/mongoose", "Learn/Server-side/Express_Nodejs")}}</p>
 
+
 <h2 id="本章目录">本章目录</h2>
 
 <ul>
  <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Introduction">Express/Node 入门</a></li>
- <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置&nbsp;Node（Express）开发环境</a></li>
+ <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/development_environment">设置 Node（Express）开发环境</a></li>
  <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website">Express 教程：本地图书馆网站</a></li>
  <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/skeleton_website">Express 教程 2：创建站点框架</a></li>
  <li><a href="/zh-CN/docs/Learn/Server-side/Express_Nodejs/mongoose">Express 教程 3：使用数据库（Mongoose）</a></li>
