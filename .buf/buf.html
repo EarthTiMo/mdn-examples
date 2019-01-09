@@ -397,12 +397,12 @@ app.use(function(req, res, next) {
 // 错误处理器
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-   // 设置 locals，仅提供开发过程中的错误处理
+  // 设置 locals，仅提供开发过程中的错误处理
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-   // 渲染出错页面
+  // 渲染出错页面
   res.status(err.status || 500);
   res.render('error');
 });
@@ -471,12 +471,10 @@ block content
 
 <p>接下来我们将开始修改骨架，让它能像一个图书馆网站一样运作。</p>
 
-<p>  </p>
-
-<h2 id="另見">另请参阅</h2>
+<h2 id="另请参阅">另请参阅</h2>
 
 <ul>
- <li><a href="http://www.expressjs.com.cn/starter/generator.html">Express 应用生成器</a>  （Express 中文镜像文档）</li>
+ <li><a href="http://www.expressjs.com.cn/starter/generator.html">Express 应用生成器</a>&nbsp;（Express 中文镜像文档）</li>
  <li><a href="http://www.expressjs.com.cn/guide/using-template-engines.html">在 Express 中使用模板引擎</a>（Express 镜像文档）</li>
 </ul>
 
